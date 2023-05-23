@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Record {{ record.id }}{% endblock %}
+
+{% block body %}
+
+
+
+    {% if record is defined %}
+        <h1>{{ record.title }}</h1>
+        <h3>Id: {{ record.id }}</h3>
+
+        <h3>Content:</h3>
+        <p>{{ record.content }}</p>
+        <h3>Tags:</h3>
+        <p>{{ record.tags|join(', ') }}</p>
+    {% else %}
+        <p>This record does not exist.</p>
+    {%  endif %}
+
+{% endblock %}
