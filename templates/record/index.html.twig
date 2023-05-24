@@ -1,20 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Record list{% endblock %}
+{% block title %}{{ 'title.record_list'|trans }}{% endblock %}
 
 {% block body %}
 
-    <h1>Record list</h1>
+    <h1>{{ 'title.record_list'|trans }}</h1>
 
     {% if records is defined and records|length %}
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Title</th>
-                    <th>Tags</th>
-                    <th scope="col">Actions</th>
+                    <th>{{ 'label.id'|trans }}</th>
+                    <th>{{ 'label.title'|trans }}</th>
+                    <th>{{ 'label.tags'|trans }}</th>
+                    <th scope="col">{{ 'label.actions'|trans }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,13 +22,13 @@
                     <td>{{ record.id }}</td>
                     <td>{{ record.title }}</td>
                     <td>{{ record.tags|join(' - ') }}</td>
-                    <td>&nbsp;</td>
+                    <td><a href="{{ path('record_show', {'id': record.id}) }}">{{ 'button.action_show'|trans }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     {% else %}
-        <p>List is empty.</p>
+        <p>{{ 'message.empty_list'|trans }}</p>
     {%  endif %}
 
 {% endblock %}

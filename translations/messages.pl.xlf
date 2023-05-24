@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
+    <file source-language="pl" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
-                <target>Actions</target>
+                <target>Akcja</target>
             </trans-unit>
             <trans-unit id="label.id">
                 <source>label.id</source>
@@ -12,47 +12,47 @@
             </trans-unit>
             <trans-unit id="label.title">
                 <source>label.title</source>
-                <target>Title</target>
+                <target>Tytuł</target>
             </trans-unit>
             <trans-unit id="label.content">
                 <source>label.content</source>
-                <target>Content</target>
+                <target>Treść</target>
             </trans-unit>
             <trans-unit id="label.tags">
                 <source>label.tags</source>
-                <target>Tags</target>
+                <target>Tagi</target>
             </trans-unit>
             <trans-unit id="message.empty_list">
                 <source>message.empty_list</source>
-                <target>List is empty.</target>
+                <target>Lista jest pusta.</target>
             </trans-unit>
             <trans-unit id="message.record_not_found">
                 <source>message.record_not_found</source>
-                <target>Record not found.</target>
+                <target>Nie znaleziono rekordu.</target>
             </trans-unit>
             <trans-unit id="title.record_list">
                 <source>title.record_list</source>
-                <target>Records list</target>
+                <target>Lista rekordów</target>
             </trans-unit>
             <trans-unit id="title.record_view">
                 <source>title.record_view</source>
-                <target>Record view</target>
+                <target>Podgląd rekordu</target>
             </trans-unit>
             <trans-unit id="header.record_content">
                 <source>header.record_content</source>
-                <target>Content:</target>
+                <target>Treść:</target>
             </trans-unit>
             <trans-unit id="header.record_tags">
                 <source>header.record_tags</source>
-                <target>Tags:</target>
+                <target>Tagi:</target>
             </trans-unit>
             <trans-unit id="message.record_not_exist">
                 <source>message.record_not_exist</source>
-                <target>This record does not exist.</target>
+                <target>Ten rekord nie istnieje.</target>
             </trans-unit>
             <trans-unit id="button.action_show">
                 <source>button.action_show</source>
-                <target>Show</target>
+                <target>Podgląd</target>
             </trans-unit>
         </body>
     </file>

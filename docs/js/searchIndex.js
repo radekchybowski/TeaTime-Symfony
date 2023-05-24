@@ -6,14 +6,69 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Kernel.html"
         },                {
+            "fqsen": "\\App\\Controller\\HelloController",
+            "name": "HelloController",
+            "summary": "Class\u0020HelloController.",
+            "url": "classes/App-Controller-HelloController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\HelloController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/App-Controller-HelloController.html#method_index"
+        },                {
+            "fqsen": "\\App\\Controller\\RecordController",
+            "name": "RecordController",
+            "summary": "",
+            "url": "classes/App-Controller-RecordController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\RecordController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/App-Controller-RecordController.html#method_index"
+        },                {
+            "fqsen": "\\App\\Controller\\RecordController\u003A\u003Ashow\u0028\u0029",
+            "name": "show",
+            "summary": "",
+            "url": "classes/App-Controller-RecordController.html#method_show"
+        },                {
+            "fqsen": "\\App\\Repository\\RecordRepository",
+            "name": "RecordRepository",
+            "summary": "Class\u0020RecordRepository.",
+            "url": "classes/App-Repository-RecordRepository.html"
+        },                {
+            "fqsen": "\\App\\Repository\\RecordRepository\u003A\u003AfindAll\u0028\u0029",
+            "name": "findAll",
+            "summary": "Find\u0020all.",
+            "url": "classes/App-Repository-RecordRepository.html#method_findAll"
+        },                {
+            "fqsen": "\\App\\Repository\\RecordRepository\u003A\u003AfindOneById\u0028\u0029",
+            "name": "findOneById",
+            "summary": "Find\u0020one\u0020by\u0020Id.",
+            "url": "classes/App-Repository-RecordRepository.html#method_findOneById"
+        },                {
+            "fqsen": "\\App\\Repository\\RecordRepository\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "Data.",
+            "url": "classes/App-Repository-RecordRepository.html#property_data"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
             "url": "namespaces/default.html"
         },                {
+            "fqsen": "\\App\\Controller",
+            "name": "Controller",
+            "summary": "",
+            "url": "namespaces/app-controller.html"
+        },                {
             "fqsen": "\\App",
             "name": "App",
             "summary": "",
             "url": "namespaces/app.html"
+        },                {
+            "fqsen": "\\App\\Repository",
+            "name": "Repository",
+            "summary": "",
+            "url": "namespaces/app-repository.html"
         }            ]
 );

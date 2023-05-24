@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  *Class HelloController.
  */
-
 #[Route('/hello')]
 class HelloController extends AbstractController
 {

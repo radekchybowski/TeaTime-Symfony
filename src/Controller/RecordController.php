@@ -9,6 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RecordController extends AbstractController
 {
+    /**
+     * @return Response HTTP response
+     */
     #[Route('/record', name: 'app_record')]
     public function index(RecordRepository $repository): Response
     {
@@ -18,17 +21,22 @@ class RecordController extends AbstractController
             'record/index.html.twig',
             [
                 'controller_name' => 'RecordController',
-                'records' => $records
+                'records' => $records,
         ]);
     }
 
+    /**
+     * @param RecordRepository $repo
+     * @param int $id
+     * @return Response HTTP Response
+     */
     #[Route(
         '/{id}',
         name: 'record_show',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
     )]
-    public function show(RecordRepository $repo, int $id) : Response
+    public function show(RecordRepository $repo, int $id): Response
     {
         $record = $repo->findOneById($id);
 
