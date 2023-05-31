@@ -1,0 +1,3 @@
+#services:
+#  App\Entity\Category:
+#    autowire: true

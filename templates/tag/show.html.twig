@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.record_view'|trans }} {{ record.id }}{% endblock %}
+
+{% block body %}
+
+
+
+    {% if record is defined %}
+        <h3>{{ 'label.id'|trans }}: {{ record.id }}</h3>
+        <h3>Tytuł</h3>
+        <p>{{ record.title }}</p>
+        <h3>{{ 'label.created_at'|trans }}</h3>
+        <p>{{ record.createdAt|date('Y-m-d') }}</p>
+        <h3>{{ 'label.updated_at'|trans }}</h3>
+        <p>{{ record.updatedAt|date('Y-m-d') }}</p>
+        <a href="{{ url('app_tasks') }}" title="{{ 'action.back_to_list'|trans }}">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    {% else %}
+        <p>{{ 'message.record_not_exist'|trans }}</p>
+    {%  endif %}
+
+{% endblock %}

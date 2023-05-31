@@ -2,18 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\TaskRepository;
-use Doctrine\DBAL\Types\Types;
+use App\Repository\TagRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/*
- * Class Task.
- *
- * @psalm- supress MissingContructor
- * */
-#[ORM\Entity(repositoryClass: TaskRepository::class)]
-#[ORM\Table(name: 'tasks')]
-class Task
+#[ORM\Entity(repositoryClass: TagRepository::class)]
+#[ORM\Table(name: 'tags')]
+class Tag
 {
     /**
      * Primary key.
@@ -22,17 +16,6 @@ class Task
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-    /**
-     * Title.
-     *
-     * @var string|null
-     */
-    #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\Type('string')]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 3, max: 64)]
-    private ?string $title = null;
 
     /**
      * Created at.
@@ -54,30 +37,36 @@ class Task
     #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+
+    /**
+     * Slug.
+     * @var string|null
+     */
+    #[ORM\Column(type: 'string', length: 64)]
+    #[Assert\Type('string')]
+    #[Assert\Length(min: 3, max: 64)]
+    #[Gedmo\Slug(fields: ['title'])]
+    private ?string $slug = null;
+
+    /**
+     * Title.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
     #[Assert\NotBlank]
-    private ?string $comment = null;
+    #[Assert\Length(min: 3, max: 64)]
+    private ?string $title = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category = null;
-
+    /**
+     * Getter for Id.
+     *
+     * @return int|null Id
+     */
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
@@ -104,26 +93,26 @@ class Task
         return $this;
     }
 
-    public function getComment(): ?string
+    public function getSlug(): ?string
     {
-        return $this->comment;
+        return $this->slug;
     }
 
-    public function setComment(?string $comment): self
+    public function setSlug(string $slug): self
     {
-        $this->comment = $comment;
+        $this->slug = $slug;
 
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getTitle(): ?string
     {
-        return $this->category;
+        return $this->title;
     }
 
-    public function setCategory(?Category $category): self
+    public function setTitle(string $title): self
     {
-        $this->category = $category;
+        $this->title = $title;
 
         return $this;
     }

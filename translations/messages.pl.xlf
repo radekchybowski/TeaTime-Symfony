@@ -54,6 +54,26 @@
                 <source>button.action_show</source>
                 <target>Podgląd</target>
             </trans-unit>
+            <trans-unit id="button.action_create">
+                <source>button.action_create</source>
+                <target>Nowa kategoria</target>
+            </trans-unit>
+            <trans-unit id="button.action_edit">
+                <source>button.action_edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="button.action_delete">
+                <source>button.action_delete</source>
+                <target>Usuń</target>
+            </trans-unit>
+            <trans-unit id="label.category">
+                <source>label.category</source>
+                <target>Kategoria</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Powrót do listy</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

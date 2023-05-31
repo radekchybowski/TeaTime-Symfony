@@ -31,7 +31,7 @@ class RecordController extends AbstractController
      * @return Response HTTP Response
      */
     #[Route(
-        '/{id}',
+        '/record/{id}',
         name: 'record_show',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
