@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Task;
+use App\DataFixtures\AbstractBaseFixtures;
 
 /**
  * Class TaskFixtures.
