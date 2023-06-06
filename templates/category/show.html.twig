@@ -14,7 +14,7 @@
         <p>{{ record.createdAt|date('Y-m-d') }}</p>
         <h3>{{ 'label.updated_at'|trans }}</h3>
         <p>{{ record.updatedAt|date('Y-m-d') }}</p>
-        <a href="{{ url('category_index') }}" title="{{ 'action.back_to_list'|trans }}">
+        <a href="{{ url('tag_index') }}" title="{{ 'action.back_to_list'|trans }}">
             {{ 'action.back_to_list'|trans }}
         </a>
     {% else %}

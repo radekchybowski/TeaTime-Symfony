@@ -11,9 +11,12 @@
         <li class="nav-item">
             <a class="nav-link active" href="{{ path('category_index') }}">Kategorie</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('tag_index') }}">Tagi</a>
+        </li>
     </ul>
 
-    <h1> Kategorie </h1>
+    <h1> Tagi </h1>
     <a href="{{ path('tag_create') }}">{{ 'button.action_create'|trans }}</a>
 
     {% if pagination is defined and pagination.items|length %}
@@ -32,15 +35,15 @@
             </tr>
             </thead>
             <tbody>
-            {% for category in pagination.items %}
+            {% for tag in pagination.items %}
                 <tr>
-                    <td>{{ category.id }}</td>
-                    <td>{{ category.title }}</td>
-                    <td>{{ category.createdAt|date('Y-m-d') }}</td>
-                    <td>{{ category.updatedAt|format_date('long') }}</td>
-                    <td><a href="{{ path('category_show', {'id': category.id}) }}">{{ 'button.action_show'|trans }}</a></td>
-                    <td><a href="{{ path('category_edit', {'id': category.id}) }}">{{ 'button.action_edit'|trans }}</a></td>
-                    <td><a href="{{ path('category_delete', {'id': category.id}) }}">{{ 'button.action_delete'|trans }}</a></td>
+                    <td>{{ tag.id }}</td>
+                    <td>{{ tag.title }}</td>
+                    <td>{{ tag.createdAt|date('Y-m-d') }}</td>
+                    <td>{{ tag.updatedAt|format_date('long') }}</td>
+                    <td><a href="{{ path('tag_show', {'id': tag.id}) }}">{{ 'button.action_show'|trans }}</a></td>
+                    <td><a href="{{ path('tag_edit', {'id': tag.id}) }}">{{ 'button.action_edit'|trans }}</a></td>
+                    <td><a href="{{ path('tag_delete', {'id': tag.id}) }}">{{ 'button.action_delete'|trans }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
