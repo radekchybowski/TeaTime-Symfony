@@ -56,7 +56,7 @@
             </trans-unit>
             <trans-unit id="button.action_create">
                 <source>button.action_create</source>
-                <target>Nowa kategoria</target>
+                <target>Nowy rekord</target>
             </trans-unit>
             <trans-unit id="button.action_edit">
                 <source>button.action_edit</source>
