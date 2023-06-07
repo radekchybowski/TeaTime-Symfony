@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Tag;
-use App\DataFixtures\AbstractBaseFixtures;
 
 /**
  * Class TagFixtures.
@@ -43,5 +42,7 @@ class TagFixtures extends AbstractBaseFixtures
 
             return $tag;
         });
+
+//        $this->manager->flush();
     }
 }

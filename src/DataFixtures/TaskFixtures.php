@@ -41,9 +41,9 @@ class TaskFixtures extends AbstractBaseFixtures
                 )
             );
 
-            $task->setComment(
-                $this->faker->paragraph
-            );
+//            $task->setComment(
+//                $this->faker->paragraph
+//            );
 
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
