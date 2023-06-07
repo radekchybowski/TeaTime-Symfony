@@ -54,7 +54,8 @@ class TaskController extends AbstractController
     public function index(Request $request): Response
     {
         $pagination = $this->taskService->getPaginatedList(
-            $request->query->getInt('page', 1)
+            $request->query->getInt('page', 1),
+            $this->getUser()
         );
 
         return $this->render('task/index.html.twig', ['pagination' => $pagination]);
@@ -70,7 +71,19 @@ class TaskController extends AbstractController
     #[Route('/{id}', name: 'task_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
     public function show(Task $task): Response
     {
-        return $this->render('task/show.html.twig', ['task' => $task]);
+        if ($task->getAuthor() !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
+
+            return $this->redirectToRoute('task_index');
+        }
+
+        return $this->render(
+            'task/show.html.twig',
+            ['task' => $task]
+        );
     }
 
     /**
@@ -80,10 +93,13 @@ class TaskController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'task_create', methods: 'GET|POST', )]
+    #[Route('/create', name: 'task_create', methods: 'GET|POST')]
     public function create(Request $request): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $task = new Task();
+        $task->setAuthor($user);
         $form = $this->createForm(
             TaskType::class,
             $task,
@@ -102,7 +118,10 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('task_index');
         }
 
-        return $this->render('task/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render(
+            'task/create.html.twig',
+            ['form' => $form->createView()]
+        );
     }
 
     /**

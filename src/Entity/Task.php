@@ -82,8 +82,16 @@ class Task
     #[ORM\JoinTable(name: 'tasks_tags')]
     private $tags;
 
-    #[ORM\ManyToOne]
-    private ?User $author = null;
+    /**
+     * Author.
+     *
+     * @var User|null
+     */
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Type(User::class)]
+    private ?User $author;
 
     /**
      * Constructor.

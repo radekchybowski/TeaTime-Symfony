@@ -24,7 +24,7 @@ class TagFixtures extends AbstractBaseFixtures
 
         $this->createMany(100, 'tags', function (int $i) {
             $tag = new Tag();
-            $tag->setTitle($this->faker->sentence);
+            $tag->setTitle($this->faker->word);
             $tag->setCreatedAt(
                 \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween(

@@ -33,6 +33,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'task.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.tag'|trans, 'tag.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.author'|trans, 'task.user.email') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -46,9 +47,10 @@
                     <td>{{ task.category.title }}</td>
                     <td>
                         {% for tag in task.tags %}
-                            {{ tag.title }}
+                            {{ tag.title }},
                         {% endfor %}
                     </td>
+                    <td>{{ task.author.email }}</td>
                     <td><a href="{{ path('task_show', {'id': task.id}) }}">{{ 'button.action_show'|trans }}</a></td>
                     <td><a href="{{ path('task_edit', {'id': task.id}) }}">{{ 'button.action_edit'|trans }}</a></td>
                     <td><a href="{{ path('task_delete', {'id': task.id}) }}">{{ 'button.action_delete'|trans }}</a></td>
