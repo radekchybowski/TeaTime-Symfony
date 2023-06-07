@@ -46,7 +46,7 @@
                     <td>{{ task.category.title }}</td>
                     <td>
                         {% for tag in task.tags %}
-                            {{ tag }}
+                            {{ tag.title }}
                         {% endfor %}
                     </td>
                     <td><a href="{{ path('task_show', {'id': task.id}) }}">{{ 'button.action_show'|trans }}</a></td>
