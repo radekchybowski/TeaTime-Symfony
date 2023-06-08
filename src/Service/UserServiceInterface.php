@@ -3,7 +3,7 @@
  * User service interface.
  */
 
-namespace Service;
+namespace App\Service;
 
 use App\Entity\Task;
 use App\Entity\User;
@@ -21,7 +21,7 @@ interface UserServiceInterface
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page, User $author): PaginationInterface;
+    public function getPaginatedList(int $page): PaginationInterface;
 
     /**
      * Save entity.

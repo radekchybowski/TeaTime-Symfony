@@ -9,7 +9,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Service\UserServiceInterface;
+use App\Service\UserServiceInterface;
 
 /**
  * Class UserService.
@@ -46,7 +46,7 @@ class UserService implements UserServiceInterface
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page, User $author): PaginationInterface
+    public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
             $this->userRepository->queryAll(),

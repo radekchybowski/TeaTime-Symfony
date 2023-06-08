@@ -37,7 +37,19 @@ public const PAGINATOR_ITEMS_PER_PAGE = 5;
     {
         return $this->getOrCreateQueryBuilder()
             ->select('partial user.{id, email, roles, password}')
-            ->orderBy('id', 'ASC');
+            ->orderBy('user.id', 'ASC');
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('user');
     }
 
     public function save(User $entity, bool $flush = false): void

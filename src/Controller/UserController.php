@@ -3,7 +3,7 @@
  * User controller.
  */
 
-namespace Controller;
+namespace App\Controller;
 
 use App\Entity\User;
 use App\Controller\IsGranted;
