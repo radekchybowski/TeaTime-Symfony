@@ -138,7 +138,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for password.
      *
-     * @return string|null Password
+     * @return string|null the hashed password for this user
      *
      * @see PasswordAuthenticatedUserInterface
      */
