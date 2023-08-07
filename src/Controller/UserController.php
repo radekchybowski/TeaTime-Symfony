@@ -83,6 +83,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/create', name: 'user_create', methods: 'GET|POST')]
+    #[IsGranted('EDIT', subject: 'user')]
     public function create(Request $request): Response
     {
         /** @var User $user */
@@ -122,6 +123,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'user')]
     public function edit(Request $request, User $user): Response
     {
         $form = $this->createForm(
@@ -163,6 +165,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'user_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('DELETE', subject: 'user')]
     public function delete(Request $request, User $user): Response
     {
         $form = $this->createForm(

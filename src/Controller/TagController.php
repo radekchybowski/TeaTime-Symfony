@@ -89,6 +89,14 @@ class TagController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+
+        //check for admin permissions
+        if (!in_array(
+            'ROLE_ADMIN',
+            $this->getUser()->getRoles()
+        ) )
+            throw $this->createAccessDeniedException();
+
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
@@ -121,6 +129,14 @@ class TagController extends AbstractController
     #[Route('/{id}/edit', name: 'tag_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Tag $tag): Response
     {
+
+        //check for admin permissions
+        if (!in_array(
+            'ROLE_ADMIN',
+            $this->getUser()->getRoles()
+        ) )
+            throw $this->createAccessDeniedException();
+
         $form = $this->createForm(
             TagType::class,
             $tag,
@@ -170,6 +186,14 @@ class TagController extends AbstractController
 //
 //            return $this->redirectToRoute('tag_index');
 //        }
+
+        //check for admin permissions
+        if (!in_array(
+            'ROLE_ADMIN',
+            $this->getUser()->getRoles()
+        ) )
+            throw $this->createAccessDeniedException();
+
 
         $form = $this->createForm(
             FormType::class,

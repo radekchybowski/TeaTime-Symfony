@@ -7,9 +7,9 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use App\Service\CategoryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -89,6 +89,14 @@ class CategoryController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+
+        //check for admin permissions
+        if (!in_array(
+            'ROLE_ADMIN',
+            $this->getUser()->getRoles()
+        ) )
+            throw $this->createAccessDeniedException();
+
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -119,8 +127,13 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+
     public function edit(Request $request, Category $category): Response
     {
+        //check for admin permissions
+        if ($this->isGranted('ROLE_ADMIN', $category) )
+            throw $this->createAccessDeniedException();
+
         $form = $this->createForm(
             CategoryType::class,
             $category,
@@ -162,7 +175,15 @@ class CategoryController extends AbstractController
     #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Category $category): Response
     {
-        if(!$this->categoryService->canBeDeleted($category)) {
+
+        //check for admin permissions
+        if (!in_array(
+            'ROLE_ADMIN',
+            $this->getUser()->getRoles()
+        ) )
+            throw $this->createAccessDeniedException();
+
+        if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.category_contains_tasks')
@@ -200,6 +221,4 @@ class CategoryController extends AbstractController
             ]
         );
     }
-
-
 }
