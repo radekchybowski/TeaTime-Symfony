@@ -11,6 +11,7 @@ use App\Entity\Tag;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -76,6 +77,15 @@ class TaskType extends AbstractType
             TextType::class,
             [
                 'label' => 'label.tags',
+                'required' => false,
+                'attr' => ['max_length' => 128],
+            ]
+        );
+        $builder->add(
+            'comment',
+            TextareaType::class,
+            [
+                'label' => 'label.comment',
                 'required' => false,
                 'attr' => ['max_length' => 128],
             ]

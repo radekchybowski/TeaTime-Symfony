@@ -10,8 +10,8 @@
         <h3>{{ 'label.id'|trans }}: {{ task.id }}</h3>
         <h3>Tytuł</h3>
         <p>{{ task.title }}</p>
-{#        <h3>Komentarz</h3>#}
-{#        <p>{{ task.comment }}</p>#}
+        <h3>Komentarz</h3>
+        <p>{{ task.comment|markdown_to_html }}</p>
         <h3>{{ 'label.created_at'|trans }}</h3>
         <p>{{ task.createdAt|date('Y-m-d') }}</p>
         <h3>{{ 'label.updated_at'|trans }}</h3>

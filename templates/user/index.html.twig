@@ -47,17 +47,13 @@
                     <td>{{ user.password }}</td>
 
                     <td>
-                        {% if is_granted('VIEW', user) %}
+                        {% if is_granted('ROLE_ADMIN') %}
                             <a class="btn btn-outline-primary" href="{{ url('user_show', {id: user.id}) }}" title="{{ 'button.action_show'|trans }}">
                                 {{ 'button.action_show'|trans }}
                             </a>
-                        {% endif %}
-                        {% if is_granted('EDIT', user) %}
                             <a class="btn btn-outline-success" href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'button.action_edit'|trans }}">
                                 {{ 'button.action_edit'|trans }}
                             </a>
-                        {% endif %}
-                        {% if is_granted('DELETE', user) %}
                             <a class="btn btn-outline-danger" href="{{ url('user_delete', {id: user.id}) }}" title="{{ 'button.action_delete'|trans }}">
                                 {{ 'button.action_delete'|trans }}
                             </a>

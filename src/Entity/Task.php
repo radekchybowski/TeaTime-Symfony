@@ -9,6 +9,7 @@ use App\Repository\TaskRepository;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -92,6 +93,15 @@ class Task
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
+
+    /**
+     * Comment.
+     *
+     * @var text|null
+     */
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\Type('string')]
+    private ?string $comment = null;
 
     /**
      * Constructor.
@@ -231,6 +241,18 @@ class Task
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }

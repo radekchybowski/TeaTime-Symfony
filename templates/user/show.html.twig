@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'title.record_view'|trans }} {{ task.id }}{% endblock %}
+{% block title %}{{ 'title.record_view'|trans }} {{ user.id }}{% endblock %}
 
 {% block body %}
 
 
 
-    {% if task is defined %}
-        <h3>{{ 'label.id'|trans }}: {{ task.id }}</h3>
-        <h3>Tytuł</h3>
-        <p>{{ task.title }}</p>
+    {% if user is defined %}
+        <h3>{{ 'label.id'|trans }}: {{ user.id }}</h3>
+        <h3>Email</h3>
+        <p>{{ user.email }}</p>
 {#        <h3>Komentarz</h3>#}
 {#        <p>{{ task.comment }}</p>#}
-        <h3>{{ 'label.created_at'|trans }}</h3>
-        <p>{{ task.createdAt|date('Y-m-d') }}</p>
-        <h3>{{ 'label.updated_at'|trans }}</h3>
-        <p>{{ task.updatedAt|date('Y-m-d') }}</p>
-        <h3>{{ 'label.category'|trans }}</h3>
-        <p>{{ task.category.title }}</p>
-        <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
+{#        <h3>{{ 'label.created_at'|trans }}</h3>#}
+{#        <p>{{ task.createdAt|date('Y-m-d') }}</p>#}
+{#        <h3>{{ 'label.updated_at'|trans }}</h3>#}
+{#        <p>{{ task.updatedAt|date('Y-m-d') }}</p>#}
+{#        <h3>{{ 'label.category'|trans }}</h3>#}
+{#        <p>{{ task.category.title }}</p>#}
+        <a href="{{ url('user_index') }}" title="{{ 'action.back_to_list'|trans }}">
             {{ 'action.back_to_list'|trans }}
         </a>
     {% else %}

@@ -72,6 +72,6 @@ class UserService implements UserServiceInterface
      */
     public function delete(User $user): void
     {
-        $this->userRepository->remove($user);
+        $this->userRepository->remove($user, true);
     }
 }

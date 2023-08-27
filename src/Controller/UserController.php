@@ -6,8 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Controller\IsGranted;
-use App\Form\Type\UserType;
+use Form\Type\UserType;
 use App\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -15,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class UserController.
@@ -83,7 +83,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/create', name: 'user_create', methods: 'GET|POST')]
-    #[IsGranted('EDIT', subject: 'user')]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
         /** @var User $user */
@@ -123,7 +123,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('EDIT', subject: 'user')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, User $user): Response
     {
         $form = $this->createForm(
@@ -165,9 +165,10 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'user_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
-    #[IsGranted('DELETE', subject: 'user')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, User $user): Response
     {
+        var_dump($user);
         $form = $this->createForm(
             FormType::class,
             $user,

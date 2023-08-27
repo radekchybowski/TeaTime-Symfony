@@ -28,10 +28,11 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'task.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'task.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'task.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'task.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'task.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.comment'|trans, 'task.comment') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'task.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'task.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'task.category_id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.tag'|trans, 'tag.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.author'|trans, 'task.user.email') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
@@ -42,6 +43,7 @@
                 <tr>
                     <td>{{ task.id }}</td>
                     <td>{{ task.title }}</td>
+                    <td>{{ task.comment|markdown_to_html }}</td>
                     <td>{{ task.createdAt|date('Y-m-d') }}</td>
                     <td>{{ task.updatedAt|format_date('long') }}</td>
                     <td>{{ task.category.title }}</td>

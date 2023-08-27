@@ -44,7 +44,7 @@ class UserType extends AbstractType
             TextType::class,
             [
                 'label' => 'label.tags',
-                'required' => false,
+                'required' => true,
                 'attr' => ['max_length' => 128],
             ]
         );
