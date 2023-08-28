@@ -69,7 +69,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}', name: 'user_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET', )]
-    #[IsGranted('VIEW', subject: 'user')]
+    #[IsGranted('ROLE_ADMIN')]
     public function show(User $user): Response
     {
         return $this->render('user/show.html.twig', ['user' => $user]);

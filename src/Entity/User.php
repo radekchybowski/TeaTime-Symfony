@@ -60,6 +60,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password;
 
     /**
+     * Avatar.
+     *
+     * @var Avatar
+     */
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+//    #[ORM\JoinColumn(nullable: true)]
+    private ?Avatar $avatar = null;
+
+    /**
      * Getter for id.
      *
      * @return int|null Id
@@ -179,5 +188,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(Avatar $avatar): self
+    {
+        // set the owning side of the relation if necessary
+        if ($avatar->getUser() !== $this) {
+            $avatar->setUser($this);
+        }
+
+        $this->avatar = $avatar;
+
+        return $this;
     }
 }
