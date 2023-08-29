@@ -22,13 +22,4 @@ interface AvatarServiceInterface
      * @param UserInterface $user         User interface
      */
     public function create(UploadedFile $uploadedFile, Avatar $avatar, UserInterface $user): void;
-
-    /**
-     * Update avatar.
-     *
-     * @param UploadedFile  $uploadedFile Uploaded file
-     * @param Avatar        $avatar       Avatar entity
-     * @param UserInterface $user         User interface
-     */
-    public function update(UploadedFile $uploadedFile, Avatar $avatar, UserInterface $user): void;
 }
