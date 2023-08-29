@@ -98,4 +98,61 @@ class AvatarController extends AbstractController
         );
     }
 
+    /**
+     * Edit action.
+     *
+     * @param Request $request HTTP request
+     * @param Avatar  $avatar  Avatar entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/edit',
+        name: 'avatar_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
+    )]
+    public function edit(Request $request, Avatar $avatar): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user->getAvatar()) {
+            return $this->redirectToRoute('avatar_create');
+        }
+
+        $form = $this->createForm(
+            AvatarType::class,
+            $avatar,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('avatar_edit', ['id' => $avatar->getId()]),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $file */
+            $file = $form->get('file')->getData();
+            $this->avatarService->update(
+                $file,
+                $avatar,
+                $user
+            );
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.edited_successfully')
+            );
+
+            return $this->redirectToRoute('task_index');
+        }
+
+        return $this->render(
+            'avatar/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'avatar' => $avatar,
+            ]
+        );
+    }
 }
