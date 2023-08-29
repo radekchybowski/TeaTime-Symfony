@@ -3,11 +3,13 @@
  * Task repository.
  */
 
-namespace App\Repository;
+namespace Repository;
 
 use App\Entity\Category;
 use App\Entity\Task;
 use App\Entity\User;
+use App\Repository\NonUniqueResultException;
+use App\Repository\NoResultException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -24,7 +26,7 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @psalm-suppress LessSpecificImplementedReturnType
  */
-class TaskRepository extends ServiceEntityRepository
+class TaskRepository3 extends ServiceEntityRepository
 {
     /**
      * Items per page.
@@ -48,43 +50,16 @@ class TaskRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query tasks by author.
-     *
-     * @param User                  $user    User entity
-     * @param array<string, object> $filters Filters
-     *
-     * @return QueryBuilder Query builder
-     */
-    public function queryByAuthor(User $user, array $filters = []): QueryBuilder
-    {
-        $queryBuilder = $this->queryAll($filters);
-
-        $queryBuilder->andWhere('task.author = :author')
-            ->setParameter('author', $user);
-
-        return $queryBuilder;
-    }
-
-    /**
      * Query all records.
      *
-     * @param array<string, object> $filters Filters
-     *
      * @return QueryBuilder Query builder
      */
-    public function queryAll(array $filters): QueryBuilder
+    public function queryAll(): QueryBuilder
     {
-        $queryBuilder = $this->getOrCreateQueryBuilder()
-            ->select(
-                'partial task.{id, createdAt, updatedAt, title, comment}',
-                'partial category.{id, title}',
-                'partial tags.{id, title}'
-            )
+        return $this->getOrCreateQueryBuilder()
+            ->select('task', 'category')
             ->join('task.category', 'category')
-            ->leftJoin('task.tags', 'tags')
             ->orderBy('task.updatedAt', 'DESC');
-
-        return $this->applyFiltersToList($queryBuilder, $filters);
     }
 
     /**
@@ -97,6 +72,23 @@ class TaskRepository extends ServiceEntityRepository
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
         return $queryBuilder ?? $this->createQueryBuilder('task');
+    }
+
+    /**
+     * Query tasks by author.
+     *
+     * @param User $user User entity
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByAuthor(User $user): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+
+        $queryBuilder->andWhere('task.author = :author')
+            ->setParameter('author', $user);
+
+        return $queryBuilder;
     }
 
     /**
@@ -140,28 +132,5 @@ class TaskRepository extends ServiceEntityRepository
     {
         $this->_em->persist($task);
         $this->_em->flush();
-    }
-
-    /**
-     * Apply filters to paginated list.
-     *
-     * @param QueryBuilder          $queryBuilder Query builder
-     * @param array<string, object> $filters      Filters array
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
-    {
-        if (isset($filters['category']) && $filters['category'] instanceof Category) {
-            $queryBuilder->andWhere('category = :category')
-                ->setParameter('category', $filters['category']);
-        }
-
-        if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
-            $queryBuilder->andWhere('tags IN (:tag)')
-                ->setParameter('tag', $filters['tag']);
-        }
-
-        return $queryBuilder;
     }
 }

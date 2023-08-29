@@ -46,11 +46,20 @@
                     <td>{{ task.comment|markdown_to_html }}</td>
                     <td>{{ task.createdAt|date('Y-m-d') }}</td>
                     <td>{{ task.updatedAt|format_date('long') }}</td>
-                    <td>{{ task.category.title }}</td>
                     <td>
-                        {% for tag in task.tags %}
-                            {{ tag.title }},
-                        {% endfor %}
+                        <a href="{{ url('task_index', {'filters.category_id' : task.category.id}) }}" title="{{ task.category.title }}">
+                            {{ task.category.title }}
+                        </a></td>
+                    <td>
+                        {% if task.tags is defined and task.tags|length %}
+                            {% for tag in task.tags %}
+                                <a href="{{ url('task_index', {'filters.tag_id' : tag.id}) }}" title="{{ tag.title }}">
+                                    {{ tag.title }}
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            &nbsp;
+                        {% endif %}
                     </td>
                     <td>{{ task.author.email }}</td>
                     <td>
