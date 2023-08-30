@@ -18,33 +18,33 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class AvatarService implements AvatarServiceInterface
 {
     /**
-    * Target directory.
-    */
+     * Target directory.
+     */
     private string $targetDirectory;
 
     /**
-    * Avatar repository.
-    */
+     * Avatar repository.
+     */
     private AvatarRepository $avatarRepository;
 
     /**
-    * File upload service.
-    */
+     * File upload service.
+     */
     private FileUploadServiceInterface $fileUploadService;
 
     /**
-    * File system service.
-    */
+     * File system service.
+     */
     private Filesystem $filesystem;
 
     /**
-    * Constructor.
-    *
-    * @param string                     $targetDirectory   Target directory
-    * @param AvatarRepository           $avatarRepository  Avatar repository
-    * @param FileUploadServiceInterface $fileUploadService File upload service
-    * @param Filesystem                 $filesystem        Filesystem component
-    */
+     * Constructor.
+     *
+     * @param string $targetDirectory Target directory
+     * @param AvatarRepository $avatarRepository Avatar repository
+     * @param FileUploadServiceInterface $fileUploadService File upload service
+     * @param Filesystem $filesystem Filesystem component
+     */
     public function __construct(string $targetDirectory, AvatarRepository $avatarRepository, FileUploadServiceInterface $fileUploadService, Filesystem $filesystem)
     {
         $this->targetDirectory = $targetDirectory;
@@ -54,32 +54,32 @@ class AvatarService implements AvatarServiceInterface
     }
 
     /**
-    * Update avatar.
-    *
-    * @param UploadedFile $uploadedFile Uploaded file
-    * @param Avatar       $avatar       Avatar entity
-    * @param User         $user         User entity
-    */
+     * Update avatar.
+     *
+     * @param UploadedFile $uploadedFile Uploaded file
+     * @param Avatar $avatar Avatar entity
+     * @param User $user User entity
+     */
     public function update(UploadedFile $uploadedFile, Avatar $avatar, UserInterface $user): void
     {
         $filename = $avatar->getFilename();
 
         if (null !== $filename) {
             $this->filesystem->remove(
-                $this->targetDirectory.'/'.$filename
-        );
+                $this->targetDirectory . '/' . $filename
+            );
 
             $this->create($uploadedFile, $avatar, $user);
         }
     }
 
     /**
-    * Create avatar.
-    *
-    * @param UploadedFile $uploadedFile Uploaded file
-    * @param Avatar       $avatar       Avatar entity
-    * @param User         $user         User entity
-    */
+     * Create avatar.
+     *
+     * @param UploadedFile $uploadedFile Uploaded file
+     * @param Avatar $avatar Avatar entity
+     * @param User $user User entity
+     */
     public function create(UploadedFile $uploadedFile, Avatar $avatar, UserInterface $user): void
     {
         $avatarFilename = $this->fileUploadService->upload($uploadedFile);
@@ -87,5 +87,23 @@ class AvatarService implements AvatarServiceInterface
         $avatar->setUser($user);
         $avatar->setFilename($avatarFilename);
         $this->avatarRepository->save($avatar);
+    }
+
+    /**
+     * Delete avatar.
+     *
+     * @param Avatar $avatar Avatar entity
+     */
+    public function delete(Avatar $avatar): void
+    {
+        $filename = $avatar->getFilename();
+
+        if (null !== $filename) {
+            $this->filesystem->remove(
+                $this->targetDirectory . '/' . $filename
+
+            );
+            $this->avatarRepository->remove($avatar, true);
+        }
     }
 }

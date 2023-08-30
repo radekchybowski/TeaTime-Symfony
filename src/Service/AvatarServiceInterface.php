@@ -31,4 +31,11 @@ interface AvatarServiceInterface
      * @param UserInterface $user         User interface
      */
     public function update(UploadedFile $uploadedFile, Avatar $avatar, UserInterface $user): void;
+
+    /**
+     * Delete avatar.
+     *
+     * @param Avatar $avatar Avatar entity
+     */
+    public function delete(Avatar $avatar): void;
 }
