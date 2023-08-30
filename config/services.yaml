@@ -22,9 +22,9 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-#    App\Service\AvatarService:
-#        arguments:
-#            $targetDirectory: '%avatars_directory%'
+    App\Service\AvatarService:
+        arguments:
+            $targetDirectory: '%avatars_directory%'
 
     App\Service\FileUploadService:
         arguments:
