@@ -38,7 +38,7 @@ class Avatar
      */
     #[ORM\OneToOne(inversedBy: 'avatar', targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\Type(User::clas)]
+    #[Assert\Type(User::class)]
     private ?User $user;
 
     /**
