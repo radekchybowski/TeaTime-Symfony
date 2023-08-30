@@ -1,12 +1,12 @@
 <?php
 /**
- * Task type.
+ * Tea type.
  */
 
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use App\Entity\Task;
+use App\Entity\Tea;
 use App\Entity\Tag;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -17,9 +17,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class TaskType.
+ * Class TeaType.
  */
-class TaskType extends AbstractType
+class TeaType extends AbstractType
 {
     /**
      * Tags data transformer.
@@ -103,7 +103,7 @@ class TaskType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Task::class]);
+        $resolver->setDefaults(['data_class' => Tea::class]);
     }
 
     /**
@@ -116,6 +116,6 @@ class TaskType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'task';
+        return 'tea';
     }
 }

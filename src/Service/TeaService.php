@@ -1,20 +1,20 @@
 <?php
 /**
- * Task service.
+ * Tea service.
  */
 
 namespace App\Service;
 
-use App\Entity\Task;
+use App\Entity\Tea;
 use App\Entity\User;
-use App\Repository\TaskRepository;
+use App\Repository\TeaRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * Class TaskService.
+ * Class TeaService.
  */
-class TaskService implements TaskServiceInterface
+class TeaService implements TeaServiceInterface
 {
     /**
      * Category service.
@@ -32,9 +32,9 @@ class TaskService implements TaskServiceInterface
     private TagServiceInterface $tagService;
 
     /**
-     * Task repository.
+     * Tea repository.
      */
-    private TaskRepository $taskRepository;
+    private TeaRepository $teaRepository;
 
     /**
      * Constructor.
@@ -42,25 +42,25 @@ class TaskService implements TaskServiceInterface
      * @param CategoryServiceInterface $categoryService Category service
      * @param PaginatorInterface       $paginator       Paginator
      * @param TagServiceInterface      $tagService      Tag service
-     * @param TaskRepository           $taskRepository  Task repository
+     * @param TeaRepository           $teaRepository  Tea repository
      */
     public function __construct(
         CategoryServiceInterface $categoryService,
         PaginatorInterface $paginator,
         TagServiceInterface $tagService,
-        TaskRepository $taskRepository
+        TeaRepository $teaRepository
     ) {
         $this->categoryService = $categoryService;
         $this->paginator = $paginator;
         $this->tagService = $tagService;
-        $this->taskRepository = $taskRepository;
+        $this->teaRepository = $teaRepository;
     }
 
     /**
      * Get paginated list.
      *
      * @param int                $page    Page number
-     * @param User               $author  Tasks author
+     * @param User               $author  Teas author
      * @param array<string, int> $filters Filters array
      *
      * @return PaginationInterface<SlidingPagination> Paginated list
@@ -70,34 +70,34 @@ class TaskService implements TaskServiceInterface
         $filters = $this->prepareFilters($filters);
 
         return $this->paginator->paginate(
-            $this->taskRepository->queryByAuthor($author, $filters),
+            $this->teaRepository->queryByAuthor($author, $filters),
             $page,
-            TaskRepository::PAGINATOR_ITEMS_PER_PAGE
+            TeaRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
 
     /**
      * Save entity.
      *
-     * @param Task $task Task entity
+     * @param Tea $tea Tea entity
      */
-    public function save(Task $task): void
+    public function save(Tea $tea): void
     {
-        $this->taskRepository->save($task);
+        $this->teaRepository->save($tea);
     }
 
     /**
      * Delete entity.
      *
-     * @param Task $task Task entity
+     * @param Tea $tea Tea entity
      */
-    public function delete(Task $task): void
+    public function delete(Tea $tea): void
     {
-        $this->taskRepository->delete($task);
+        $this->teaRepository->delete($tea);
     }
 
     /**
-     * Prepare filters for the tasks list.
+     * Prepare filters for the teas list.
      *
      * @param array<string, int> $filters Raw filters from request
      *

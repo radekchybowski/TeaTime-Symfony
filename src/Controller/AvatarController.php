@@ -90,7 +90,7 @@ class AvatarController extends AbstractController
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('tea_index');
         }
 
         return $this->render(
@@ -149,7 +149,7 @@ class AvatarController extends AbstractController
                 $this->translator->trans('message.edited_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('tea_index');
         }
 
         return $this->render(
@@ -204,7 +204,7 @@ class AvatarController extends AbstractController
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('tea_index');
         }
 
         return $this->render(

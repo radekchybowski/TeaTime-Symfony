@@ -1,18 +1,18 @@
 <?php
 /**
- * Task service interface.
+ * Tea service interface.
  */
 
 namespace App\Service;
 
-use App\Entity\Task;
+use App\Entity\Tea;
 use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Interface TaskServiceInterface.
+ * Interface TeaServiceInterface.
  */
-interface TaskServiceInterface
+interface TeaServiceInterface
 {
     /**
      * Get paginated list.
@@ -26,14 +26,14 @@ interface TaskServiceInterface
     /**
      * Save entity.
      *
-     * @param Task $task Task entity
+     * @param Tea $tea Tea entity
      */
-    public function save(Task $task): void;
+    public function save(Tea $tea): void;
 
     /**
      * Delete entity.
      *
-     * @param Task $task Task entity
+     * @param Tea $tea Tea entity
      */
-    public function delete(Task $task): void;
+    public function delete(Tea $tea): void;
 }

@@ -2,20 +2,20 @@
 //
 //namespace Repository;
 //
-//use App\Entity\Task;
+//use App\Entity\Tea;
 //use App\Repository\QueryBuilder;
 //use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 //use Doctrine\Persistence\ManagerRegistry;
 //
 ///**
-// * @extends ServiceEntityRepository<Task>
+// * @extends ServiceEntityRepository<Tea>
 // *
-// * @method Task|null find($id, $lockMode = null, $lockVersion = null)
-// * @method Task|null findOneBy(array $criteria, array $orderBy = null)
-// * @method Task[]    findAll()
-// * @method Task[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+// * @method Tea|null find($id, $lockMode = null, $lockVersion = null)
+// * @method Tea|null findOneBy(array $criteria, array $orderBy = null)
+// * @method Tea[]    findAll()
+// * @method Tea[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
 // */
-//class TaskRepository2 extends ServiceEntityRepository
+//class TeaRepository2 extends ServiceEntityRepository
 //{
 //    /**
 //     * Items per page.
@@ -30,7 +30,7 @@
 //
 //    public function __construct(ManagerRegistry $registry)
 //    {
-//        parent::__construct($registry, Task::class);
+//        parent::__construct($registry, Tea::class);
 //    }
 //
 //    /**
@@ -41,7 +41,7 @@
 //    public function queryAll(): QueryBuilder
 //    {
 //        return $this->getOrCreateQueryBuilder()
-//            ->orderBy('task.updatedAt', 'DESC');
+//            ->orderBy('tea.updatedAt', 'DESC');
 //    }
 //
 //    /**
@@ -53,10 +53,10 @@
 //     */
 //    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
 //    {
-//        return $queryBuilder ?? $this->createQueryBuilder('task');
+//        return $queryBuilder ?? $this->createQueryBuilder('tea');
 //    }
 //
-//    public function save(Task $entity, bool $flush = false): void
+//    public function save(Tea $entity, bool $flush = false): void
 //    {
 //        $this->getEntityManager()->persist($entity);
 //
@@ -65,7 +65,7 @@
 //        }
 //    }
 //
-//    public function remove(Task $entity, bool $flush = false): void
+//    public function remove(Tea $entity, bool $flush = false): void
 //    {
 //        $this->getEntityManager()->remove($entity);
 //
@@ -74,11 +74,11 @@
 //        }
 //    }
 //
-//    public function getAllTasks() {
+//    public function getAllTeas() {
 //        return $this->findAll();
 //    }
 ////    /**
-////     * @return Task[] Returns an array of Task objects
+////     * @return Tea[] Returns an array of Tea objects
 ////     */
 ////    public function findByExampleField($value): array
 ////    {
@@ -92,7 +92,7 @@
 ////        ;
 ////    }
 //
-////    public function findOneBySomeField($value): ?Task
+////    public function findOneBySomeField($value): ?Tea
 ////    {
 ////        return $this->createQueryBuilder('t')
 ////            ->andWhere('t.exampleField = :val')

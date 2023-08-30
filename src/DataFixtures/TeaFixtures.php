@@ -1,22 +1,22 @@
 <?php
 /**
- * Task fixtures.
+ * Tea fixtures.
  */
 
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Enum\TaskStatus;
+use App\Entity\Enum\TeaStatus;
 use App\Entity\Tag;
-use App\Entity\Task;
+use App\Entity\Tea;
 use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
- * Class TaskFixtures.
+ * Class TeaFixtures.
  */
-class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
+class TeaFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
@@ -31,22 +31,22 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             return;
         }
 
-        $this->createMany(100, 'tasks', function (int $i) {
-            $task = new Task();
-            $task->setTitle($this->faker->sentence);
-            $task->setCreatedAt(
+        $this->createMany(100, 'teas', function (int $i) {
+            $tea = new Tea();
+            $tea->setTitle($this->faker->sentence);
+            $tea->setCreatedAt(
                 DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
-            $task->setUpdatedAt(
+            $tea->setUpdatedAt(
                 DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
-            $task->setCategory($category);
+            $tea->setCategory($category);
 
             /** @var array<array-key, Tag> $tags */
             $tags = $this->getRandomReferences(
@@ -54,19 +54,19 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
                 $this->faker->numberBetween(0, 5)
             );
             foreach ($tags as $tag) {
-                $task->addTag($tag);
+                $tea->addTag($tag);
             }
 
-//            $task->setStatus(TaskStatus::from($this->faker->numberBetween(1, 2)));
+//            $tea->setStatus(TeaStatus::from($this->faker->numberBetween(1, 2)));
 
             /** @var User $author */
             $author = $this->getRandomReference('users');
-            $task->setAuthor($author);
+            $tea->setAuthor($author);
 
             /** @var text $comment */
-            $task->setComment($this->faker->paragraph);
+            $tea->setComment($this->faker->paragraph);
 
-            return $task;
+            return $tea;
         });
 
         $this->manager->flush();

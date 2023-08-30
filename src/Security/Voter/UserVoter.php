@@ -1,6 +1,6 @@
 <?php
 /**
- * Task voter.
+ * Tea voter.
  */
 
 namespace Security\Voter;
@@ -98,7 +98,7 @@ class UserVoter extends Voter
     }
 
     /**
-     * Checks if user can edit task.
+     * Checks if user can edit tea.
      *
      * @param User $user User
      *
@@ -110,27 +110,27 @@ class UserVoter extends Voter
     }
 
     /**
-     * Checks if user can view task.
+     * Checks if user can view tea.
      *
-     * @param Task $task Task entity
+     * @param Tea $tea Tea entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canView(Task $task, User $user): bool
+    private function canView(Tea $tea, User $user): bool
     {
         return in_array('ROLE_ADMIN', $user->getRoles());
     }
 
     /**
-     * Checks if user can delete task.
+     * Checks if user can delete tea.
      *
-     * @param Task $task Task entity
+     * @param Tea $tea Tea entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canDelete(Task $task, User $user): bool
+    private function canDelete(Tea $tea, User $user): bool
     {
         return in_array('ROLE_ADMIN', $user->getRoles());
     }

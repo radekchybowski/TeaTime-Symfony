@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.record_view'|trans }} {{ tea.id }}{% endblock %}
+
+{% block body %}
+
+
+
+    {% if tea is defined %}
+        <h3>{{ 'label.id'|trans }}: {{ tea.id }}</h3>
+        <h3>Tytuł</h3>
+        <p>{{ tea.title }}</p>
+        <h3>Komentarz</h3>
+        <p>{{ tea.comment|markdown_to_html }}</p>
+        <h3>{{ 'label.created_at'|trans }}</h3>
+        <p>{{ tea.createdAt|date('Y-m-d') }}</p>
+        <h3>{{ 'label.updated_at'|trans }}</h3>
+        <p>{{ tea.updatedAt|date('Y-m-d') }}</p>
+        <h3>{{ 'label.category'|trans }}</h3>
+        <p>{{ tea.category.title }}</p>
+        <a href="{{ url('tea_index') }}" title="{{ 'action.back_to_list'|trans }}">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    {% else %}
+        <p>{{ 'message.record_not_exist'|trans }}</p>
+    {%  endif %}
+
+{% endblock %}

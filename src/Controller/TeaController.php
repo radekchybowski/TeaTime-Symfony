@@ -1,13 +1,13 @@
 <?php
 /**
- * Task controller.
+ * Tea controller.
  */
 
 namespace App\Controller;
 
-use App\Entity\Task;
-use App\Form\Type\TaskType;
-use App\Service\TaskServiceInterface;
+use App\Entity\Tea;
+use App\Form\Type\TeaType;
+use App\Service\TeaServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,15 +16,15 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class TaskController.
+ * Class TeaController.
  */
-#[Route('/task')]
-class TaskController extends AbstractController
+#[Route('/tea')]
+class TeaController extends AbstractController
 {
     /**
-     * Task service.
+     * Tea service.
      */
-    private TaskServiceInterface $taskService;
+    private TeaServiceInterface $teaService;
 
     /**
      * Translator.
@@ -34,12 +34,12 @@ class TaskController extends AbstractController
     /**
      * Constructor.
      *
-     * @param TaskServiceInterface $taskService Task service
+     * @param TeaServiceInterface $teaService Tea service
      * @param TranslatorInterface  $translator  Translator
      */
-    public function __construct(TaskServiceInterface $taskService, TranslatorInterface $translator)
+    public function __construct(TeaServiceInterface $teaService, TranslatorInterface $translator)
     {
-        $this->taskService = $taskService;
+        $this->teaService = $teaService;
         $this->translator = $translator;
     }
 
@@ -50,19 +50,19 @@ class TaskController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(name: 'task_index', methods: 'GET')]
+    #[Route(name: 'tea_index', methods: 'GET')]
     public function index(Request $request): Response
     {
         $filters = $this->getFilters($request);
         /** @var User $user **/
         $user = $this->getUser();
-        $pagination = $this->taskService->getPaginatedList(
+        $pagination = $this->teaService->getPaginatedList(
             $request->query->getInt('page', 1),
             $user,
             $filters
         );
 
-        return $this->render('task/index.html.twig', ['pagination' => $pagination]);
+        return $this->render('tea/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**
@@ -86,15 +86,15 @@ class TaskController extends AbstractController
     /**
      * Show action.
      *
-     * @param Task $task Task entity
+     * @param Tea $tea Tea entity
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}', name: 'task_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET', )]
-    #[IsGranted('VIEW', subject: 'task')]
-    public function show(Task $task): Response
+    #[Route('/{id}', name: 'tea_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET', )]
+    #[IsGranted('VIEW', subject: 'tea')]
+    public function show(Tea $tea): Response
     {
-        return $this->render('task/show.html.twig', ['task' => $task]);
+        return $this->render('tea/show.html.twig', ['tea' => $tea]);
     }
 
     /**
@@ -104,34 +104,34 @@ class TaskController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'task_create', methods: 'GET|POST')]
-    #[IsGranted('EDIT', subject: 'task')]
+    #[Route('/create', name: 'tea_create', methods: 'GET|POST')]
+    #[IsGranted('EDIT', subject: 'tea')]
     public function create(Request $request): Response
     {
         /** @var User $user */
         $user = $this->getUser();
-        $task = new Task();
-        $task->setAuthor($user);
+        $tea = new Tea();
+        $tea->setAuthor($user);
         $form = $this->createForm(
-            TaskType::class,
-            $task,
-            ['action' => $this->generateUrl('task_create')]
+            TeaType::class,
+            $tea,
+            ['action' => $this->generateUrl('tea_create')]
         );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->taskService->save($task);
+            $this->teaService->save($tea);
 
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('tea_index');
         }
 
         return $this->render(
-            'task/create.html.twig',
+            'tea/create.html.twig',
             ['form' => $form->createView()]
         );
     }
@@ -140,40 +140,40 @@ class TaskController extends AbstractController
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Task    $task    Task entity
+     * @param Tea    $tea    Tea entity
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/edit', name: 'task_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('EDIT', subject: 'task')]
-    public function edit(Request $request, Task $task): Response
+    #[Route('/{id}/edit', name: 'tea_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'tea')]
+    public function edit(Request $request, Tea $tea): Response
     {
         $form = $this->createForm(
-            TaskType::class,
-            $task,
+            TeaType::class,
+            $tea,
             [
                 'method' => 'PUT',
-                'action' => $this->generateUrl('task_edit', ['id' => $task->getId()]),
+                'action' => $this->generateUrl('tea_edit', ['id' => $tea->getId()]),
             ]
         );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->taskService->save($task);
+            $this->teaService->save($tea);
 
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.edited_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('tea_index');
         }
 
         return $this->render(
-            'task/edit.html.twig',
+            'tea/edit.html.twig',
             [
                 'form' => $form->createView(),
-                'task' => $task,
+                'tea' => $tea,
             ]
         );
     }
@@ -182,40 +182,40 @@ class TaskController extends AbstractController
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Task    $task    Task entity
+     * @param Tea    $tea    Tea entity
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/delete', name: 'task_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
-    #[IsGranted('DELETE', subject: 'task')]
-    public function delete(Request $request, Task $task): Response
+    #[Route('/{id}/delete', name: 'tea_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('DELETE', subject: 'tea')]
+    public function delete(Request $request, Tea $tea): Response
     {
         $form = $this->createForm(
             FormType::class,
-            $task,
+            $tea,
             [
                 'method' => 'DELETE',
-                'action' => $this->generateUrl('task_delete', ['id' => $task->getId()]),
+                'action' => $this->generateUrl('tea_delete', ['id' => $tea->getId()]),
             ]
         );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->taskService->delete($task);
+            $this->teaService->delete($tea);
 
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('tea_index');
         }
 
         return $this->render(
-            'task/delete.html.twig',
+            'tea/delete.html.twig',
             [
                 'form' => $form->createView(),
-                'task' => $task,
+                'tea' => $tea,
             ]
         );
     }

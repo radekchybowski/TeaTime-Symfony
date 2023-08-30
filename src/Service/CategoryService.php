@@ -7,7 +7,7 @@ namespace App\Service;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
-use App\Repository\TaskRepository;
+use App\Repository\TeaRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -22,9 +22,9 @@ class CategoryService implements CategoryServiceInterface
     private CategoryRepository $repository;
 
     /**
-     * Task repository.
+     * Tea repository.
      */
-    private TaskRepository $taskRepository;
+    private TeaRepository $teaRepository;
 
     /**
      * Paginator.
@@ -37,11 +37,11 @@ class CategoryService implements CategoryServiceInterface
      * @param CategoryRepository $repository
      * @param PaginatorInterface $paginator  Paginator
      */
-    public function __construct(CategoryRepository $categoryRepository, TaskRepository $taskRepository, PaginatorInterface $paginator)
+    public function __construct(CategoryRepository $categoryRepository, TeaRepository $teaRepository, PaginatorInterface $paginator)
     {
         $this->repository = $categoryRepository;
         $this->paginator = $paginator;
-        $this->taskRepository = $taskRepository;
+        $this->teaRepository = $teaRepository;
     }
 
     /**
@@ -90,7 +90,7 @@ class CategoryService implements CategoryServiceInterface
     public function canBeDeleted(Category $category): bool
     {
         try {
-            $result = $this->taskRepository->countByCategory($category);
+            $result = $this->teaRepository->countByCategory($category);
 
             return !($result > 0);
         } catch (NoResultException|NonUniqueResultException) {

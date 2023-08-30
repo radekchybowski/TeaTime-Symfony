@@ -1,12 +1,12 @@
 <?php
 /**
- * Task repository.
+ * Tea repository.
  */
 
 namespace Repository;
 
 use App\Entity\Category;
-use App\Entity\Task;
+use App\Entity\Tea;
 use App\Entity\User;
 use App\Repository\NonUniqueResultException;
 use App\Repository\NoResultException;
@@ -15,18 +15,18 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class TaskRepository.
+ * Class TeaRepository.
  *
- * @method Task|null find($id, $lockMode = null, $lockVersion = null)
- * @method Task|null findOneBy(array $criteria, array $orderBy = null)
- * @method Task[]    findAll()
- * @method Task[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Tea|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Tea|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Tea[]    findAll()
+ * @method Tea[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  *
- * @extends ServiceEntityRepository<Task>
+ * @extends ServiceEntityRepository<Tea>
  *
  * @psalm-suppress LessSpecificImplementedReturnType
  */
-class TaskRepository3 extends ServiceEntityRepository
+class TeaRepository3 extends ServiceEntityRepository
 {
     /**
      * Items per page.
@@ -46,7 +46,7 @@ class TaskRepository3 extends ServiceEntityRepository
      */
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Task::class);
+        parent::__construct($registry, Tea::class);
     }
 
     /**
@@ -57,9 +57,9 @@ class TaskRepository3 extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('task', 'category')
-            ->join('task.category', 'category')
-            ->orderBy('task.updatedAt', 'DESC');
+            ->select('tea', 'category')
+            ->join('tea.category', 'category')
+            ->orderBy('tea.updatedAt', 'DESC');
     }
 
     /**
@@ -71,11 +71,11 @@ class TaskRepository3 extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('task');
+        return $queryBuilder ?? $this->createQueryBuilder('tea');
     }
 
     /**
-     * Query tasks by author.
+     * Query teas by author.
      *
      * @param User $user User entity
      *
@@ -85,18 +85,18 @@ class TaskRepository3 extends ServiceEntityRepository
     {
         $queryBuilder = $this->queryAll();
 
-        $queryBuilder->andWhere('task.author = :author')
+        $queryBuilder->andWhere('tea.author = :author')
             ->setParameter('author', $user);
 
         return $queryBuilder;
     }
 
     /**
-     * Count tasks by category.
+     * Count teas by category.
      *
      * @param Category $category Category
      *
-     * @return int Number of tasks in category
+     * @return int Number of teas in category
      *
      * @throws NoResultException
      * @throws NonUniqueResultException
@@ -105,8 +105,8 @@ class TaskRepository3 extends ServiceEntityRepository
     {
         $qb = $this->getOrCreateQueryBuilder();
 
-        return $qb->select($qb->expr()->countDistinct('task.id'))
-            ->where('task.category = :category')
+        return $qb->select($qb->expr()->countDistinct('tea.id'))
+            ->where('tea.category = :category')
             ->setParameter(':category', $category)
             ->getQuery()
             ->getSingleScalarResult();
@@ -115,22 +115,22 @@ class TaskRepository3 extends ServiceEntityRepository
     /**
      * Delete entity.
      *
-     * @param Task $task Task entity
+     * @param Tea $tea Tea entity
      */
-    public function delete(Task $task): void
+    public function delete(Tea $tea): void
     {
-        $this->_em->remove($task);
+        $this->_em->remove($tea);
         $this->_em->flush();
     }
 
     /**
      * Save entity.
      *
-     * @param Task $task Task entity
+     * @param Tea $tea Tea entity
      */
-    public function save(Task $task): void
+    public function save(Tea $tea): void
     {
-        $this->_em->persist($task);
+        $this->_em->persist($tea);
         $this->_em->flush();
     }
 }

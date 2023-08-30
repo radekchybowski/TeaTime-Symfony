@@ -14,14 +14,7 @@
             <h3>avatar</h3>
             <img class="nav-profile-img" src="{{ asset(avatars_directory~user.avatar.filename) }}">
         {% endif %}
-{#        <h3>Komentarz</h3>#}
-{#        <p>{{ task.comment }}</p>#}
-{#        <h3>{{ 'label.created_at'|trans }}</h3>#}
-{#        <p>{{ task.createdAt|date('Y-m-d') }}</p>#}
-{#        <h3>{{ 'label.updated_at'|trans }}</h3>#}
-{#        <p>{{ task.updatedAt|date('Y-m-d') }}</p>#}
-{#        <h3>{{ 'label.category'|trans }}</h3>#}
-{#        <p>{{ task.category.title }}</p>#}
+
         <a href="{{ url('user_index') }}" title="{{ 'action.back_to_list'|trans }}">
             {{ 'action.back_to_list'|trans }}
         </a>
