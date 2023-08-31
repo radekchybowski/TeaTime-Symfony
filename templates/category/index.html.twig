@@ -1,23 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ 'title.record_list'|trans }}{% endblock %}
-
+{% block section_title %}
+    <h1 class="text-left">Kategorie</h1>
+    <a class="btn btn-success" href="{{ path('category_create') }}">{{ 'button.action_create'|trans }}</a>
+{% endblock %}
 {% block body %}
 
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('tea_index') }}">Zadania</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('category_index') }}">Kategorie</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('tag_index') }}">Tagi</a>
-        </li>
-    </ul>
 
-    <h1> Kategorie </h1>
-    <a href="{{ path('category_create') }}">{{ 'button.action_create'|trans }}</a>
 
     {% if pagination is defined and pagination.items|length %}
         <div class="navigation text-center">
@@ -27,7 +17,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'category.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'category.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'category.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'category.updatedAt') }}</th>
@@ -37,7 +26,6 @@
             <tbody>
             {% for category in pagination.items %}
                 <tr>
-                    <td>{{ category.id }}</td>
                     <td>{{ category.title }}</td>
                     <td>{{ category.createdAt|date('Y-m-d') }}</td>
                     <td>{{ category.updatedAt|format_date('long') }}</td>

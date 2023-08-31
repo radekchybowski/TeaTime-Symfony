@@ -82,10 +82,10 @@ class TeaType extends AbstractType
             ]
         );
         $builder->add(
-            'comment',
+            'description',
             TextareaType::class,
             [
-                'label' => 'label.comment',
+                'label' => 'label.description',
                 'required' => false,
                 'attr' => ['max_length' => 128],
             ]

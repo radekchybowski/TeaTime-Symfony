@@ -1,0 +1,53 @@
+
+{% block header %}
+    <!-- Sidebar-->
+    <div class="border-end bg-light" id="sidebar-wrapper">
+
+        <!-- Site logo -->
+        <div class="sidebar-heading text-center">
+            <a class="nav-link my-1 mb-4" href="{{ path("tea_index") }}">
+                <img class="img-fluid me-2" width=40px src="{{ asset("uploads/icon-coffee.svg") }}" alt="Site logo">
+                TeaTime
+            </a>
+        </div>
+
+        <!-- Profile picture and info -->
+        <div class="text-center">
+            {% if user.avatar.filename is defined and user.avatar.filename|length %}
+                <img
+                        class="img-fluid rounded-circle mb-3 shadow-5"
+                        style="width: 170px; height: 170px; object-fit: cover;"
+                        alt="Users avatar"
+                        src="{{ asset(avatars_directory~user.avatar.filename) }}"
+                />
+            {% else %}
+                <img
+                        class="img-fluid rounded-circle mb-3 shadow-5"
+                        style="width: 170px; height: 170px; object-fit: cover;"
+                        alt="Avatar_placeholder"
+                        src="{{ asset(avatars_directory~"profile-pic-placeholder.jpg") }}"
+                />
+            {% endif %}
+
+            <h4 class="mb-1">
+                <strong> {{ app.user.email }} </strong>
+            </h4>
+
+            <p class="text-muted">
+                cokolwiek
+            </p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="list-group list-group-flush px-4 hover-overlay">
+            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('tea_index') }}">Herbaty</a>
+            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('category_index') }}">Kategorie</a>
+            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('tag_index') }}">Tagi</a>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('user_index') }}">Użytkownicy</a>
+            {% endif %}
+            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('app_logout') }}">Wyloguj</a>
+        </div>
+    </div>
+{% endblock %}
+

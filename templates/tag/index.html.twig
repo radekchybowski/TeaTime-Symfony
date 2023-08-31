@@ -1,24 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ 'title.record_list'|trans }}{% endblock %}
-
+{% block section_title %}
+    <h1 class="text-left">Tagi</h1>
+    <a class="btn btn-success" href="{{ path('tag_create') }}">{{ 'button.action_create'|trans }}</a>
+{% endblock %}
 {% block body %}
-
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('tea_index') }}">Zadania</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('category_index') }}">Kategorie</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('tag_index') }}">Tagi</a>
-        </li>
-    </ul>
-
-    <h1> Tagi </h1>
-    <a href="{{ path('tag_create') }}">{{ 'button.action_create'|trans }}</a>
-
     {% if pagination is defined and pagination.items|length %}
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}

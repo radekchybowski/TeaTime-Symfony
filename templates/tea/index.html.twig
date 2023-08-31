@@ -1,24 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ 'title.record_list'|trans }}{% endblock %}
-
+{% block section_title %}
+    <h1 class="text-left">Herbaty</h1>
+    <a class="btn btn-success" href="{{ path('tea_create') }}">{{ 'button.action_create'|trans }}</a>
+{% endblock %}
 {% block body %}
-
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('tea_index') }}">Zadania</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('category_index') }}">Kategorie</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('tag_index') }}">Tagi</a>
-        </li>
-    </ul>
-
-    <h1>{{ 'title.record_list'|trans }}</h1>
-    <a href="{{ path('tea_create') }}">{{ 'button.action_create'|trans }}</a>
-
     {% if pagination is defined and pagination.items|length %}
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
@@ -27,25 +14,18 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'tea.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'tea.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.comment'|trans, 'tea.comment') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'tea.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'tea.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'tea.category_id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.tag'|trans, 'tag.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.author'|trans, 'tea.user.email') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
             {% for tea in pagination.items %}
                 <tr>
-                    <td>{{ tea.id }}</td>
                     <td>{{ tea.title }}</td>
-                    <td>{{ tea.comment|markdown_to_html }}</td>
                     <td>{{ tea.createdAt|date('Y-m-d') }}</td>
-                    <td>{{ tea.updatedAt|format_date('long') }}</td>
                     <td>
                         <a href="{{ url('tea_index', {'filters.category_id' : tea.category.id}) }}" title="{{ tea.category.title }}">
                             {{ tea.category.title }}
@@ -53,7 +33,11 @@
                     <td>
                         {% if tea.tags is defined and tea.tags|length %}
                             {% for tag in tea.tags %}
-                                <a href="{{ url('tea_index', {'filters.tag_id' : tag.id}) }}" title="{{ tag.title }}">
+                                <a
+                                    class="badge badge-pill badge-secondary"
+                                    href="{{ url('tea_index', {'filters.tag_id' : tag.id}) }}"
+                                    title="{{ tag.title }}"
+                                >
                                     {{ tag.title }}
                                 </a>
                             {% endfor %}
@@ -61,7 +45,7 @@
                             &nbsp;
                         {% endif %}
                     </td>
-                    <td>{{ tea.author.email }}</td>
+{#                    <td>{{ tea.author.email }}</td>#}
                     <td>
                         {% if is_granted('VIEW', tea) %}
                             <a class="btn btn-outline-primary" href="{{ url('tea_show', {id: tea.id}) }}" title="{{ 'button.action_show'|trans }}">

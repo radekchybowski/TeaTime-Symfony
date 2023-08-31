@@ -3,26 +3,65 @@
 {% block title %}{{ 'title.record_view'|trans }} {{ tea.id }}{% endblock %}
 
 {% block body %}
-
-
-
     {% if tea is defined %}
-        <h3>{{ 'label.id'|trans }}: {{ tea.id }}</h3>
-        <h3>Tytuł</h3>
-        <p>{{ tea.title }}</p>
-        <h3>Komentarz</h3>
-        <p>{{ tea.comment|markdown_to_html }}</p>
+        {% block section_title %}{{ tea.title }}{% endblock %}
+        <div class="row">
+
+            <div class="col-md-4 text-center">
+                <div class="col-md-12 card p-3 tea-tile-info">
+                    <h3 class="mb-2 mt-1 h5">Gatunek</h3>
+                    <p class="h2">{{ tea.category.title }}</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 text-center">
+                <div class="col-md-12 card p-3 tea-tile-info">
+                    <h3 class="mb-2 mt-1 h5">Region</h3>
+                    <p class="h2">{{ tea.region }}</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 text-center">
+                <div class="col-md-12 card p-3 tea-tile-info">
+                    <h3 class="mb-2 mt-1 h5">Sklep</h3>
+                    <p class="h2">{{ tea.vendor }}</p>
+                </div>
+            </div>
+
+            <h3 class="mb-2 mt-4 h5 text-start">Skład</h3>
+            <p class="text-start mb-4">
+                {{ tea.ingredients }}
+            </p>
+
+            <div class="col-md-6">
+                <div class="col-md-12 card p-3 tea-tile-info text-center">
+                    <h3 class="mb-2 mt-1 h5">Czas parzenia</h3>
+                    <p class="h2">{{ tea.steepTime }}</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-12 card p-3 tea-tile-info text-center">
+                    <h3 class="mb-2 mt-1 h5">Temperatura parzenia</h3>
+                    <p class="h2">{{ tea.steepTemp }} ℃</p>
+                </div>
+            </div>
+
+            <h3 class="mb-2 mt-4 h5 text-start">Opis</h3>
+            <p class="text-start mb-4">
+                {{ tea.description|markdown_to_html }}
+            </p>
+        </div>
         <h3>{{ 'label.created_at'|trans }}</h3>
         <p>{{ tea.createdAt|date('Y-m-d') }}</p>
         <h3>{{ 'label.updated_at'|trans }}</h3>
         <p>{{ tea.updatedAt|date('Y-m-d') }}</p>
-        <h3>{{ 'label.category'|trans }}</h3>
-        <p>{{ tea.category.title }}</p>
         <a href="{{ url('tea_index') }}" title="{{ 'action.back_to_list'|trans }}">
             {{ 'action.back_to_list'|trans }}
         </a>
     {% else %}
         <p>{{ 'message.record_not_exist'|trans }}</p>
     {%  endif %}
+    <h3>{{ 'label.id'|trans }}: {{ tea.id }}</h3>
 
 {% endblock %}

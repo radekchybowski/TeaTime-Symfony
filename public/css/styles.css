@@ -1,4 +1,87 @@
-.active {
-    font-weight: 400;
-    color: darkred;
+/* CSS dla sidenav w dashboardzie */
+
+#wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -22rem;
+    transition: margin 0.25s ease-out;
+    position: fixed;
+    z-index: 99;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 22rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+    padding-left: 0;
+}
+
+body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+    margin-left: 0;
+}
+
+body.sb-sidenav-toggled #sidebarToggle {
+    margin-left: 22rem;
+    transition: margin 0.25s ease-out;
+}
+
+#sidebarToggle {
+    font-size: 30px;
+    display: inline-block;
+    z-index: 10;
+    position: fixed;
+}
+
+@media (min-width: 927px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+        padding-left: 22rem;
+    }
+
+    body.sb-sidenav-toggled #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+        padding-left: 0rem;
+    }
+
+    body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+        margin-left: -22rem;
+        background-color: #a8cef0;
+    }
+
+    body.sb-sidenav-toggled #sidebarToggle {
+        margin-left: 0rem;
+        transition: margin 0.25s ease-in-out;
+    }
+}
+
+.sidebar-nav-item:hover {
+    color: rgb(2, 123, 0);
+
+}
+
+.logout-link:hover {
+    color: #c91013;
+}
+
+/* Other CSS */
+
+.tea-tile-info {
+    background-color: #a8cef0 !important;
+    border-radius: 30px;
 }

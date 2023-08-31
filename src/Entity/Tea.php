@@ -95,13 +95,53 @@ class Tea
     private ?User $author;
 
     /**
-     * Comment.
+     * Description.
      *
      * @var text|null
      */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\Type('string')]
-    private ?string $comment = null;
+    private ?string $description = null;
+
+    /**
+     * Ingredients.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ingredients = null;
+
+    /**
+     * Steep Time in seconds.
+     *
+     * @var int|null
+     */
+    #[ORM\Column(nullable: true)]
+    private ?int $steepTime = null;
+
+    /**
+     * Steep temperature in Celsius.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(nullable: true)]
+    private ?int $steepTemp = null;
+
+    /**
+     * Region of origin.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(length: 64, nullable: true)]
+    private ?string $region = null;
+
+    /**
+     * Vendor/Store.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(length: 64, nullable: true)]
+    private ?string $vendor = null;
 
     /**
      * Constructor.
@@ -245,14 +285,74 @@ class Tea
         return $this;
     }
 
-    public function getComment(): ?string
+    public function getDescription(): ?string
     {
-        return $this->comment;
+        return $this->description;
     }
 
-    public function setComment(?string $comment): self
+    public function setDescription(?string $description): self
     {
-        $this->comment = $comment;
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getIngredients(): ?string
+    {
+        return $this->ingredients;
+    }
+
+    public function setIngredients(?string $ingredients): self
+    {
+        $this->ingredients = $ingredients;
+
+        return $this;
+    }
+
+    public function getSteepTime(): ?int
+    {
+        return $this->steepTime;
+    }
+
+    public function setSteepTime(?int $steepTime): self
+    {
+        $this->steepTime = $steepTime;
+
+        return $this;
+    }
+
+    public function getSteepTemp(): ?int
+    {
+        return $this->steepTemp;
+    }
+
+    public function setSteepTemp(?int $steepTemp): self
+    {
+        $this->steepTemp = $steepTemp;
+
+        return $this;
+    }
+
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?string $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    public function getVendor(): ?string
+    {
+        return $this->vendor;
+    }
+
+    public function setVendor(?string $vendor): self
+    {
+        $this->vendor = $vendor;
 
         return $this;
     }

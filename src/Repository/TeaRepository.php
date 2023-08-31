@@ -76,7 +76,7 @@ class TeaRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-                'partial tea.{id, createdAt, updatedAt, title, comment}',
+                'partial tea.{id, createdAt, updatedAt, title, description}',
                 'partial category.{id, title}',
                 'partial tags.{id, title}'
             )

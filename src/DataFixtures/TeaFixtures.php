@@ -63,8 +63,8 @@ class TeaFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             $author = $this->getRandomReference('users');
             $tea->setAuthor($author);
 
-            /** @var text $comment */
-            $tea->setComment($this->faker->paragraph);
+            /** @var text $description */
+            $tea->setDescription($this->faker->paragraph);
 
             return $tea;
         });
