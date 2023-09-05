@@ -13,21 +13,36 @@
 
         <!-- Profile picture and info -->
         <div class="text-center">
-            {% if user.avatar.filename is defined and user.avatar.filename|length %}
-                <img
-                        class="img-fluid rounded-circle mb-3 shadow-5"
-                        style="width: 170px; height: 170px; object-fit: cover;"
-                        alt="Users avatar"
-                        src="{{ asset(avatars_directory~user.avatar.filename) }}"
-                />
-            {% else %}
-                <img
-                        class="img-fluid rounded-circle mb-3 shadow-5"
-                        style="width: 170px; height: 170px; object-fit: cover;"
-                        alt="Avatar_placeholder"
-                        src="{{ asset(avatars_directory~"profile-pic-placeholder.jpg") }}"
-                />
-            {% endif %}
+            <a href="{{ url('avatar_create') }}" title="{{ 'avatar.create'|trans }}">
+                <div style="width: 170px; height: 170px;" class="bg-image hover-overlay rounded-circle mb-3 shadow-5 mx-auto">
+                    {% if user.avatar.filename is defined and user.avatar.filename|length %}
+                        <img
+                            class="profile-pic"
+                            style="width: 170px; height: 170px; object-fit: cover;"
+                            alt="Users avatar"
+                            src="{{ asset(avatars_directory~user.avatar.filename) }}"
+                        />
+                    {% else %}
+                        <img
+                            class="profile-pic"
+                            style="width: 170px; height: 170px; object-fit: cover;"
+                            alt="Avatar_placeholder"
+                            src="{{ asset(avatars_directory~"profile-pic-placeholder.jpg") }}"
+                        />
+                    {% endif %}
+                    <div
+                        class="mask d-flex justify-content-center align-items-center"
+                        style="
+                          background: linear-gradient(
+                            45deg,
+                            hsla(168, 85%, 52%, 0.5),
+                            hsla(263, 88%, 45%, 0.5) 100%
+                          );
+                    ">
+                        <p class="text-white mb-0">Edytuj zdjęcie</p>
+                    </div>
+                </div>
+            </a>
 
             <h4 class="mb-1">
                 <strong> {{ app.user.email }} </strong>

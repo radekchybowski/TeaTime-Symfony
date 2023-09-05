@@ -2,11 +2,12 @@
 
 {% block title %}{{ 'title.record_list'|trans }}{% endblock %}
 
+{% block section_title %}
+    <h1 class="text-left">Użytkownicy</h1>
+    <a class="btn btn-success" href="{{ path('user_create') }}">{{ 'button.action_create'|trans }}</a>
+{% endblock %}
+
 {% block body %}
-
-    <h1>{{ 'title.record_list'|trans }}</h1>
-    <a href="{{ path('user_create') }}">{{ 'button.action_create'|trans }}</a>
-
     {% if pagination is defined and pagination.items|length %}
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
@@ -18,7 +19,6 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'user.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'user.email') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.roles'|trans, 'user.roles') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.password'|trans, 'user.password') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -32,8 +32,6 @@
                             {{ role }},
                         {% endfor %}
                     </td>
-                    <td>{{ user.password }}</td>
-
                     <td>
                         {% if is_granted('ROLE_ADMIN') %}
                             <a class="btn btn-outline-primary" href="{{ url('user_show', {id: user.id}) }}" title="{{ 'button.action_show'|trans }}">

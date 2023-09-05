@@ -6,7 +6,7 @@ parameters:
     - form: form view variable
     - submit_label: label for submit button
 #}
-{% extends 'base.html.twig' %}
+{% extends 'default/_dashboard.html.twig' %}
 
 {% block title %}
     {{ page_title }}
@@ -31,6 +31,13 @@ parameters:
         <div class="form-group row float-sm-left">
             <a href="{{ url(back_to_list_path) }}" class="btn btn-link">
                 {{ 'action.back_to_list'|trans }}
+            </a>
+        </div>
+    {% endif %}
+    {% if additional_action|default(false) %}
+        <div class="form-group row float-sm-left">
+            <a href="{{ url(additional_action, {id: id}) }}" class="btn btn-link">
+                {{ additional_action_label }}
             </a>
         </div>
     {% endif %}
