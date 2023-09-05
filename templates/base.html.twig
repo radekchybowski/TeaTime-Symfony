@@ -15,24 +15,11 @@
 <body>
 <div class="d-flex" id="wrapper">
     <header>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            {% include('default/_sidebar.html.twig') %}
-        {% endif %}
+        {% block header %}{% endblock %}
     </header>
-    <div id="page-content-wrapper" class="mx-auto">
-        <main role="main" class="container-fluid">
-            {% include 'default/_flash_messages.html.twig' %}
-            <i class="bi bi-list float-right" id="sidebarToggle"></i>
-            <div class="card bg-light m-2 mx-auto my-5" style="max-width: 56rem;">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h1>{% block section_title %}{% endblock %}</h1>
-                </div>
-                <div class="card-body">
-                    {% block body %}{% endblock %}
-                </div>
-            </div>
-        </main>
-    </div>
+    <main role="main" class="container-fluid">
+        {% block main %}{% endblock %}
+    </main>
 </div>
 {% block javascripts %}
     <script

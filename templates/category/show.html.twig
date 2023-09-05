@@ -1,10 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'default/_dashboard.html.twig' %}
 
 {% block title %}{{ 'title.record_view'|trans }} {{ record.id }}{% endblock %}
 
 {% block body %}
-
-
 
     {% if record is defined %}
         <h3>{{ 'label.id'|trans }}: {{ record.id }}</h3>

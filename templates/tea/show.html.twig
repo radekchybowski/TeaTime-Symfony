@@ -1,10 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'default/_dashboard.html.twig' %}
 
 {% block title %}{{ 'title.record_view'|trans }} {{ tea.id }}{% endblock %}
-
+{% block section_title %}
+    <h1 class="text-left">{{ tea.title }}</h1>
+    <a class="btn btn-success" href="{{ path('category_create') }}">{{ 'button.action_create'|trans }}</a>
+{% endblock %}
 {% block body %}
     {% if tea is defined %}
-        {% block section_title %}{{ tea.title }}{% endblock %}
         <div class="row">
 
             <div class="col-md-4 text-center">
@@ -52,16 +54,24 @@
                 {{ tea.description|markdown_to_html }}
             </p>
         </div>
-        <h3>{{ 'label.created_at'|trans }}</h3>
-        <p>{{ tea.createdAt|date('Y-m-d') }}</p>
-        <h3>{{ 'label.updated_at'|trans }}</h3>
-        <p>{{ tea.updatedAt|date('Y-m-d') }}</p>
-        <a href="{{ url('tea_index') }}" title="{{ 'action.back_to_list'|trans }}">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h3 class="mb-2 mt-1 h5">{{ 'label.created_at'|trans }}</h3>
+                <p>{{ tea.createdAt|date('Y-m-d') }}</p>
+            </div>
+            <div>
+                <h3 class="mb-2 mt-1 h5">{{ 'label.updated_at'|trans }}</h3>
+                <p>{{ tea.updatedAt|date('Y-m-d') }}</p>
+            </div>
+            <div>
+                <h3 class="mb-2 mt-1 h5">{{ 'label.id'|trans }}: {{ tea.id }}</h3>
+            </div>
+        </div>
+        <a class="btn btn-secondary" href="{{ url('tea_index') }}" title="{{ 'action.back_to_list'|trans }}">
             {{ 'action.back_to_list'|trans }}
         </a>
     {% else %}
         <p>{{ 'message.record_not_exist'|trans }}</p>
     {%  endif %}
-    <h3>{{ 'label.id'|trans }}: {{ tea.id }}</h3>
 
 {% endblock %}

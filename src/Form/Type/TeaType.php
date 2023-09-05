@@ -91,6 +91,46 @@ class TeaType extends AbstractType
             ]
         );
 
+        $builder->add(
+            'region',
+            TextType::class,
+            [
+                'label' => 'label.region',
+                'required' => false,
+                'attr' => ['max_length' => 255],
+            ]
+        );
+
+        $builder->add(
+            'vendor',
+            TextType::class,
+            [
+                'label' => 'label.vendor',
+                'required' => false,
+                'attr' => ['max_length' => 255],
+            ]
+        );
+
+        $builder->add(
+            'steepTime',
+            TextType::class,
+            [
+                'label' => 'label.steepTime',
+                'required' => false,
+                'attr' => ['max_length' => 255],
+            ]
+        );
+
+        $builder->add(
+            'steepTemp',
+            TextType::class,
+            [
+                'label' => 'label.steepTemp',
+                'required' => false,
+                'attr' => ['max_length' => 255],
+            ]
+        );
+
         $builder->get('tags')->addModelTransformer(
             $this->tagsDataTransformer
         );
