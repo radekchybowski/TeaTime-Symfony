@@ -10,6 +10,12 @@
         <h3>{{ 'label.id'|trans }}: {{ user.id }}</h3>
         <h3>Email</h3>
         <p>{{ user.email }}</p>
+        <h3>Name:</h3>
+        <p>{{ user.name }}</p>
+        <h3>Surname:</h3>
+        <p>{{ user.surname }}</p>
+        <h3>Password:</h3>
+        <p>{{ user.password }}</p>
         {% if user.avatar.filename is defined and user.avatar.filename|length %}
             <h3>avatar</h3>
             <img class="nav-profile-img" src="{{ asset(avatars_directory~user.avatar.filename) }}">

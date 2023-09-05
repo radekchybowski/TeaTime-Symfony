@@ -43,9 +43,27 @@ class UserType extends AbstractType
             'password',
             TextType::class,
             [
-                'label' => 'label.tags',
+                'label' => 'label.password',
                 'required' => true,
                 'attr' => ['max_length' => 128],
+            ]
+        );
+        $builder->add(
+            'name',
+            TextType::class,
+            [
+                'label' => 'label.name',
+                'required' => false,
+                'attr' => ['max_length' => 64],
+            ]
+        );
+        $builder->add(
+            'surname',
+            TextType::class,
+            [
+                'label' => 'label.surname',
+                'required' => false,
+                'attr' => ['max_length' => 64],
             ]
         );
     }

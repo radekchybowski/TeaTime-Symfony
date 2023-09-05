@@ -69,6 +69,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Avatar $avatar = null;
 
     /**
+     * First name.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(length: 64, nullable: true)]
+    private ?string $name = null;
+
+    /**
+     * Surname.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(length: 64, nullable: true)]
+    private ?string $surname = null;
+
+    /**
      * Getter for id.
      *
      * @return int|null Id
@@ -203,6 +219,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(?string $surname): self
+    {
+        $this->surname = $surname;
 
         return $this;
     }

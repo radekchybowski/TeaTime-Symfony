@@ -8,6 +8,7 @@ namespace App\Service;
 use App\Entity\Tea;
 use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * Interface UserServiceInterface.
