@@ -19,6 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 #[ORM\Entity(repositoryClass: TeaRepository::class)]
 #[ORM\Table(name: 'teas')]
+#[UniqueEntity(fields: ['email'], message: 'message.tea_entity.not_unique')]
 class Tea
 {
     /**

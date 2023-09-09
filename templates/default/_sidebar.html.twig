@@ -64,7 +64,8 @@
             <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('category_index') }}">Kategorie</a>
             <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('tag_index') }}">Tagi</a>
             {% if is_granted('ROLE_ADMIN') %}
-            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('user_index') }}">Użytkownicy</a>
+                <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('comment_index') }}">Komentarze</a>
+                <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('user_index') }}">Użytkownicy</a>
             {% endif %}
             <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('app_logout') }}">Wyloguj</a>
         </div>

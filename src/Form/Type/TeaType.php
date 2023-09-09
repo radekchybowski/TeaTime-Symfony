@@ -87,7 +87,7 @@ class TeaType extends AbstractType
             [
                 'label' => 'label.description',
                 'required' => false,
-                'attr' => ['max_length' => 128],
+                'attr' => ['max_length' => 2048],
             ]
         );
 

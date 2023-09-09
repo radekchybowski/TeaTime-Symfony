@@ -60,11 +60,6 @@ class CategoryService implements CategoryServiceInterface
         );
     }
 
-    public function getOne(int $id)
-    {
-        return $this->repository->findOneById($id);
-    }
-
     /**
      * Save entity.
      *
