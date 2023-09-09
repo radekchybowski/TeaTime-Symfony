@@ -39,8 +39,6 @@ class UserVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -112,7 +110,7 @@ class UserVoter extends Voter
     /**
      * Checks if user can view tea.
      *
-     * @param Tea $tea Tea entity
+     * @param Tea  $tea  Tea entity
      * @param User $user User
      *
      * @return bool Result
@@ -125,7 +123,7 @@ class UserVoter extends Voter
     /**
      * Checks if user can delete tea.
      *
-     * @param Tea $tea Tea entity
+     * @param Tea  $tea  Tea entity
      * @param User $user User
      *
      * @return bool Result

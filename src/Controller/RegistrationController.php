@@ -43,7 +43,7 @@ class RegistrationController extends AbstractController
             );
         }
         else {
-            echo "coś się zjebało";
+            echo "coś nie działa";
         }
 
         return $this->render('registration/register.html.twig', [
