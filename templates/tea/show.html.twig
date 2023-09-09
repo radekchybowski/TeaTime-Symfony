@@ -3,7 +3,7 @@
 {% block title %}{{ 'title.record_view'|trans }} {{ tea.id }}{% endblock %}
 {% block section_title %}
     <h1 class="text-left">{{ tea.title }}</h1>
-    <a class="btn btn-success" href="{{ path('category_create') }}">{{ 'button.action_create'|trans }}</a>
+    <a class="btn btn-success" href="{{ path('tea_create') }}">{{ 'button.action_create'|trans }}</a>
 {% endblock %}
 {% block body %}
     {% if tea is defined %}
@@ -67,6 +67,14 @@
                 <h3 class="mb-2 mt-1 h5">{{ 'label.id'|trans }}: {{ tea.id }}</h3>
             </div>
         </div>
+        <h3 class="mb-2 mt-4 h5 text-start">Komentarze</h3>
+        <div class="my-3 p-4 rounded" style="background-color: lightgrey">
+            <h4 class="mb-2 h5 text-start">Tytuł komentarza</h4>
+            <p class="my-2">Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza Treść komentarza</p>
+            <p class="d-inline text-muted">Autor: Radek Chybowski</p>
+            <p class="d-inline mx-5 text-muted">Dodano: 01-02-2023</p>
+        </div>
+
         <a class="btn btn-secondary" href="{{ url('tea_index') }}" title="{{ 'action.back_to_list'|trans }}">
             {{ 'action.back_to_list'|trans }}
         </a>

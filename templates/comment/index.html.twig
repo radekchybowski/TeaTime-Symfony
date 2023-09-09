@@ -3,11 +3,9 @@
 {% block title %}{{ 'title.record_list'|trans }}{% endblock %}
 {% block section_title %}
     <h1 class="text-left">Komentarze</h1>
-{#    <a class="btn btn-success" href="{{ path('comment_create') }}">{{ 'button.action_create'|trans }}</a>#}
+    <a class="btn btn-success" href="{{ path('comment_create') }}">{{ 'button.action_create'|trans }}</a>
 {% endblock %}
 {% block body %}
-
-
 
     {% if pagination is defined and pagination.items|length %}
         <div class="navigation text-center">
@@ -17,6 +15,8 @@
         <table class="table table-striped">
             <thead>
             <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.comment.tea'|trans, 'label.comment.tea') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.comment.author'|trans, 'label.comment.author') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'comment.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'comment.content') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'comment.createdAt') }}</th>
@@ -26,6 +26,8 @@
             <tbody>
             {% for comment in pagination.items %}
                 <tr>
+                    <td>{{ comment.tea.title }}</td>
+                    <td>{{ comment.author.email }}</td>
                     <td>{{ comment.title }}</td>
                     <td>{{ comment.content }}</td>
                     <td>{{ comment.createdAt|date('Y-m-d') }}</td>
