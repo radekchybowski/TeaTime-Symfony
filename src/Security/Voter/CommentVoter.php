@@ -1,11 +1,11 @@
 <?php
 /**
- * Tea voter.
+ * Comment voter.
  */
 
 namespace App\Security\Voter;
 
-use App\Entity\Tea;
+use App\Entity\Comment;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -13,9 +13,9 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class TeaVoter.
+ * Class CommentVoter.
  */
-class TeaVoter extends Voter
+class CommentVoter extends Voter
 {
     /**
      * Edit permission.
@@ -64,7 +64,7 @@ class TeaVoter extends Voter
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE])
-            && $subject instanceof Tea;
+            && $subject instanceof Comment;
     }
 
     /**
@@ -97,53 +97,53 @@ class TeaVoter extends Voter
     }
 
     /**
-     * Checks if user can edit tea.
+     * Checks if user can edit comment.
      *
-     * @param Tea  $tea  Tea entity
+     * @param Comment  $comment  Comment entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canEdit(Tea $tea, User $user): bool
+    private function canEdit(Comment $comment, User $user): bool
     {
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
 
-        return $tea->getAuthor() === $user;
+        return $comment->getAuthor() === $user;
     }
 
     /**
-     * Checks if user can view tea.
+     * Checks if user can view comment.
      *
-     * @param Tea  $tea  Tea entity
+     * @param Comment  $comment  Comment entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canView(Tea $tea, User $user): bool
+    private function canView(Comment $comment, User $user): bool
     {
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
 
-        return $tea->getAuthor() === $user;
+        return $comment->getAuthor() === $user;
     }
 
     /**
-     * Checks if user can delete tea.
+     * Checks if user can delete comment.
      *
-     * @param Tea  $tea  Tea entity
+     * @param Comment  $comment  Comment entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canDelete(Tea $tea, User $user): bool
+    private function canDelete(Comment $comment, User $user): bool
     {
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
 
-        return $tea->getAuthor() === $user;
+        return $comment->getAuthor() === $user;
     }
 }

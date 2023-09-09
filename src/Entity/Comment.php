@@ -56,7 +56,7 @@ class Comment
     /**
      * Tea.
      */
-    #[ORM\ManyToOne(targetEntity: Tea::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(inversedBy: 'comments', targetEntity: Tea::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(Tea::class)]
@@ -147,6 +147,18 @@ class Comment
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getTea2(): ?Tea
+    {
+        return $this->tea2;
+    }
+
+    public function setTea2(?Tea $tea2): self
+    {
+        $this->tea2 = $tea2;
 
         return $this;
     }

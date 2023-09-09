@@ -72,7 +72,7 @@ class TeaRepository extends ServiceEntityRepository
      *
      * @return QueryBuilder Query builder
      */
-    public function queryAll(array $filters): QueryBuilder
+    public function queryAll(array $filters = []): QueryBuilder
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(

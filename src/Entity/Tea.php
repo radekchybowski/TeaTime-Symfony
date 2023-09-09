@@ -24,8 +24,6 @@ class Tea
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,28 +32,22 @@ class Tea
 
     /**
      * Created at.
-     *
-     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeImmutable $createdAt;
+    private ?\DateTimeImmutable $createdAt;
 
     /**
      * Updated at.
-     *
-     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt;
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -86,8 +78,6 @@ class Tea
 
     /**
      * Author.
-     *
-     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
@@ -106,16 +96,12 @@ class Tea
 
     /**
      * Ingredients.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $ingredients = null;
 
     /**
      * Steep Time in seconds.
-     *
-     * @var int|null
      */
     #[ORM\Column(nullable: true)]
     private ?int $steepTime = null;
@@ -130,16 +116,12 @@ class Tea
 
     /**
      * Region of origin.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 64, nullable: true)]
     private ?string $region = null;
 
     /**
      * Vendor/Store.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 64, nullable: true)]
     private ?string $vendor = null;
@@ -150,7 +132,17 @@ class Tea
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
+
+    /**
+     * Comments.
+     *
+     * @var Comments
+     */
+    #[ORM\OneToMany(mappedBy: 'tea', targetEntity: Comment::class, orphanRemoval: true)]
+//    #[ORM\JoinColumn(nullable: true)]
+    private ?Collection $comments = null;
 
     /**
      * Getter for Id.
@@ -165,9 +157,9 @@ class Tea
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null Created at
      */
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -175,9 +167,9 @@ class Tea
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable $createdAt Created at
+     * @param \DateTimeImmutable $createdAt Created at
      */
-    public function setCreatedAt(DateTimeImmutable $createdAt): void
+    public function setCreatedAt(\DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
@@ -185,9 +177,9 @@ class Tea
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable|null Updated at
+     * @return \DateTimeImmutable|null Updated at
      */
-    public function getUpdatedAt(): ?DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
@@ -195,9 +187,9 @@ class Tea
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable $updatedAt Updated at
+     * @param \DateTimeImmutable $updatedAt Updated at
      */
-    public function setUpdatedAt(DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -354,6 +346,36 @@ class Tea
     public function setVendor(?string $vendor): self
     {
         $this->vendor = $vendor;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setTea2($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getTea2() === $this) {
+                $comment->setTea2(null);
+            }
+        }
 
         return $this;
     }

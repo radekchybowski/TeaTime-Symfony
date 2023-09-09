@@ -135,7 +135,7 @@ class CategoryController extends AbstractController
 
     public function edit(Request $request, Category $category): Response
     {
-        //check for admin permissions
+//        check for admin permissions
 //        if (!$this->isGranted('EDIT', $category) )
 //            throw $this->createAccessDeniedException();
 

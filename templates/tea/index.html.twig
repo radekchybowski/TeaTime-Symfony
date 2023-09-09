@@ -16,7 +16,7 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'tea.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'tea.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'tea.category_id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'tea.category_id.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.tag'|trans, 'tag.title') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
@@ -29,7 +29,8 @@
                     <td>
                         <a href="{{ url('tea_index', {'filters.category_id' : tea.category.id}) }}" title="{{ tea.category.title }}">
                             {{ tea.category.title }}
-                        </a></td>
+                        </a>
+                    </td>
                     <td>
                         {% if tea.tags is defined and tea.tags|length %}
                             {% for tag in tea.tags %}

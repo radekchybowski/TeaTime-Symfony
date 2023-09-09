@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Form\Type\CommentType;
 use App\Service\CommentServiceInterface;
+use App\Service\TeaServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -28,6 +29,11 @@ class CommentController extends AbstractController
     private CommentServiceInterface $commentService;
 
     /**
+     * Tea service.
+     */
+    private TeaServiceInterface $teaService;
+
+    /**
      * Translator.
      */
     private TranslatorInterface $translator;
@@ -35,9 +41,10 @@ class CommentController extends AbstractController
     /**
      * Constructor.
      */
-    public function __construct(CommentServiceInterface $commentService, TranslatorInterface $translatorInterface)
+    public function __construct(CommentServiceInterface $commentService, TeaServiceInterface $teaService, TranslatorInterface $translatorInterface)
     {
         $this->commentService = $commentService;
+        $this->teaService = $teaService;
         $this->translator = $translatorInterface;
     }
 
@@ -84,15 +91,26 @@ class CommentController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/create',
+        '/create/{id}',
         name: 'comment_create',
-        methods: 'GET|POST',
+        requirements: ['id' => '[0-9]+'],
+        defaults: ['id' => null],
+        methods: 'GET|POST'
     )]
-    #[IsGranted('ROLE_ADMIN')]
-    public function create(Request $request): Response
+    public function create(Request $request, ?int $id): Response
     {
-
+        /** @var Comment $comment */
         $comment = new Comment();
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        /** @var Tea $tea */
+        $tea = $this->teaService->findOneById($id);
+
+        $comment->setAuthor($user);
+        $comment->setTea($tea);
+
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 

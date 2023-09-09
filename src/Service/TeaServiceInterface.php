@@ -36,4 +36,15 @@ interface TeaServiceInterface
      * @param Tea $tea Tea entity
      */
     public function delete(Tea $tea): void;
+
+    /**
+     * Find by id.
+     *
+     * @param int $id Tea id
+     *
+     * @return Tea|null Tea entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Tea;
 }

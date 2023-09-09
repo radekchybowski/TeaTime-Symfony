@@ -42,7 +42,7 @@ class TeaService implements TeaServiceInterface
      * @param CategoryServiceInterface $categoryService Category service
      * @param PaginatorInterface       $paginator       Paginator
      * @param TagServiceInterface      $tagService      Tag service
-     * @param TeaRepository           $teaRepository  Tea repository
+     * @param TeaRepository            $teaRepository   Tea repository
      */
     public function __construct(
         CategoryServiceInterface $categoryService,
@@ -68,12 +68,37 @@ class TeaService implements TeaServiceInterface
     public function getPaginatedList(int $page, User $author, array $filters = []): PaginationInterface
     {
         $filters = $this->prepareFilters($filters);
+        if (
+            in_array('ROLE_ADMIN', $author->getRoles())
+        ) {
+            $pagination = $this->paginator->paginate(
+                $this->teaRepository->queryAll($filters),
+                $page,
+                TeaRepository::PAGINATOR_ITEMS_PER_PAGE
+            );
+        } else {
+            $pagination = $this->paginator->paginate(
+                $this->teaRepository->queryByAuthor($author, $filters),
+                $page,
+                TeaRepository::PAGINATOR_ITEMS_PER_PAGE
+            );
+        }
 
-        return $this->paginator->paginate(
-            $this->teaRepository->queryByAuthor($author, $filters),
-            $page,
-            TeaRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
+        return $pagination;
+    }
+
+    /**
+     * Find by id.
+     *
+     * @param int $id Tea id
+     *
+     * @return Tea|null Tea entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Tea
+    {
+        return $this->teaRepository->findOneById($id);
     }
 
     /**

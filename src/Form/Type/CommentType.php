@@ -14,13 +14,27 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * Class CommentType.
  */
 class CommentType extends AbstractType
 {
+    /**
+     * Security helper.
+     */
+    private Security $security;
 
+    /**
+     * Constructor.
+     *
+     * @param Security $security Security
+     */
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
     /**
      * Builds the form.
      *
@@ -51,45 +65,38 @@ class CommentType extends AbstractType
                 'attr' => ['max_length' => 2048],
             ]
         );
-        $builder->add(
-            'tea',
-            EntityType::class,
-            [
-                'class' => Tea::class,
-                'choice_label' => function ($tea): string {
-                    return $tea->getTitle();
-                },
-                'label' => 'label.tea.title',
-                'placeholder' => 'label.none',
-                'required' => true,
-            ]
-        );
-        $builder->add(
-            'tea',
-            EntityType::class,
-            [
-                'class' => Tea::class,
-                'choice_label' => function ($tea): string {
-                    return $tea->getTitle();
-                },
-                'label' => 'label.tea.title',
-                'placeholder' => 'label.none',
-                'required' => true,
-            ]
-        );
-        $builder->add(
-            'author',
-            EntityType::class,
-            [
-                'class' => User::class,
-                'choice_label' => function ($user): string {
-                    return $user->getEmail();
-                },
-                'label' => 'label.comment.user.email',
-                'placeholder' => 'label.none',
-                'required' => true,
-            ]
-        );
+
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            $builder->add(
+                'tea',
+                EntityType::class,
+                [
+                    'class' => Tea::class,
+                    'choice_label' => function ($tea): string {
+                        return $tea->getTitle();
+                    },
+                    'label' => 'label.tea.title',
+                    'placeholder' => 'label.none',
+                    'required' => true,
+                ]
+            );
+        }
+
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            $builder->add(
+                'author',
+                EntityType::class,
+                [
+                    'class' => User::class,
+                    'choice_label' => function ($user): string {
+                        return $user->getEmail();
+                    },
+                    'label' => 'label.comment.user.email',
+                    'placeholder' => 'label.none',
+                    'required' => true,
+                ]
+            );
+        }
     }
 
     /**

@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
 
-public const PAGINATOR_ITEMS_PER_PAGE = 5;
+public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     public function __construct(ManagerRegistry $registry)
     {

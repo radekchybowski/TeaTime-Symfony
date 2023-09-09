@@ -26,7 +26,11 @@
             <tbody>
             {% for category in pagination.items %}
                 <tr>
-                    <td>{{ category.title }}</td>
+                    <td>
+                        <a href="{{ url('tea_index', {'filters.category_id' : category.id}) }}" title="{{ category.title }}">
+                            {{ category.title }}
+                        </a>
+                    </td>
                     <td>{{ category.createdAt|date('Y-m-d') }}</td>
                     <td>{{ category.updatedAt|format_date('long') }}</td>
                     <td><a href="{{ path('category_show', {'id': category.id}) }}">{{ 'button.action_show'|trans }}</a></td>
