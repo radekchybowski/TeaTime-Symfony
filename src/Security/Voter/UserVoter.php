@@ -1,6 +1,6 @@
 <?php
 /**
- * Tea voter.
+ * User voter.
  */
 
 namespace Security\Voter;
@@ -102,9 +102,13 @@ class UserVoter extends Voter
      *
      * @return bool Result
      */
-    private function canEdit(User $user): bool
+    private function canEdit(int $id, User $user): bool
     {
-        return in_array('ROLE_ADMIN', $user->getRoles());
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            return true;
+        }
+
+        return $id === $user->getId();
     }
 
     /**
@@ -117,7 +121,11 @@ class UserVoter extends Voter
      */
     private function canView(Tea $tea, User $user): bool
     {
-        return in_array('ROLE_ADMIN', $user->getRoles());
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            return true;
+        }
+
+        return $tea->getAuthor() === $user;
     }
 
     /**
@@ -130,6 +138,10 @@ class UserVoter extends Voter
      */
     private function canDelete(Tea $tea, User $user): bool
     {
-        return in_array('ROLE_ADMIN', $user->getRoles());
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            return true;
+        }
+
+        return $tea->getAuthor() === $user;
     }
 }

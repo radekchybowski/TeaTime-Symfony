@@ -5,6 +5,7 @@ parameters:
     - page_title: page title
     - form: form view variable
     - submit_label: label for submit button
+    - additional_action: anything you want to put before submit button (eg. additional buttons)
 #}
 {% extends 'default/_dashboard.html.twig' %}
 
@@ -15,7 +16,7 @@ parameters:
     <h1>{{ page_title }}</h1>
 {% endblock %}
 
-{% block body %}
+{% block main %}
     {{ form_start(form) }}
     {% if false == form.vars.valid %}
         {% include 'default/_single_alert_message.html.twig' with {
@@ -36,9 +37,7 @@ parameters:
     {% endif %}
     {% if additional_action|default(false) %}
         <div class="form-group row float-sm-left">
-            <a href="{{ url(additional_action, {id: id}) }}" class="btn btn-link">
-                {{ additional_action_label }}
-            </a>
+            {{ additional_action }}
         </div>
     {% endif %}
     {{ form_end(form) }}

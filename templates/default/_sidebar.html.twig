@@ -1,5 +1,4 @@
 
-{% block header %}
     <!-- Sidebar-->
     <div class="border-end bg-light" id="sidebar-wrapper">
 
@@ -67,8 +66,8 @@
                 <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('comment_index') }}">Komentarze</a>
                 <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('user_index') }}">Użytkownicy</a>
             {% endif %}
+            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('user_edit', {id: app.user.id}) }}">Ustawienia</a>
             <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('app_logout') }}">Wyloguj</a>
         </div>
     </div>
-{% endblock %}
 

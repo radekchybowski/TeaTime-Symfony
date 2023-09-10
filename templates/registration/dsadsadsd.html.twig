@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block css %}
+    <link href="{{asset('css/login.css')}}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+
+<body class="text-center" cz-shortcut-listen="true">
+
+
+{{ form_start(registrationForm) }}
+
+{% set formErrors = registrationForm.vars.errors.form.getErrors(true) %}
+
+<div id="cat">
+    <img class="mb-4" src="https://i.pinimg.com/originals/0b/30/b5/0b30b558d728099473fb7dd00605a25b.gif" alt="" width="72" height="72">
+
+    {% if formErrors|length %}
+        <div id="bubel">
+            <img id="bubel-img" class="mb-4" src="{{asset('img/bubble.png')}}" height="130px" width="350px">
+            <div id="bubel-text" class=" alert-danger">
+                {% if formErrors|length %}
+                    {% for error in formErrors %}
+                        {{ error.message|trans   }}<br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+
+
+
+<h1 class="h3 mb-3 font-weight-normal">{{'Register an Account'|trans}} </h1>
+
+
+{{ form_row(registrationForm.email) }}
+
+{#        {{ form_label(registrationForm.plainPassword, 'Password') }}#}
+{#        {{ form_widget(registrationForm.plainPassword) }}#}
+
+{{ form_label(registrationForm.plainPassword.first, 'Password') }}
+{{ form_widget(registrationForm.plainPassword.first) }}
+{{ form_label(registrationForm.plainPassword.second, 'Repeat Password') }}
+{{ form_widget(registrationForm.plainPassword.second) }}
+
+<p class="mt-3">
+    {{'Already have an account?'|trans}} <a href="{{path('app_login')}}">{{'Sign in'|trans}}</a>
+</p>
+
+<button class="btn btn-lg btn-primary btn-block" type="submit">{{'Register'|trans}}</button>
+
+
+{{ form_end(registrationForm) }}
+
+{% endblock %}

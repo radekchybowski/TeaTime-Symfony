@@ -5,7 +5,7 @@
     <h1 class="text-left">Komentarze</h1>
     <a class="btn btn-success" href="{{ path('comment_create') }}">{{ 'button.action_create'|trans }}</a>
 {% endblock %}
-{% block body %}
+{% block main %}
 
     {% if pagination is defined and pagination.items|length %}
         <div class="navigation text-center">

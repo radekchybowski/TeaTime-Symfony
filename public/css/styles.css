@@ -86,8 +86,27 @@ body.sb-sidenav-toggled #sidebarToggle {
     border-radius: 30px;
 }
 
-.profile-pic {
+/* Formularz logowania CSS */
 
+.login-bg-image {
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media (min-width: 768px) {
+    .gradient-form {
+        height: 100vh !important;
+    }
+}
+@media (min-width: 769px) {
+    .login-bg-image {
+        border-top-right-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+        max-width: 500px;
+    }
 }
 
 /*.overlay {*/
@@ -106,3 +125,5 @@ body.sb-sidenav-toggled #sidebarToggle {
 /*.pic-container:hover .overlay {*/
 /*    opacity: 1;*/
 /*}*/
+
+

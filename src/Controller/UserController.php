@@ -69,7 +69,6 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}', name: 'user_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET', )]
-    #[IsGranted('ROLE_ADMIN')]
     public function show(User $user): Response
     {
         return $this->render('user/show.html.twig', ['user' => $user]);
@@ -122,7 +121,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('EDIT', subject: '')]
     public function edit(Request $request, User $user): Response
     {
         $form = $this->createForm(

@@ -2,10 +2,8 @@
 
 {% block title %}{{ 'title.record_view'|trans }} {{ record.id }}{% endblock %}
 
-{% block body %}
-
-
-
+{% block main %}
+    
     {% if record is defined %}
         <h3>{{ 'label.id'|trans }}: {{ record.id }}</h3>
         <h3>Tytuł</h3>

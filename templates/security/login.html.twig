@@ -2,27 +2,7 @@
 
 {% block title %}Log in!{% endblock %}
 
-{% block main %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+{% block body %}
 
     {#
         Undescription this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -35,8 +15,112 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+<main class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
+
+                                <div class="text-center my-3">
+                                    <div class="sidebar-heading text-center">
+                                        <img class="img-fluid me-2" width=50px src="{{ asset('uploads/icon-coffee.svg') }}" alt="Site logo">
+                                        <h2 class="d-inline-block" style="vertical-align: sub;">TeaTime</h2>
+                                        <p class="">Najlepsza strona z herbatą, naprawdę.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Pills nav -->
+                                <ul class="nav nav-pills nav-justified mb-3" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" href="{{ url('app_login') }}" role="tab"
+                                           aria-controls="pills-login" aria-selected="true">Logowanie</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" href="{{ url('app_register') }}" role="tab"
+                                           aria-controls="pills-register" aria-selected="false">Rejestracja</a>
+                                    </li>
+                                </ul>
+                                <!-- Pills nav -->
+
+                                <!-- Login form -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                                        <form class="needs-validation" method="POST">
+                                            {% if error %}
+                                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                            {% endif %}
+                                            <!-- login input -->
+                                            <div class="form-outline mb-4 was-validated">
+                                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email"/>
+                                                <label class="form-label" for="inputEmail">Email</label>
+                                            </div>
+
+                                            <!-- Password input -->
+                                            <div class="form-outline mb-4 was-validated">
+                                                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                                <label class="form-label" for="inputPassword">Password</label>
+                                            </div>
+
+                                            <input type="hidden" name="_csrf_token"
+                                                   value="{{ csrf_token('authenticate') }}"
+                                            >
+
+                                            <!-- 2 column grid layout -->
+                                            <div class="row mb-4">
+                                                <div class="col-md-6 d-flex justify-content-center">
+                                                    <!-- Checkbox -->
+                                                    <div class="form-check mb-3 mb-md-0 was-validated">
+                                                        <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                                                        <label class="form-check-label" for="loginCheck"> Zapamiętaj mnie </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 d-flex justify-content-center">
+                                                    <!-- Simple link -->
+                                                    <a href="#!"data-bs-toggle="modal" data-bs-target="#resetPasswordtModal">Reset hasła...</a>
+                                                </div>
+                                            </div>
+
+                                            <!-- Submit button -->
+                                            <button type="submit" class="btn btn-primary btn-block mb-4">Zaloguj się</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex login-bg-image">
+                            <img class="col-lg-12 d-flex login-bg-image" src="{{asset('uploads/bg-tea.jpg')}}" alt="Zdjęcie przedstawia kubek pełny herbaty.">
+                            <!-- <div class="mask text-light d-flex justify-content-center flex-column text-center text-white px-3 py-4 p-md-5 mx-md-4" style="background-color: rgba(0, 0, 0, 0.5)">
+                              <h4 class="mb-4">Herbata to coś więcej niz napój</h4>
+                              <p class="small mb-0">Herbata to styl zycia, powołanie, sposób na zmianę siebie i świata wokół siebie. Pijąc herbatę mozesz poznać wyjątkowych ludzi, zbudować relacje na całe zycie, spotkać swoją pierwszą miłość. Mozesz się poparzyć i powiedzieć kolegom ze uprawiasz sporty ekstremalne. Herbata jest cudowna.</p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="modal fade" id="resetPasswordtModal" tabindex="-1" aria-labelledby="resetPasswordtModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reset hasła</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                W celu zresetowania hasła skontaktuj się z Administratorem strony.
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+
+
+
+
