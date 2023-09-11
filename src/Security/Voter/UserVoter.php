@@ -3,7 +3,7 @@
  * User voter.
  */
 
-namespace Security\Voter;
+namespace App\Security\Voter;
 
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -102,13 +102,13 @@ class UserVoter extends Voter
      *
      * @return bool Result
      */
-    private function canEdit(int $id, User $user): bool
+    private function canEdit(User $user, User $currentUser): bool
     {
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
 
-        return $id === $user->getId();
+        return $currentUser === $user;
     }
 
     /**
@@ -119,13 +119,12 @@ class UserVoter extends Voter
      *
      * @return bool Result
      */
-    private function canView(Tea $tea, User $user): bool
+    private function canView(User $user, User $currentUser): bool
     {
-        if ($this->security->isGranted('ROLE_ADMIN')) {
+        if ($this->security->isGranted('ROLE_USER')) {
             return true;
         }
-
-        return $tea->getAuthor() === $user;
+        return false;
     }
 
     /**
@@ -136,12 +135,12 @@ class UserVoter extends Voter
      *
      * @return bool Result
      */
-    private function canDelete(Tea $tea, User $user): bool
+    private function canDelete(User $user, User $currentUser): bool
     {
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
 
-        return $tea->getAuthor() === $user;
+        return $currentUser === $user;
     }
 }
