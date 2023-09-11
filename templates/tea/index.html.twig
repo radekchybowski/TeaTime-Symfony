@@ -48,18 +48,16 @@
                     </td>
 {#                    <td>{{ tea.author.email }}</td>#}
                     <td>
-                        {% if is_granted('VIEW', tea) %}
-                            <a class="btn btn-outline-primary" href="{{ url('tea_show', {id: tea.id}) }}" title="{{ 'button.action_show'|trans }}">
+                            <a class="btn btn-outline-primary m-1" href="{{ url('tea_show', {id: tea.id}) }}" title="{{ 'button.action_show'|trans }}">
                                 {{ 'button.action_show'|trans }}
                             </a>
-                        {% endif %}
                         {% if is_granted('EDIT', tea) %}
-                            <a class="btn btn-outline-success" href="{{ url('tea_edit', {id: tea.id}) }}" title="{{ 'button.action_edit'|trans }}">
+                            <a class="btn btn-outline-success m-1" href="{{ url('tea_edit', {id: tea.id}) }}" title="{{ 'button.action_edit'|trans }}">
                                 {{ 'button.action_edit'|trans }}
                             </a>
                         {% endif %}
                         {% if is_granted('DELETE', tea) %}
-                            <a class="btn btn-outline-danger" href="{{ url('tea_delete', {id: tea.id}) }}" title="{{ 'button.action_delete'|trans }}">
+                            <a class="btn btn-outline-danger m-1" href="{{ url('tea_delete', {id: tea.id}) }}" title="{{ 'button.action_delete'|trans }}">
                                 {{ 'button.action_delete'|trans }}
                             </a>
                         {% endif %}

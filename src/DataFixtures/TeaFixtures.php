@@ -33,8 +33,13 @@ class TeaFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             /** @var Tea $tea */
             $tea = new Tea();
 
-            /* Setting name for the tea */
-            $tea->setTitle($this->faker->sentence);
+            /**
+             * Tea title randomly picked from Array.
+             *
+             * @var string[] $teaTitleArray
+             */
+            $teaTitleArray = ['Sweetheart', 'White Angel', 'Tenshi', 'Seven miracles', 'Breakfast in Paris', 'Sick-o-Tea', 'Energy Drink', 'Good Morning', 'December evening', 'Treasures of China', 'Dreamy spring', 'Laponia', 'Gingerly'];
+            $tea->setTitle($this->faker->randomElement($teaTitleArray));
 
             /* Setting time of creation and last update */
             $tea->setCreatedAt(
@@ -81,16 +86,23 @@ class TeaFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             $tea->setDescription($this->faker->paragraph);
 
             /**
+             * Ingredients list randomly picked from Array.
              *
-             * Ingredients list randomly picked from Array
              * @var string[] $ingredientsArray
              */
-            $ingredientsArray = ['black tea', 'white tea', 'green tea'];
+            $ingredientsArray = [
+                'black tea', 'ceylon', 'prickly pear', 'vanilla', 'raisins',
+                'nectarine', 'strawberries', 'mint', 'coconut', 'pu-erh',
+                'sencha', 'roses', 'daisies', 'peach', 'sunflowers',
+                'white chocolate', 'orange', 'white tea', 'green tea',
+                'raspberries', 'pineapple', 'lavender', 'apple', 'blackberries',
+                'oolong', 'honey', 'cinnamon', 'clitoris', 'ginger', 'matcha',
+            ];
 
             $tea->setIngredients(implode(', ',
                 $this->faker->randomElements(
                     $ingredientsArray,
-                    2
+                    5
                 ),
             ));
 
@@ -115,7 +127,7 @@ class TeaFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
              *
              * @var string[] $regionArray
              */
-            $regionArray = ['Yunnan'];
+            $regionArray = ['Yunnan', 'Zhejiang', 'Fujian', 'Anhui', 'Ceylon', 'Kyoto', 'Saitama', 'Kagoshima', 'Shizuoka', 'Aichi'];
             $tea->setRegion($this->faker->randomElement($regionArray));
 
             /**
@@ -123,7 +135,7 @@ class TeaFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
              *
              * @var string[] $vendorArray
              */
-            $vendorArray = ['e-herbata.pl'];
+            $vendorArray = ['e-herbata.pl', 'five-o-clock.pl', 'czasnaherbate.pl', 'czajnikowy.pl', 'zielonysklep.pl', 'sypana.pl', 'dobreherbaty.pl', 'kapkawina.pl'];
             $tea->setVendor($this->faker->randomElement($vendorArray));
 
             return $tea;
