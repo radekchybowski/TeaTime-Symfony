@@ -6,7 +6,7 @@
 namespace App\Service;
 
 use App\Entity\Comment;
-use App\Service\NonUniqueResultException;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**

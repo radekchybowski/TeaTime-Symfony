@@ -1,9 +1,9 @@
 {% extends 'default/_dashboard.html.twig' %}
 
-{% block title %}{{ 'title.record_list'|trans }}{% endblock %}
+{% block title %}{{ 'site_title.tag'|trans }}{% endblock %}
 {% block section_title %}
-    <h1 class="text-left">Tagi</h1>
-    <a class="btn btn-success" href="{{ path('tag_create') }}">{{ 'button.action_create'|trans }}</a>
+    <h1 class="text-left">{{ 'site_title.tag'|trans }}</h1>
+    <a class="btn btn-success" href="{{ path('tag_create') }}">{{ 'button.tag.action_create'|trans }}</a>
 {% endblock %}
 {% block main %}
     {% if pagination is defined and pagination.items|length %}
@@ -25,12 +25,24 @@
             {% for tag in pagination.items %}
                 <tr>
                     <td>{{ tag.id }}</td>
-                    <td>{{ tag.title }}</td>
+                    <td>
+                        <a href="{{ url('tea_index', {'filters.tag_id' : tag.id}) }}" title="{{ tag.title }}">
+                            {{ tag.title }}
+                        </a>
+                    </td>
                     <td>{{ tag.createdAt|date('Y-m-d') }}</td>
                     <td>{{ tag.updatedAt|format_date('long') }}</td>
-                    <td><a href="{{ path('tag_show', {'id': tag.id}) }}">{{ 'button.action_show'|trans }}</a></td>
-                    <td><a href="{{ path('tag_edit', {'id': tag.id}) }}">{{ 'button.action_edit'|trans }}</a></td>
-                    <td><a href="{{ path('tag_delete', {'id': tag.id}) }}">{{ 'button.action_delete'|trans }}</a></td>
+                    <td>
+                        <a class="btn btn-outline-primary m-1" href="{{ path('tag_show', {'id': tag.id}) }}" title="{{ 'button.action_show'|trans }}">
+                            {{ 'button.action_show'|trans }}
+                        </a>
+                        <a class="btn btn-outline-success m-1" href="{{ path('tag_edit', {'id': tag.id}) }}" title="{{ 'button.action_show'|trans }}">
+                            {{ 'button.action_edit'|trans }}
+                        </a>
+                        <a class="btn btn-outline-danger m-1" href="{{ path('tag_delete', {'id': tag.id}) }}" title="{{ 'button.action_show'|trans }}">
+                            {{ 'button.action_delete'|trans }}
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

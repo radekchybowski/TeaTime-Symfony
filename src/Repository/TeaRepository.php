@@ -6,6 +6,7 @@
 namespace App\Repository;
 
 use App\Entity\Category;
+use App\Entity\Tag;
 use App\Entity\Tea;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -48,6 +49,18 @@ class TeaRepository extends ServiceEntityRepository
     }
 
     /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('tea');
+    }
+
+    /**
      * Query teas by author.
      *
      * @param User                  $user    User entity
@@ -85,18 +98,6 @@ class TeaRepository extends ServiceEntityRepository
             ->orderBy('tea.updatedAt', 'DESC');
 
         return $this->applyFiltersToList($queryBuilder, $filters);
-    }
-
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('tea');
     }
 
     /**
@@ -156,7 +157,6 @@ class TeaRepository extends ServiceEntityRepository
             $queryBuilder->andWhere('category = :category')
                 ->setParameter('category', $filters['category']);
         }
-
         if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
             $queryBuilder->andWhere('tags IN (:tag)')
                 ->setParameter('tag', $filters['tag']);

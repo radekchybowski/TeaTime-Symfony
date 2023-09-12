@@ -1,55 +1,54 @@
 {% extends 'default/_dashboard.html.twig' %}
 
-{% block title %}{{ 'title.record_view'|trans }} {{ tea.id }}{% endblock %}
+{% block title %}{{ 'site_title.tea.show'|trans }}: {{ tea.title }}{% endblock %}
 {% block section_title %}
     <h1 class="text-left">{{ tea.title }}</h1>
-    <a class="btn btn-success" href="{{ path('tea_create') }}">{{ 'button.action_create'|trans }}</a>
+    <a class="btn btn-success" href="{{ path('tea_create') }}">{{ 'button.tea.action_create'|trans }}</a>
 {% endblock %}
 {% block main %}
     {% if tea is defined %}
         <div class="row">
-
             <div class="col-md-4 text-center">
                 <div class="col-md-12 card p-3 tea-tile-info">
-                    <h3 class="mb-2 mt-1 h5">Gatunek</h3>
+                    <h3 class="mb-2 mt-1 h5">{{ 'label.tea.category'|trans }}</h3>
                     <p class="h2">{{ tea.category.title }}</p>
                 </div>
             </div>
 
             <div class="col-md-4 text-center">
                 <div class="col-md-12 card p-3 tea-tile-info">
-                    <h3 class="mb-2 mt-1 h5">Region</h3>
+                    <h3 class="mb-2 mt-1 h5">{{ 'label.tea.region'|trans }}</h3>
                     <p class="h2">{{ tea.region }}</p>
                 </div>
             </div>
 
             <div class="col-md-4 text-center">
                 <div class="col-md-12 card p-3 tea-tile-info">
-                    <h3 class="mb-2 mt-1 h5">Sklep</h3>
+                    <h3 class="mb-2 mt-1 h5">{{ 'label.tea.vendor'|trans }}</h3>
                     <p class="h2">{{ tea.vendor }}</p>
                 </div>
             </div>
 
-            <h3 class="mb-2 mt-4 h5 text-start">Skład</h3>
+            <h3 class="mb-2 mt-4 h5 text-start">{{ 'label.tea.ingredients'|trans }}</h3>
             <p class="text-start mb-4">
                 {{ tea.ingredients }}
             </p>
 
             <div class="col-md-6">
                 <div class="col-md-12 card p-3 tea-tile-info text-center">
-                    <h3 class="mb-2 mt-1 h5">Czas parzenia</h3>
+                    <h3 class="mb-2 mt-1 h5">{{ 'label.tea.steep_time'|trans }}</h3>
                     <p class="h2">{{ tea.steepTime }} min.</p>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="col-md-12 card p-3 tea-tile-info text-center">
-                    <h3 class="mb-2 mt-1 h5">Temperatura parzenia</h3>
+                    <h3 class="mb-2 mt-1 h5">{{ 'label.tea.steep_temp'|trans }}</h3>
                     <p class="h2">{{ tea.steepTemp }} ℃</p>
                 </div>
             </div>
 
-            <h3 class="mb-2 mt-4 h5 text-start">Opis</h3>
+            <h3 class="mb-2 mt-4 h5 text-start">{{ 'label.tea.description'|trans }}</h3>
             <p class="text-start mb-4">
                 {{ tea.description|markdown_to_html }}
             </p>
@@ -68,14 +67,14 @@
             </div>
         </div>
 
-        <h3 class="mb-2 mt-4 h5 text-start">Komentarze</h3>
+        <h3 class="mb-2 mt-4 h5 text-start">{{ 'label.tea.comments'|trans }}</h3>
         {% for comment in tea.comments %}
-        <div class="my-3 p-4 rounded" style="background-color: lightgrey">
+        <div class="my-3 p-4 rounded comment-body">
             <h4 class="mb-2 h5 text-start">{{ comment.title }}</h4>
             <p class="my-2">{{ comment.content }}</p>
             <div class="my-0 d-flex justify-content-between text-muted">
                 <p class="m-0"> {{ comment.author.name }} {{ comment.author.surname }} ({{ comment.author.email }})</p>
-                <p class="m-0">Dodano: {{ comment.createdAt|date("F jS \\a\\t g:ia") }}</p>
+                <p class="m-0"> {{ 'label.tea.comment.added_time'|trans }} {{ comment.createdAt|date("F jS \\a\\t g:ia") }}</p>
             </div>
 
             <div class="d-flex mt-2">

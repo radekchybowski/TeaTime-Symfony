@@ -1,12 +1,12 @@
 {% extends 'default/_dashboard.html.twig' %}
 
-{% block title %}{{ 'title.record_view'|trans }} {{ record.id }}{% endblock %}
+{% block title %}{{ 'site_title.category.show'|trans }}: {{ record.title }}{% endblock %}
 
 {% block main %}
 
     {% if record is defined %}
         <h3>{{ 'label.id'|trans }}: {{ record.id }}</h3>
-        <h3>Tytuł</h3>
+        <h3>{{ 'label.category.title'|trans }}</h3>
         <p>{{ record.title }}</p>
         <h3>{{ 'label.created_at'|trans }}</h3>
         <p>{{ record.createdAt|date('Y-m-d') }}</p>

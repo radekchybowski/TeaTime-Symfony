@@ -34,7 +34,7 @@ class UserType extends AbstractType
             'name',
             TextType::class,
             [
-                'label' => 'label.name',
+                'label' => 'label.user.name',
                 'required' => false,
                 'attr' => ['max_length' => 64],
             ]
@@ -43,7 +43,7 @@ class UserType extends AbstractType
             'surname',
             TextType::class,
             [
-                'label' => 'label.surname',
+                'label' => 'label.user.surname',
                 'required' => false,
                 'attr' => ['max_length' => 64],
             ]
@@ -52,7 +52,7 @@ class UserType extends AbstractType
             'email',
             TextType::class,
             [
-                'label' => 'label.email',
+                'label' => 'label.user.email',
                 'required' => true,
                 'attr' => ['max_length' => 255],
             ]
@@ -61,9 +61,10 @@ class UserType extends AbstractType
             'password',
             TextType::class,
             [
-                'label' => 'label.password',
-                'required' => true,
+                'label' => 'label.user.password',
+                'required' => false,
                 'attr' => ['max_length' => 128],
+                'data' => '',
             ]
         );
     }

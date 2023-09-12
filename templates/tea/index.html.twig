@@ -1,9 +1,9 @@
 {% extends 'default/_dashboard.html.twig' %}
 
-{% block title %}{{ 'title.record_list'|trans }}{% endblock %}
+{% block title %}{{ 'site_title.tea'|trans }}{% endblock %}
 {% block section_title %}
-    <h1 class="text-left">Herbaty</h1>
-    <a class="btn btn-success" href="{{ path('tea_create') }}">{{ 'button.action_create'|trans }}</a>
+    <h1 class="text-left">{{ 'site_title.tea'|trans }}</h1>
+    <a class="btn btn-success" href="{{ path('tea_create') }}">{{ 'button.tea.action_create'|trans }}</a>
 {% endblock %}
 {% block main %}
     {% if pagination is defined and pagination.items|length %}
@@ -16,8 +16,8 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'tea.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'tea.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'tea.category_id.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.tag'|trans, 'tag.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.tag'|trans, 'tags.title') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>

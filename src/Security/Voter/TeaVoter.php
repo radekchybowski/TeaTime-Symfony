@@ -3,7 +3,7 @@
  * Tea voter.
  */
 
-namespace App\Security\Voter;
+namespace Security\Voter;
 
 use App\Entity\Tea;
 use App\Entity\User;

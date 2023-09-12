@@ -6,7 +6,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\DataFixtures\AbstractBaseFixtures;
 
 /**
  * Class CategoryFixtures.
@@ -23,9 +22,19 @@ class CategoryFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        $this->createMany(20, 'categories', function (int $i) {
+        $this->createMany(18, 'categories', function (int $i) {
             $category = new Category();
-            $category->setTitle($this->faker->unique()->word);
+            /**
+             * Assigning title name of Category.
+             *
+             * @var string[] $categoryTitleArray
+             */
+            $categoryTitleArray = ['klasyczna', 'premium', 'zielona herbata', 'matcha', 'zielona z dodatkami', 'czarna herbata', 'czarna z dodatkami', 'oolong', 'pu-erh i heicha', 'pu-erh z dodatkami', 'biała herbata', 'biała z dodatkami', 'żółta herbata', 'owocowa', 'rooibos', 'yerba mate', 'zestawy herbat', 'zioła'];
+            $category->setTitle($this->faker->unique()->randomElement($categoryTitleArray));
+
+            /*
+             * Assigning creation and last update time.
+             */
             $category->setCreatedAt(
                 \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')

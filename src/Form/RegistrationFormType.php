@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,18 +23,22 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', null)
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'form-control'],
+                'label_attr' => ['class' => 'form-label'],
             ])
+//            ->add('agreeTerms', CheckboxType::class, [
+//                'mapped' => false,
+//                'constraints' => [
+//                    new IsTrue([
+//                        'message' => 'You should agree to our terms.',
+//                    ]),
+//                ],
+//            ])
             ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control'],
+                'label_attr' => ['class' => 'form-label'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -51,6 +56,7 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat Password'],
+                'label_attr' => ['class' => 'form-label'],
             ])
             ->add(
                 'name',
@@ -58,7 +64,8 @@ class RegistrationFormType extends AbstractType
                 [
                     'label' => 'label.name',
                     'required' => false,
-                    'attr' => ['max_length' => 64],
+                    'attr' => ['max_length' => 64, 'class' => 'form-control'],
+                    'label_attr' => ['class' => 'form-label'],
                 ]
             )
             ->add(
@@ -67,7 +74,8 @@ class RegistrationFormType extends AbstractType
                 [
                     'label' => 'label.surname',
                     'required' => false,
-                    'attr' => ['max_length' => 64],
+                    'attr' => ['max_length' => 64, 'class' => 'form-control'],
+                    'label_attr' => ['class' => 'form-label'],
                 ]
             );
     }

@@ -1,22 +1,22 @@
 {% extends 'default/_dashboard.html.twig' %}
 
-{% block title %}{{ 'title.record_view'|trans }} {{ record.id }}{% endblock %}
+{% block title %}{{ 'site_title.comment.show'|trans }} {{ record.id }}{% endblock %}
 
 {% block main %}
 
     {% if record is defined %}
         <h3>{{ 'label.id'|trans }}: {{ record.id }}</h3>
-        <h3>Dotyczy herbaty</h3>
+        <h3>{{ 'label.comment.tea'|trans }}</h3>
         <a href="{{ path('tea_show', {'id': record.tea.id}) }}">
             <p>{{ record.tea.title }}</p>
         </a>
-        <h3>Dodane przez użytkownika</h3>
+        <h3>{{ 'label.comment.author'|trans }}</h3>
         <a href="{{ path('user_show', {'id': record.author.id}) }}">
             <p>{{ record.author.email }}</p>
         </a>
-        <h3>Tytuł</h3>
+        <h3>{{ 'label.title'|trans }}</h3>
         <p>{{ record.title }}</p>
-        <h3>Treść komentarza</h3>
+        <h3>{{ 'label.content'|trans }}</h3>
         <p>{{ record.content }}</p>
         <h3>{{ 'label.created_at'|trans }}</h3>
         <p>{{ record.createdAt|date('Y-m-d') }}</p>

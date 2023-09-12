@@ -1,10 +1,10 @@
 {% extends 'default/_dashboard.html.twig' %}
 
-{% block title %}{{ 'title.record_list'|trans }}{% endblock %}
+{% block title %}{{ 'site_title.user'|trans }}{% endblock %}
 
 {% block section_title %}
-    <h1 class="text-left">Użytkownicy</h1>
-    <a class="btn btn-success" href="{{ path('user_create') }}">{{ 'button.action_create'|trans }}</a>
+    <h1 class="text-left">{{ 'site_title.user'|trans }}</h1>
+    <a class="btn btn-success" href="{{ path('user_create') }}">{{ 'button.user.action_create'|trans }}</a>
 {% endblock %}
 
 {% block main %}

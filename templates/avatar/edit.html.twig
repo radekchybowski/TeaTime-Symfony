@@ -1,11 +1,7 @@
 
 {% include 'default/_form.html.twig' with {
-    page_title: 'title.category_create'|trans,
+    page_title: 'title.avatar_edit'|trans,
     form: form,
-    submit_label: 'action.save'|trans,
-    additional_action:
-        <a href="{{ url(avatar_delete, {id: 2}) }}" class="btn btn-link">
-            {{ usun }}
-        </a>
+    submit_label: 'action.edit'|trans,
 } %}
 

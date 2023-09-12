@@ -4,11 +4,11 @@
         <body>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
-                <target>Akcja</target>
+                <target>Akcje</target>
             </trans-unit>
             <trans-unit id="label.id">
                 <source>label.id</source>
-                <target>Id</target>
+                <target>ID</target>
             </trans-unit>
             <trans-unit id="label.title">
                 <source>label.title</source>
@@ -74,6 +74,443 @@
                 <source>action.back_to_list</source>
                 <target>Powrót do listy</target>
             </trans-unit>
+            <trans-unit id="site_title.tea">
+                <source>site_title.tea</source>
+                <target>Herbaty</target>
+            </trans-unit>
+
+            <trans-unit id="site_logo_img.alt">
+                <source>site_logo_img.alt</source>
+                <target>Logotyp strony internetowej.</target>
+            </trans-unit>
+
+            <trans-unit id="avatar.create">
+                <source>avatar.create</source>
+                <target>Zmień zdjęcie profilowe</target>
+            </trans-unit>
+
+            <trans-unit id="sidebar.avatar_img.alt">
+                <source>sidebar.avatar_img.alt</source>
+                <target>Zdjęcie profilowe użytkownika.</target>
+            </trans-unit>
+
+            <trans-unit id="sidebar.link.tea">
+                <source>sidebar.link.tea</source>
+                <target>Herbaty</target>
+            </trans-unit>
+
+            <trans-unit id="sidebar.link.category">
+                <source>sidebar.link.category</source>
+                <target>Kategorie</target>
+            </trans-unit>
+
+            <trans-unit id="sidebar.link.tag">
+                <source>sidebar.link.tag</source>
+                <target>Tagi</target>
+            </trans-unit>
+
+            <trans-unit id="sidebar.link.comment">
+                <source>sidebar.link.comment</source>
+                <target>Komentarze</target>
+            </trans-unit>
+
+            <trans-unit id="sidebar.link.user">
+                <source>sidebar.link.user</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+
+            <trans-unit id="sidebar.link.settings">
+                <source>sidebar.link.settings</source>
+                <target>Ustawienia</target>
+            </trans-unit>
+
+            <trans-unit id="sidebar.link.logout">
+                <source>sidebar.link.logout</source>
+                <target>Wyloguj</target>
+            </trans-unit>
+
+            <trans-unit id="button.tea.action_create">
+                <source>button.tea.action_create</source>
+                <target>Dodaj nową herbatę</target>
+            </trans-unit>
+
+            <trans-unit id="label.tag">
+                <source>label.tag</source>
+                <target>Tagi</target>
+            </trans-unit>
+
+            <trans-unit id="site_title.tea.show">
+                <source>site_title.tea.show</source>
+                <target>Strona herbaty</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.category">
+                <source>label.tea.category</source>
+                <target>Gatunek</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.region">
+                <source>label.tea.region</source>
+                <target>Region</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.vendor">
+                <source>label.tea.vendor</source>
+                <target>Sklep</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.ingredients">
+                <source>label.tea.ingredients</source>
+                <target>Skład</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.steep_time">
+                <source>label.tea.steep_time</source>
+                <target>Czas parzenia</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.steep_temp">
+                <source>label.tea.steep_temp</source>
+                <target>Temperatura parzenia</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.description">
+                <source>label.tea.description</source>
+                <target>Opis</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.comments">
+                <source>label.tea.comments</source>
+                <target>Komentarze</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.comment.added_time">
+                <source>label.tea.comment.added_time</source>
+                <target>Dodano</target>
+            </trans-unit>
+
+            <trans-unit id="action.create.comment">
+                <source>action.create.comment</source>
+                <target>Dodaj komentarz</target>
+            </trans-unit>
+
+            <trans-unit id="title.tea_edit">
+                <source>title.tea_edit</source>
+                <target>Edytuj herbatę</target>
+            </trans-unit>
+
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+
+            <trans-unit id="label.none">
+                <source>label.none</source>
+                <target>LEAVE_EMPTY</target>
+            </trans-unit>
+
+            <trans-unit id="label.description">
+                <source>label.description</source>
+                <target>Opis</target>
+            </trans-unit>
+
+            <trans-unit id="label.region">
+                <source>label.region</source>
+                <target>Region</target>
+            </trans-unit>
+
+            <trans-unit id="label.vendor">
+                <source>label.vendor</source>
+                <target>Sklep</target>
+            </trans-unit>
+
+            <trans-unit id="label.steepTime">
+                <source>label.steepTime</source>
+                <target>Czas parzenia (w minutach)</target>
+            </trans-unit>
+
+            <trans-unit id="label.steepTemp">
+                <source>label.steepTemp</source>
+                <target>Temperatura parzenia</target>
+            </trans-unit>
+
+            <trans-unit id="label.user.email">
+                <source>label.user.email</source>
+                <target>Email użytkownika dodającego</target>
+            </trans-unit>
+
+            <trans-unit id="title.tea_delete">
+                <source>title.tea_delete</source>
+                <target>Czy na pewno chcesz usunąć tą herbatę?</target>
+            </trans-unit>
+
+            <trans-unit id="action.delete">
+                <source>action.delete</source>
+                <target>Usuń</target>
+            </trans-unit>
+
+            <trans-unit id="title.tea_create">
+                <source>title.tea_create</source>
+                <target>Dodaj herbatę</target>
+            </trans-unit>
+
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+
+            <trans-unit id="site_title.category">
+                <source>site_title.category</source>
+                <target>Kategorie</target>
+            </trans-unit>
+
+            <trans-unit id="button.category.action_create">
+                <source>button.category.action_create</source>
+                <target>Dodaj kategorię</target>
+            </trans-unit>
+
+            <trans-unit id="site_title.category.show">
+                <source>site_title.category.show</source>
+                <target>Kategoria:</target>
+            </trans-unit>
+
+            <trans-unit id="label.category.title">
+                <source>label.category.title</source>
+                <target>Nazwa</target>
+            </trans-unit>
+
+            <trans-unit id="label.created_at">
+                <source>label.created_at</source>
+                <target>Dodano dnia:</target>
+            </trans-unit>
+
+            <trans-unit id="label.updated_at">
+                <source>label.updated_at</source>
+                <target>Ostatnia aktualizacja:</target>
+            </trans-unit>
+
+            <trans-unit id="title.category_edit">
+                <source>title.category_edit</source>
+                <target>Edytuj kategorię</target>
+            </trans-unit>
+
+            <trans-unit id="title.category_delete">
+                <source>title.category_delete</source>
+                <target>Czy na pewno chcesz usunąć tą kategorię?</target>
+            </trans-unit>
+
+            <trans-unit id="site_title.tag">
+                <source>site_title.tag</source>
+                <target>Tagi</target>
+            </trans-unit>
+
+            <trans-unit id="button.tag.action_create">
+                <source>button.tag.action_create</source>
+                <target>Dodaj tag</target>
+            </trans-unit>
+
+            <trans-unit id="site_title.comment">
+                <source>site_title.comment</source>
+                <target>Komentarze</target>
+            </trans-unit>
+
+            <trans-unit id="button.comment.action_create">
+                <source>button.comment.action_create</source>
+                <target>Dodaj komentarz</target>
+            </trans-unit>
+
+            <trans-unit id="label.comment.tea">
+                <source>label.comment.tea</source>
+                <target>Dotyczy herbaty</target>
+            </trans-unit>
+
+            <trans-unit id="label.comment.author">
+                <source>label.comment.author</source>
+                <target>Dodane przez</target>
+            </trans-unit>
+
+            <trans-unit id="site_title.comment.show">
+                <source>site_title.comment.show</source>
+                <target>Komentarz</target>
+            </trans-unit>
+
+            <trans-unit id="title.comment_edit">
+                <source>title.comment_edit</source>
+                <target>Edytuj komentarz</target>
+            </trans-unit>
+
+            <trans-unit id="label.comment.title">
+                <source>label.comment.title</source>
+                <target>Tytuł komentarza</target>
+            </trans-unit>
+
+            <trans-unit id="label.comment.content">
+                <source>label.comment.content</source>
+                <target>Treść</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.title">
+                <source>label.tea.title</source>
+                <target>Nazwa</target>
+            </trans-unit>
+
+            <trans-unit id="label.comment.user.email">
+                <source>label.comment.user.email</source>
+                <target>E-mail użytkownika</target>
+            </trans-unit>
+
+            <trans-unit id="title.comment_delete">
+                <source>title.comment_delete</source>
+                <target>Czy na pewno chcesz usunąć komentarz?</target>
+            </trans-unit>
+
+            <trans-unit id="site_title.user">
+                <source>site_title.user</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+
+            <trans-unit id="button.user.action_create">
+                <source>button.user.action_create</source>
+                <target>Dodaj użytkownika</target>
+            </trans-unit>
+
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Email</target>
+            </trans-unit>
+
+            <trans-unit id="label.roles">
+                <source>label.roles</source>
+                <target>Role użytkownika</target>
+            </trans-unit>
+
+            <trans-unit id="title.user_create">
+                <source>title.user_create</source>
+                <target>Dodaj użytkownika</target>
+            </trans-unit>
+
+            <trans-unit id="label.user.name">
+                <source>label.user.name</source>
+                <target>Imię</target>
+            </trans-unit>
+
+            <trans-unit id="label.user.surname">
+                <source>label.user.surname</source>
+                <target>Nazwisko</target>
+            </trans-unit>
+
+            <trans-unit id="label.user.password">
+                <source>label.user.password</source>
+                <target>Hasło</target>
+            </trans-unit>
+
+            <trans-unit id="title.user_delete">
+                <source>title.user_delete</source>
+                <target>Czy na pewno chcesz usunąć użytkownika?</target>
+            </trans-unit>
+
+            <trans-unit id="title.user_edit">
+                <source>title.user_edit</source>
+                <target>Zmień dane użytkownika</target>
+            </trans-unit>
+
+            <!-- Login and register page -->
+
+            <trans-unit id="site_title.login">
+                <source>site_title.login</source>
+                <target>Zaloguj się!</target>
+            </trans-unit>
+
+            <trans-unit id="login.text.catchprase">
+                <source>login.text.catchprase</source>
+                <target>Najlepsze miejsce do trzymania herbaty!</target>
+            </trans-unit>
+
+            <trans-unit id="login.button.login">
+                <source>login.button.login</source>
+                <target>Zaloguj się</target>
+            </trans-unit>
+
+            <trans-unit id="login.button.register">
+                <source>login.button.register</source>
+                <target>Zarejestruj się</target>
+            </trans-unit>
+
+            <trans-unit id="label.login.email">
+                <source>label.login.email</source>
+                <target>E-mail</target>
+            </trans-unit>
+
+            <trans-unit id="label.login.password">
+                <source>label.login.password</source>
+                <target>Hasło</target>
+            </trans-unit>
+
+            <trans-unit id="label.login.remember_me">
+                <source>label.login.remember_me</source>
+                <target>Zapamiętaj mnie</target>
+            </trans-unit>
+
+            <trans-unit id="label.login.reset_password">
+                <source>label.login.reset_password</source>
+                <target>Zapomniałem hasła</target>
+            </trans-unit>
+
+            <trans-unit id="label.login.submit">
+                <source>label.login.submit</source>
+                <target>Zaloguj się</target>
+            </trans-unit>
+
+            <trans-unit id="login.bg_img.alt">
+                <source>login.bg_img.alt</source>
+                <target>Słoik pełen herbaty stojący na stole.</target>
+            </trans-unit>
+
+            <trans-unit id="label.login.modal.title">
+                <source>label.login.modal.title</source>
+                <target>Reset hasła</target>
+            </trans-unit>
+
+            <trans-unit id="label.login.modal.body">
+                <source>label.login.modal.body</source>
+                <target>W celu resetowania hasła skontaktuj się z administratorem.</target>
+            </trans-unit>
+
+            <trans-unit id="site_title.register">
+                <source>site_title.register</source>
+                <target>Zarejestruj się!</target>
+            </trans-unit>
+
+            <trans-unit id="login.logo_img.alt">
+                <source>login.logo_img.alt</source>
+                <target>Logo strony</target>
+            </trans-unit>
+
+            <trans-unit id="label.register.name">
+                <source>label.register.name</source>
+                <target>Imię</target>
+            </trans-unit>
+
+            <trans-unit id="label.register.surname">
+                <source>label.register.surname</source>
+                <target>Nazwisko</target>
+            </trans-unit>
+
+            <trans-unit id="label.register.password_first">
+                <source>label.register.password_first</source>
+                <target>Hasło</target>
+            </trans-unit>
+
+            <trans-unit id="label.register.password_second">
+                <source>label.register.password_second</source>
+                <target>Powtórz hasło</target>
+            </trans-unit>
+
+            <trans-unit id="button.register.submit">
+                <source>button.register.submit</source>
+                <target>Zarejestruj się</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

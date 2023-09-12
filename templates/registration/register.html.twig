@@ -1,20 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ 'site_title.register'|trans }}{% endblock %}
 
 {% block body %}
-
-    {#
-    Undescription this section and add a remember_me option below your firewall to activate remember me functionality.
-    See https://symfony.com/doc/current/security/remember_me.html
-
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" name="_remember_me"> Remember me
-        </label>
-    </div>
-    #}
-
     <main class="h-100 gradient-form" style="background-color: #eee;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -24,87 +12,84 @@
                             <div class="col-lg-6">
                                 <div class="card-body p-md-5 mx-md-4">
 
+                                    <!-- Site name -->
                                     <div class="text-center my-3">
                                         <div class="sidebar-heading text-center">
-                                            <img class="img-fluid me-2" width=50px src="{{ asset('uploads/icon-coffee.svg') }}" alt="Site logo">
-                                            <h2 class="d-inline-block" style="vertical-align: sub;">TeaTime</h2>
-                                            <p class="">Najlepsza strona z herbatą, naprawdę.</p>
+                                            <img
+                                                class="img-fluid me-2"
+                                                width=50px
+                                                src="{{ asset('uploads/icon-coffee.svg') }}"
+                                                alt="{{ 'login.logo_img.alt'|trans }}">
+                                            <h2 class="d-inline-block" style="vertical-align: sub;">
+                                                TeaTime
+                                            </h2>
+                                            <p class="">
+                                                {{ 'login.text.catchprase'|trans }}
+                                            </p>
                                         </div>
                                     </div>
 
-                                    <!-- Pills nav -->
-                                    <ul class="nav nav-pills nav-justified mb-3" role="tablist">
+                                    <!-- Pills navigation -->
+                                    <ul class="nav nav-pills nav-justified mb-3">
                                         <li class="nav-item" role="presentation">
-                                            <a class="nav-link" href="{{ url('app_login') }}" role="tab"
-                                               aria-controls="pills-login" aria-selected="false">Logowanie</a>
+                                            <a class="nav-link" href="{{ url('app_login') }}" role="tab" aria-selected="false">
+                                                {{ 'login.button.login'|trans }}
+                                            </a>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <a class="nav-link active" href="{{ url('app_register') }}" role="tab"
-                                               aria-controls="pills-register" aria-selected="true">Rejestracja</a>
+                                            <a class="nav-link active" href="{{ url('app_register') }}" role="tab" aria-selected="true">
+                                                {{ 'login.button.register'|trans }}
+                                            </a>
                                         </li>
                                     </ul>
-                                    <!-- Pills nav -->
 
                                     <!-- Login form -->
                                     <div class="tab-content">
                                         {{ form_start(registrationForm) }}
-                                                <!-- Name input -->
-                                                <div class="form-outline mb-4 d-inline-block me-1" style="width: 48%">
-                                                    <input type="text" id="registerName" name="registerName" class="form-control" optional/>
-                                                    <label class="form-label" for="registerName">Imię</label>
-                                                </div>
+                                            <!-- Name input -->
+                                            <div class="form-outline mb-4 d-inline-block me-1" style="width: 48%">
+                                                {{ form_widget(registrationForm.name) }}
+                                                {{ form_label(registrationForm.name, 'label.register.name'|trans ) }}
+                                            </div>
 
-                                                <!-- Surname input -->
-                                                <div class="form-outline mb-4 d-inline-block ms-1" style="width: 48%">
-                                                    <input type="text" id="registerSurname" name="registerSurname" class="form-control" />
-                                                    <label class="form-label" for="registerSurname">Nazwisko</label>
-                                                </div>
+                                            <!-- Surname input -->
+                                            <div class="form-outline mb-4 d-inline-block ms-1" style="width: 48%">
+                                                {{ form_widget(registrationForm.surname) }}
+                                                {{ form_label(registrationForm.surname, 'label.register.surname'|trans ) }}
+                                            </div>
 
-                                                <!-- Username input -->
-                                                <div class="form-outline mb-4 was-validated">
-                                                    {{ form_row(registrationForm.email) }}
-{#                                                    <input type="text" id="registerUsername" name="registerUsername" class="form-control" />#}
-{#                                                    <label class="form-label" for="registerUsername" required autofocus>Nazwa użytkownika</label>#}
-                                                </div>
+                                            <!-- Email input -->
+                                            <div class="form-outline mb-4">
+                                                {{ form_widget(registrationForm.email) }}
+                                                {{ form_label(registrationForm.email, 'label.login.email'|trans ) }}
+                                            </div>
 
-                                                <!-- Password input -->
-                                                <div class="form-outline mb-4 was-validated">
-                                                    {{ form_label(registrationForm.plainPassword.first, 'Password') }}
-                                                    {{ form_widget(registrationForm.plainPassword.first) }}
-{#                                                    <input type="password" id="registerPassword" name="registerPassword" class="form-control" />#}
-{#                                                    <label class="form-label" for="registerPassword" required>Hasło</label>#}
-                                                </div>
+                                            <!-- Password input -->
+                                            <div class="form-outline mb-4">
+                                                {{ form_widget(registrationForm.plainPassword.first) }}
+                                                {{ form_label(registrationForm.plainPassword.first, 'label.register.password_first'|trans ) }}
+                                            </div>
 
-                                                <!-- Repeat Password input -->
-                                                <div class="form-outline mb-4 was-validated">
-                                                    {{ form_label(registrationForm.plainPassword.second, 'Repeat Password') }}
-                                                    {{ form_widget(registrationForm.plainPassword.second) }}
-{#                                                    <input type="password" id="registerRepeatPassword" name="registerRepeatPassword" class="form-control" />#}
-{#                                                    <label class="form-label" for="registerRepeatPassword">Powtórz hasło</label>#}
-                                                </div>
+                                            <!-- Repeat Password input -->
+                                            <div class="form-outline mb-4">
+                                                {{ form_widget(registrationForm.plainPassword.second) }}
+                                                {{ form_label(registrationForm.plainPassword.second, 'label.register.password_second'|trans ) }}
+                                            </div>
 
-                                                <!-- Checkbox -->
-                                                <div class="form-check d-flex justify-content-center mb-4 was-validated">
-                                                    {{ form_row(registrationForm.agreeTerms) }}
-{#                                                    <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked#}
-{#                                                           aria-describedby="registerCheckHelpText" />#}
-{#                                                    <label class="form-check-label" for="registerCheck">#}
-{#                                                        Oddaję duszę diabłu#}
-{#                                                    </label>#}
-                                                </div>
-
-                                                <!-- Submit button -->
-                                                <button type="submit" class="btn btn-primary btn-block mb-3">Zarejestruj</button>
+                                            <!-- Submit button -->
+                                            <button type="submit" class="btn btn-primary btn-block mb-3">
+                                                {{ 'button.register.submit'|trans }}
+                                            </button>
                                         {{ form_end(registrationForm) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 d-flex login-bg-image">
-                                <img class="col-lg-12 d-flex login-bg-image" src="{{asset('uploads/bg-tea.jpg')}}" alt="Zdjęcie przedstawia kubek pełny herbaty.">
-                                <!-- <div class="mask text-light d-flex justify-content-center flex-column text-center text-white px-3 py-4 p-md-5 mx-md-4" style="background-color: rgba(0, 0, 0, 0.5)">
-                                  <h4 class="mb-4">Herbata to coś więcej niz napój</h4>
-                                  <p class="small mb-0">Herbata to styl zycia, powołanie, sposób na zmianę siebie i świata wokół siebie. Pijąc herbatę mozesz poznać wyjątkowych ludzi, zbudować relacje na całe zycie, spotkać swoją pierwszą miłość. Mozesz się poparzyć i powiedzieć kolegom ze uprawiasz sporty ekstremalne. Herbata jest cudowna.</p>
-                                </div> -->
+                                <img
+                                    class="col-lg-12 d-flex login-bg-image"
+                                    src="{{asset('uploads/bg-tea.jpg')}}"
+                                    alt="{{ 'login.bg_img.alt'|trans }}"
+                                >
                             </div>
                         </div>
                     </div>
@@ -112,18 +97,4 @@
             </div>
         </div>
     </main>
-
-    <div class="modal fade" id="resetPasswordtModal" tabindex="-1" aria-labelledby="resetPasswordtModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Reset hasła</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    W celu zresetowania hasła skontaktuj się z Administratorem strony.
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}

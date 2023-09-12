@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{{ 'site_title.login'|trans }}{% endblock %}
 
 {% block body %}
 
@@ -24,30 +24,39 @@
                         <div class="col-lg-6">
                             <div class="card-body p-md-5 mx-md-4">
 
+                                <!-- Site name -->
                                 <div class="text-center my-3">
                                     <div class="sidebar-heading text-center">
-                                        <img class="img-fluid me-2" width=50px src="{{ asset('uploads/icon-coffee.svg') }}" alt="Site logo">
-                                        <h2 class="d-inline-block" style="vertical-align: sub;">TeaTime</h2>
-                                        <p class="">Najlepsza strona z herbatą, naprawdę.</p>
+                                        <img
+                                                class="img-fluid me-2"
+                                                width=50px
+                                                src="{{ asset('uploads/icon-coffee.svg') }}"
+                                                alt="{{ 'site_logo_img.alt'|trans }}">
+                                        <h2 class="d-inline-block" style="vertical-align: sub;">
+                                            TeaTime
+                                        </h2>
+                                        <p class="">
+                                            {{ 'login.text.catchprase'|trans }}
+                                        </p>
                                     </div>
                                 </div>
 
-                                <!-- Pills nav -->
-                                <ul class="nav nav-pills nav-justified mb-3" role="tablist">
+                                <!-- Pills navigation -->
+                                <ul class="nav nav-pills nav-justified mb-3">
                                     <li class="nav-item" role="presentation">
-                                        <a class="nav-link active" href="{{ url('app_login') }}" role="tab"
-                                           aria-controls="pills-login" aria-selected="true">Logowanie</a>
+                                        <a class="nav-link active" href="{{ url('app_login') }}" role="tab" aria-selected="false">
+                                            {{ 'login.button.login'|trans }}
+                                        </a>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <a class="nav-link" href="{{ url('app_register') }}" role="tab"
-                                           aria-controls="pills-register" aria-selected="false">Rejestracja</a>
+                                        <a class="nav-link" href="{{ url('app_register') }}" role="tab" aria-selected="true">
+                                            {{ 'login.button.register'|trans }}
+                                        </a>
                                     </li>
                                 </ul>
-                                <!-- Pills nav -->
 
                                 <!-- Login form -->
                                 <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
                                         <form class="needs-validation" method="POST">
                                             {% if error %}
                                                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -55,13 +64,13 @@
                                             <!-- login input -->
                                             <div class="form-outline mb-4 was-validated">
                                                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email"/>
-                                                <label class="form-label" for="inputEmail">Email</label>
+                                                <label class="form-label" for="inputEmail">{{ 'label.login.email'|trans }}</label>
                                             </div>
 
                                             <!-- Password input -->
                                             <div class="form-outline mb-4 was-validated">
                                                 <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-                                                <label class="form-label" for="inputPassword">Password</label>
+                                                <label class="form-label" for="inputPassword">{{ 'label.login.password'|trans }}</label>
                                             </div>
 
                                             <input type="hidden" name="_csrf_token"
@@ -74,29 +83,28 @@
                                                     <!-- Checkbox -->
                                                     <div class="form-check mb-3 mb-md-0 was-validated">
                                                         <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-                                                        <label class="form-check-label" for="loginCheck"> Zapamiętaj mnie </label>
+                                                        <label class="form-check-label" for="loginCheck">{{ 'label.login.remember_me'|trans }}</label>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6 d-flex justify-content-center">
                                                     <!-- Simple link -->
-                                                    <a href="#!"data-bs-toggle="modal" data-bs-target="#resetPasswordtModal">Reset hasła...</a>
+                                                    <a href="#!"data-bs-toggle="modal" data-bs-target="#resetPasswordtModal">{{ 'label.login.reset_password'|trans }}</a>
                                                 </div>
                                             </div>
 
                                             <!-- Submit button -->
-                                            <button type="submit" class="btn btn-primary btn-block mb-4">Zaloguj się</button>
+                                            <button type="submit" class="btn btn-primary btn-block mb-4">{{ 'label.login.submit'|trans }}</button>
                                         </form>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 d-flex login-bg-image">
-                            <img class="col-lg-12 d-flex login-bg-image" src="{{asset('uploads/bg-tea.jpg')}}" alt="Zdjęcie przedstawia kubek pełny herbaty.">
-                            <!-- <div class="mask text-light d-flex justify-content-center flex-column text-center text-white px-3 py-4 p-md-5 mx-md-4" style="background-color: rgba(0, 0, 0, 0.5)">
-                              <h4 class="mb-4">Herbata to coś więcej niz napój</h4>
-                              <p class="small mb-0">Herbata to styl zycia, powołanie, sposób na zmianę siebie i świata wokół siebie. Pijąc herbatę mozesz poznać wyjątkowych ludzi, zbudować relacje na całe zycie, spotkać swoją pierwszą miłość. Mozesz się poparzyć i powiedzieć kolegom ze uprawiasz sporty ekstremalne. Herbata jest cudowna.</p>
-                            </div> -->
+                            <img
+                                    class="col-lg-12 d-flex login-bg-image"
+                                    src="{{asset('uploads/bg-tea.jpg')}}"
+                                    alt="{{ 'login.bg_img.alt'|trans }}"
+                            >
                         </div>
                     </div>
                 </div>
@@ -109,11 +117,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Reset hasła</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{ 'label.login.modal.title'|trans }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                W celu zresetowania hasła skontaktuj się z Administratorem strony.
+                {{ 'label.login.modal.body'|trans }}
             </div>
         </div>
     </div>

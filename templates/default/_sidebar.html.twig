@@ -5,7 +5,7 @@
         <!-- Site logo -->
         <div class="sidebar-heading text-center">
             <a class="nav-link my-1 mb-4" href="{{ path("tea_index") }}">
-                <img class="img-fluid me-2" width=40px src="{{ asset("uploads/icon-coffee.svg") }}" alt="Site logo">
+                <img class="img-fluid me-2" width=40px src="{{ asset("uploads/icon-coffee.svg") }}" alt="{{ 'site_logo_img.alt'|trans }}">
                 TeaTime
             </a>
         </div>
@@ -14,18 +14,18 @@
         <div class="text-center">
             <a href="{{ url('avatar_create') }}" title="{{ 'avatar.create'|trans }}">
                 <div style="width: 170px; height: 170px;" class="bg-image hover-overlay rounded-circle mb-3 shadow-5 mx-auto">
-                    {% if user.avatar.filename is defined and user.avatar.filename|length %}
+                    {% if app.user.avatar.filename is defined and app.user.avatar.filename|length %}
                         <img
                             class="profile-pic"
                             style="width: 170px; height: 170px; object-fit: cover;"
-                            alt="Users avatar"
-                            src="{{ asset(avatars_directory~user.avatar.filename) }}"
+                            alt="{{ 'sidebar.avatar_img.alt'|trans }}"
+                            src="{{ asset(avatars_directory~app.user.avatar.filename) }}"
                         />
                     {% else %}
                         <img
                             class="profile-pic"
                             style="width: 170px; height: 170px; object-fit: cover;"
-                            alt="Avatar_placeholder"
+                            alt="{{ 'sidebar.avatar_img.alt'|trans }}"
                             src="{{ asset(avatars_directory~"profile-pic-placeholder.jpg") }}"
                         />
                     {% endif %}
@@ -38,7 +38,7 @@
                             hsla(263, 88%, 45%, 0.5) 100%
                           );
                     ">
-                        <p class="text-white mb-0">Edytuj zdjęcie</p>
+                        <p class="text-white mb-0">{{ 'avatar.create'|trans }}</p>
                     </div>
                 </div>
             </a>
@@ -59,15 +59,57 @@
 
         <!-- Navigation -->
         <div class="list-group list-group-flush px-4 hover-overlay">
-            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('tea_index') }}">Herbaty</a>
-            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('category_index') }}">Kategorie</a>
-            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('tag_index') }}">Tagi</a>
+            <a
+                class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3"
+                href="{{ path('tea_index') }}"
+                title="{{ 'sidebar.link.tea'|trans }}"
+            >
+                {{ 'sidebar.link.tea'|trans }}
+            </a>
+            <a
+                class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3"
+                href="{{ path('category_index') }}"
+                title="{{ 'sidebar.link.category'|trans }}"
+            >
+                {{ 'sidebar.link.category'|trans }}
+            </a>
+            <a
+                class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3"
+                href="{{ path('tag_index') }}"
+                title="{{ 'sidebar.link.tag'|trans }}"
+            >
+                {{ 'sidebar.link.tag'|trans }}
+            </a>
             {% if is_granted('ROLE_ADMIN') %}
-                <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('comment_index') }}">Komentarze</a>
-                <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('user_index') }}">Użytkownicy</a>
+                <a
+                    class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3"
+                    href="{{ path('comment_index') }}"
+                    title="{{ 'sidebar.link.comment'|trans }}"
+                >
+                    {{ 'sidebar.link.comment'|trans }}
+                </a>
+                <a
+                    class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3"
+                    href="{{ path('user_index') }}"
+                    title="{{ 'sidebar.link.user'|trans }}"
+                >
+                    {{ 'sidebar.link.user'|trans }}
+                </a>
             {% endif %}
-            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('user_edit', {id: app.user.id}) }}">Ustawienia</a>
-            <a class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3" href="{{ path('app_logout') }}">Wyloguj</a>
+            <a
+                class="sidebar-nav-item list-group-item list-group-item-action bg-light p-3"
+                href="{{ path('user_edit', {id: app.user.id}) }}"
+                title="{{ 'sidebar.link.settings'|trans }}"
+            >
+                {{ 'sidebar.link.settings'|trans }}
+            </a>
+            <a
+                class="sidebar-nav-item list-group-item list-group-item-danger bg-light p-3"
+                href="{{ path('app_logout') }}"
+                title="{{ 'sidebar.link.logout'|trans }}"
+            >
+                {{ 'sidebar.link.logout'|trans }}
+            </a>
         </div>
     </div>
 

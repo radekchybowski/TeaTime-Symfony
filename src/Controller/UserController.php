@@ -53,6 +53,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(name: 'user_index', methods: 'GET')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request): Response
     {
         $pagination = $this->userService->getPaginatedList(
@@ -164,10 +165,9 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'user_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
-    #[IsGranted('EDIT', subject: 'user')]
+    #[IsGranted('DELETE', subject: 'user')]
     public function delete(Request $request, User $user): Response
     {
-        var_dump($user);
         $form = $this->createForm(
             FormType::class,
             $user,
