@@ -29,8 +29,8 @@ class TagService implements TagServiceInterface
     /**
      * Constructor.
      *
-     * @param TagRepository $tagRepository
-     * @param PaginatorInterface $paginator Paginator
+     * @param TagRepository      $tagRepository
+     * @param PaginatorInterface $paginator     Paginator
      */
     public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator)
     {

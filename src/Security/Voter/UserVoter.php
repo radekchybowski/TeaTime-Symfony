@@ -124,6 +124,7 @@ class UserVoter extends Voter
         if ($this->security->isGranted('ROLE_USER')) {
             return true;
         }
+
         return false;
     }
 

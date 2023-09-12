@@ -36,12 +36,14 @@
                         <a class="btn btn-outline-primary m-1" href="{{ path('tag_show', {'id': tag.id}) }}" title="{{ 'button.action_show'|trans }}">
                             {{ 'button.action_show'|trans }}
                         </a>
-                        <a class="btn btn-outline-success m-1" href="{{ path('tag_edit', {'id': tag.id}) }}" title="{{ 'button.action_show'|trans }}">
-                            {{ 'button.action_edit'|trans }}
-                        </a>
-                        <a class="btn btn-outline-danger m-1" href="{{ path('tag_delete', {'id': tag.id}) }}" title="{{ 'button.action_show'|trans }}">
-                            {{ 'button.action_delete'|trans }}
-                        </a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-outline-success m-1" href="{{ path('tag_edit', {'id': tag.id}) }}" title="{{ 'button.action_show'|trans }}">
+                                {{ 'button.action_edit'|trans }}
+                            </a>
+                            <a class="btn btn-outline-danger m-1" href="{{ path('tag_delete', {'id': tag.id}) }}" title="{{ 'button.action_show'|trans }}">
+                                {{ 'button.action_delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

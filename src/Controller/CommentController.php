@@ -6,6 +6,8 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Tea;
+use App\Entity\User;
 use App\Form\Type\CommentType;
 use App\Service\CommentServiceInterface;
 use App\Service\TeaServiceInterface;
@@ -40,6 +42,9 @@ class CommentController extends AbstractController
 
     /**
      * Constructor.
+     * @param CommentServiceInterface $commentService
+     * @param TeaServiceInterface     $teaService
+     * @param TranslatorInterface     $translatorInterface
      */
     public function __construct(CommentServiceInterface $commentService, TeaServiceInterface $teaService, TranslatorInterface $translatorInterface)
     {
@@ -56,6 +61,7 @@ class CommentController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(name: 'comment_index', methods: 'GET')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request): Response
     {
         $pagination = $this->commentService->getPaginatedList(
@@ -78,6 +84,7 @@ class CommentController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function show(Comment $comment): Response
     {
         return $this->render('comment/show.html.twig', ['record' => $comment]);
@@ -86,7 +93,8 @@ class CommentController extends AbstractController
     /**
      * Create action.
      *
-     * @param Request $request HTTP request
+     * @param Request  $request HTTP request
+     * @param int|null $id      Comment id
      *
      * @return Response HTTP response
      */
@@ -99,7 +107,6 @@ class CommentController extends AbstractController
     )]
     public function create(Request $request, ?int $id): Response
     {
-        /** @var Comment $comment */
         $comment = new Comment();
 
         /** @var User $user */
@@ -122,7 +129,7 @@ class CommentController extends AbstractController
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('comment_index');
+            return $this->redirectToRoute('tea_show', ['id' => $tea->getId()]);
         }
 
         return $this->render(
@@ -134,18 +141,15 @@ class CommentController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Comment $comment Comment entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'comment_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-//    #[IsGranted('EDIT', subject: 'comment')]
-    #[IsGranted('ROLE_ADMIN')]
-
+    #[IsGranted('EDIT', subject: 'comment')]
     public function edit(Request $request, Comment $comment): Response
     {
-
         $form = $this->createForm(
             CommentType::class,
             $comment,
@@ -164,7 +168,7 @@ class CommentController extends AbstractController
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('comment_index');
+            return $this->redirectToRoute('tea_show', ['id' => $comment->getTea()->getId()]);
         }
 
         return $this->render(
@@ -179,23 +183,15 @@ class CommentController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Comment $comment Comment entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
-//    #[IsGranted('DELETE', subject: 'comment')]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('DELETE', subject: 'comment')]
     public function delete(Request $request, Comment $comment): Response
     {
-//        //check for admin permissions
-//        if (!in_array(
-//            'ROLE_ADMIN',
-//            $this->getUser()->getRoles()
-//        ) )
-//            throw $this->createAccessDeniedException();
-
         $form = $this->createForm(
             FormType::class,
             $comment,
@@ -214,7 +210,7 @@ class CommentController extends AbstractController
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            return $this->redirectToRoute('comment_index');
+            return $this->redirectToRoute('tea_show', ['id' => $comment->getTea()->getId()]);
         }
 
         return $this->render(

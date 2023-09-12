@@ -86,7 +86,7 @@
 
             <trans-unit id="avatar.create">
                 <source>avatar.create</source>
-                <target>Zmień zdjęcie profilowe</target>
+                <target>Zmień zdjęcie</target>
             </trans-unit>
 
             <trans-unit id="sidebar.avatar_img.alt">
@@ -206,7 +206,7 @@
 
             <trans-unit id="label.none">
                 <source>label.none</source>
-                <target>LEAVE_EMPTY</target>
+                <target>Wybierz z listy</target>
             </trans-unit>
 
             <trans-unit id="label.description">
@@ -281,7 +281,7 @@
 
             <trans-unit id="label.created_at">
                 <source>label.created_at</source>
-                <target>Dodano dnia:</target>
+                <target>Dodano:</target>
             </trans-unit>
 
             <trans-unit id="label.updated_at">
@@ -511,6 +511,35 @@
                 <target>Zarejestruj się</target>
             </trans-unit>
 
+            <trans-unit id="message.deleted_successfully">
+                <source>message.deleted_successfully</source>
+                <target>Usunięcie zakończone sukcesem</target>
+            </trans-unit>
+
+            <trans-unit id="message.form_error">
+                <source>message.form_error</source>
+                <target>Wystąpił błąd</target>
+            </trans-unit>
+
+            <trans-unit id="message.created_successfully">
+                <source>message.created_successfully</source>
+                <target>Utworzono nowy rekord</target>
+            </trans-unit>
+
+            <trans-unit id="message.edited_successfully">
+                <source>message.edited_successfully</source>
+                <target>Edycja udana</target>
+            </trans-unit>
+
+            <trans-unit id="title.comment_create">
+                <source>title.comment_create</source>
+                <target>Utwórz komentarz</target>
+            </trans-unit>
+
+            <trans-unit id="message.category_contains_teas">
+                <source>message.category_contains_teas</source>
+                <target>Ta kategoria nie może zostać usunięta, ponieważ są do niej przypisane herbaty.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

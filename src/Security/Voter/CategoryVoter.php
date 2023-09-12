@@ -99,7 +99,7 @@ class CategoryVoter extends Voter
     /**
      * Checks if user can edit category.
      *
-     * @param User     $user     User
+     * @param User $user User
      *
      * @return bool Result
      */
@@ -111,7 +111,7 @@ class CategoryVoter extends Voter
     /**
      * Checks if user can view category.
      *
-     * @param User     $user     User
+     * @param User $user User
      *
      * @return bool Result
      */
@@ -123,7 +123,7 @@ class CategoryVoter extends Voter
     /**
      * Checks if user can delete category.
      *
-     * @param User     $user     User
+     * @param User $user User
      *
      * @return bool Result
      */

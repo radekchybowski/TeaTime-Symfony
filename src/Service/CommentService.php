@@ -36,9 +36,9 @@ class CommentService implements CommentServiceInterface
     /**
      * Constructor.
      *
-     * @param CommentRepository $commentRepository
-     * @param TeaRepository $teaRepository
-     * @param PaginatorInterface $paginator Paginator
+     * @param CommentRepository  $commentRepository
+     * @param TeaRepository      $teaRepository
+     * @param PaginatorInterface $paginator         Paginator
      */
     public function __construct(CommentRepository $commentRepository, TeaRepository $teaRepository, PaginatorInterface $paginator)
     {

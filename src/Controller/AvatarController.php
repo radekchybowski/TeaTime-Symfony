@@ -103,7 +103,6 @@ class AvatarController extends AbstractController
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Avatar  $avatar  Avatar entity
      *
      * @return Response HTTP response
      */

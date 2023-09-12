@@ -55,7 +55,8 @@ class CommentType extends AbstractType
                 'label' => 'label.comment.title',
                 'required' => false,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'content',
             TextareaType::class,

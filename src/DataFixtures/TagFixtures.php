@@ -28,14 +28,16 @@ class TagFixtures extends AbstractBaseFixtures
             $tag->setCreatedAt(
                 \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween(
-                        '-100 days', '-1 days'
+                        '-100 days',
+                        '-1 days'
                     )
                 )
             );
             $tag->setUpdatedAt(
                 \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween(
-                        '-100 days', '-1 days'
+                        '-100 days',
+                        '-1 days'
                     )
                 )
             );

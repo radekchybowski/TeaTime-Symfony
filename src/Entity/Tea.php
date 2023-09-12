@@ -6,12 +6,12 @@
 namespace App\Entity;
 
 use App\Repository\TeaRepository;
-use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -88,7 +88,7 @@ class Tea
     /**
      * Description.
      *
-     * @var text|null
+     * @var string|null
      */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\Type('string')]
@@ -109,7 +109,7 @@ class Tea
     /**
      * Steep temperature in Celsius.
      *
-     * @var string|null
+     * @var int|null
      */
     #[ORM\Column(nullable: true)]
     private ?int $steepTemp = null;
@@ -137,8 +137,6 @@ class Tea
 
     /**
      * Comments.
-     *
-     * @var Comments
      */
     #[ORM\OneToMany(mappedBy: 'tea', targetEntity: Comment::class, orphanRemoval: true)]
 //    #[ORM\JoinColumn(nullable: true)]
@@ -307,6 +305,13 @@ class Tea
         return $this->steepTime;
     }
 
+    /**
+     * Steep time setter.
+     *
+     * @param int|null $steepTime steep time
+     *
+     * @return $this
+     */
     public function setSteepTime(?int $steepTime): self
     {
         $this->steepTime = $steepTime;

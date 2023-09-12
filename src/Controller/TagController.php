@@ -5,16 +5,16 @@
 
 namespace App\Controller;
 
-use Form\Type\TagType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use App\Entity\Tag;
 use App\Service\TagServiceInterface;
+use Form\Type\TagType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class TagController.
@@ -34,6 +34,9 @@ class TagController extends AbstractController
 
     /**
      * Constructor.
+     *
+     * @param TagServiceInterface $tagService          tag Service
+     * @param TranslatorInterface $translatorInterface translator interface
      */
     public function __construct(TagServiceInterface $tagService, TranslatorInterface $translatorInterface)
     {
@@ -91,13 +94,12 @@ class TagController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
-
-        //check for admin permissions
-//        if (!in_array(
-//            'ROLE_ADMIN',
-//            $this->getUser()->getRoles()
-//        ) )
-//            throw $this->createAccessDeniedException();
+        // check for admin permissions
+        //        if (!in_array(
+        //            'ROLE_ADMIN',
+        //            $this->getUser()->getRoles()
+        //        ) )
+        //            throw $this->createAccessDeniedException();
 
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);
@@ -123,8 +125,8 @@ class TagController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tag $tag Tag entity
+     * @param Request $request HTTP request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response HTTP response
      */
@@ -132,13 +134,12 @@ class TagController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Tag $tag): Response
     {
-
-        //check for admin permissions
-//        if (!in_array(
-//            'ROLE_ADMIN',
-//            $this->getUser()->getRoles()
-//        ) )
-//            throw $this->createAccessDeniedException();
+        // check for admin permissions
+        //        if (!in_array(
+        //            'ROLE_ADMIN',
+        //            $this->getUser()->getRoles()
+        //        ) )
+        //            throw $this->createAccessDeniedException();
 
         $form = $this->createForm(
             TagType::class,
@@ -173,8 +174,8 @@ class TagController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tag $tag Tag entity
+     * @param Request $request HTTP request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response HTTP response
      */
@@ -182,22 +183,21 @@ class TagController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Tag $tag): Response
     {
-//        if(!$this->tagService->canBeDeleted($tag)) {
-//            $this->addFlash(
-//                'warning',
-//                $this->translator->trans('message.tag_contains_teas')
-//            );
-//
-//            return $this->redirectToRoute('tag_index');
-//        }
+        //        if(!$this->tagService->canBeDeleted($tag)) {
+        //            $this->addFlash(
+        //                'warning',
+        //                $this->translator->trans('message.tag_contains_teas')
+        //            );
+        //
+        //            return $this->redirectToRoute('tag_index');
+        //        }
 
-        //check for admin permissions
-//        if (!in_array(
-//            'ROLE_ADMIN',
-//            $this->getUser()->getRoles()
-//        ) )
-//            throw $this->createAccessDeniedException();
-
+        // check for admin permissions
+        //        if (!in_array(
+        //            'ROLE_ADMIN',
+        //            $this->getUser()->getRoles()
+        //        ) )
+        //            throw $this->createAccessDeniedException();
 
         $form = $this->createForm(
             FormType::class,
@@ -228,6 +228,4 @@ class TagController extends AbstractController
             ]
         );
     }
-
-
 }

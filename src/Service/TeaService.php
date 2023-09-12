@@ -68,8 +68,7 @@ class TeaService implements TeaServiceInterface
     public function getPaginatedList(int $page, User $author, array $filters = []): PaginationInterface
     {
         $filters = $this->prepareFilters($filters);
-        if (
-            in_array('ROLE_ADMIN', $author->getRoles())
+        if (in_array('ROLE_ADMIN', $author->getRoles())
         ) {
             $pagination = $this->paginator->paginate(
                 $this->teaRepository->queryAll($filters),

@@ -6,10 +6,10 @@
 namespace App\Controller;
 
 use App\Entity\Tea;
-use Symfony\Component\Intl\Locales;
+use App\Entity\User;
 use App\Form\Type\TeaType;
 use App\Service\TeaServiceInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +37,7 @@ class TeaController extends AbstractController
      * Constructor.
      *
      * @param TeaServiceInterface $teaService Tea service
-     * @param TranslatorInterface  $translator  Translator
+     * @param TranslatorInterface $translator Translator
      */
     public function __construct(TeaServiceInterface $teaService, TranslatorInterface $translator)
     {
@@ -56,7 +56,7 @@ class TeaController extends AbstractController
     public function index(Request $request): Response
     {
         $filters = $this->getFilters($request);
-        /** @var User $user **/
+        /** @var User $user * */
         $user = $this->getUser();
         $pagination = $this->teaService->getPaginatedList(
             $request->query->getInt('page', 1),
@@ -68,31 +68,13 @@ class TeaController extends AbstractController
     }
 
     /**
-     * Get filters from request.
-     *
-     * @param Request $request HTTP request
-     *
-     * @return array<string, int> Array of filters
-     *
-     * @psalm-return array{category_id: int, tag_id: int, status_id: int}
-     */
-    private function getFilters(Request $request): array
-    {
-        $filters = [];
-        $filters['category_id'] = $request->query->getInt('filters_category_id');
-        $filters['tag_id'] = $request->query->getInt('filters_tag_id');
-
-        return $filters;
-    }
-
-    /**
      * Show action.
      *
      * @param Tea $tea Tea entity
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}', name: 'tea_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET', )]
+    #[Route('/{id}', name: 'tea_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
     #[IsGranted('VIEW', subject: 'tea')]
     public function show(Tea $tea): Response
     {
@@ -142,7 +124,7 @@ class TeaController extends AbstractController
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Tea    $tea    Tea entity
+     * @param Tea     $tea     Tea entity
      *
      * @return Response HTTP response
      */
@@ -184,7 +166,7 @@ class TeaController extends AbstractController
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Tea    $tea    Tea entity
+     * @param Tea     $tea     Tea entity
      *
      * @return Response HTTP response
      */
@@ -220,5 +202,23 @@ class TeaController extends AbstractController
                 'tea' => $tea,
             ]
         );
+    }
+
+    /**
+     * Get filters from request.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return array<string, int> Array of filters
+     *
+     * @psalm-return array{category_id: int, tag_id: int, status_id: int}
+     */
+    private function getFilters(Request $request): array
+    {
+        $filters = [];
+        $filters['category_id'] = $request->query->getInt('filters_category_id');
+        $filters['tag_id'] = $request->query->getInt('filters_tag_id');
+
+        return $filters;
     }
 }

@@ -99,7 +99,8 @@ class TeaFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
                 'oolong', 'honey', 'cinnamon', 'clitoris', 'ginger', 'matcha',
             ];
 
-            $tea->setIngredients(implode(', ',
+            $tea->setIngredients(implode(
+                ', ',
                 $this->faker->randomElements(
                     $ingredientsArray,
                     5
