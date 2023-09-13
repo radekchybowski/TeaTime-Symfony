@@ -34,6 +34,7 @@ class CategoryController extends AbstractController
 
     /**
      * Constructor.
+     *
      * @param CategoryServiceInterface $categoryService     Category Service
      * @param TranslatorInterface      $translatorInterface Translator interface
      */

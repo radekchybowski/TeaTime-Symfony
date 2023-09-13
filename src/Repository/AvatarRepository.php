@@ -31,8 +31,6 @@ class AvatarRepository extends ServiceEntityRepository
 
     /**
      * Save avatar.
-     *
-     * @param Avatar $avatar
      */
     public function save(Avatar $avatar): void
     {
@@ -42,9 +40,6 @@ class AvatarRepository extends ServiceEntityRepository
 
     /**
      * Remove avatar.
-     *
-     * @param Avatar $entity
-     * @param bool   $flush
      */
     public function remove(Avatar $entity, bool $flush = false): void
     {
