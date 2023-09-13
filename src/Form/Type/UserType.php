@@ -16,7 +16,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class UserType extends AbstractType
 {
-
     /**
      * Builds the form.
      *
@@ -62,9 +61,8 @@ class UserType extends AbstractType
             TextType::class,
             [
                 'label' => 'label.user.password',
-                'required' => false,
+                'required' => true,
                 'attr' => ['max_length' => 128],
-                'data' => '',
             ]
         );
     }

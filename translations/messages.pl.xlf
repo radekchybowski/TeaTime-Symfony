@@ -351,7 +351,7 @@
 
             <trans-unit id="label.tea.title">
                 <source>label.tea.title</source>
-                <target>Nazwa</target>
+                <target>Nazwa herbaty</target>
             </trans-unit>
 
             <trans-unit id="label.comment.user.email">
@@ -545,6 +545,47 @@
                 <source>message.tea_entity.not_unique</source>
                 <target>Nazwa herbaty nie jest unikalna.</target>
             </trans-unit>
+
+            <trans-unit id="title.avatar_create">
+                <source>title.avatar_create</source>
+                <target>Utwórz nowy tag</target>
+            </trans-unit>
+
+            <trans-unit id="title.avatar_delete">
+                <source>title.avatar_delete</source>
+                <target>Usuń zdjęcie profilowe</target>
+            </trans-unit>
+
+            <trans-unit id="title.avatar_edit">
+                <source>title.avatar_edit</source>
+                <target>Zmień zdjęcie profilowe</target>
+            </trans-unit>
+
+            <trans-unit id="title.category_create">
+                <source>title.category_create</source>
+                <target>Utwórz nową kategorię</target>
+            </trans-unit>
+
+            <trans-unit id="title.tag_create">
+                <source>title.tag_create</source>
+                <target>Utwórz nowy tag</target>
+            </trans-unit>
+
+            <trans-unit id="title.tag_delete">
+                <source>title.tag_delete</source>
+                <target>Usuń tag</target>
+            </trans-unit>
+
+            <trans-unit id="title.tag_edit">
+                <source>title.tag_edit</source>
+                <target>Edytuj tag</target>
+            </trans-unit>
+
+            <trans-unit id="label.user.avatar">
+                <source>label.user.avatar</source>
+                <target>Zdjęcie profilowe</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

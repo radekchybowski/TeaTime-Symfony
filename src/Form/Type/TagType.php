@@ -16,7 +16,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TagType extends AbstractType
 {
-
     /**
      * Builds the form.
      *

@@ -11,6 +11,7 @@ use App\Entity\User;
 use App\Form\Type\CommentType;
 use App\Service\CommentServiceInterface;
 use App\Service\TeaServiceInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -42,9 +43,9 @@ class CommentController extends AbstractController
 
     /**
      * Constructor.
-     * @param CommentServiceInterface $commentService
-     * @param TeaServiceInterface     $teaService
-     * @param TranslatorInterface     $translatorInterface
+     * @param CommentServiceInterface $commentService      Comment service
+     * @param TeaServiceInterface     $teaService          Tea service
+     * @param TranslatorInterface     $translatorInterface Translator interface
      */
     public function __construct(CommentServiceInterface $commentService, TeaServiceInterface $teaService, TranslatorInterface $translatorInterface)
     {
@@ -97,6 +98,8 @@ class CommentController extends AbstractController
      * @param int|null $id      Comment id
      *
      * @return Response HTTP response
+     *
+     * @throws NonUniqueResultException
      */
     #[Route(
         '/create/{id}',
@@ -108,15 +111,17 @@ class CommentController extends AbstractController
     public function create(Request $request, ?int $id): Response
     {
         $comment = new Comment();
+        /** @var Tea|null $tea */
+        $tea = null;
 
         /** @var User $user */
         $user = $this->getUser();
-
-        /** @var Tea $tea */
-        $tea = $this->teaService->findOneById($id);
-
         $comment->setAuthor($user);
-        $comment->setTea($tea);
+
+        if (null !== $id) {
+            $tea = $this->teaService->findOneById($id);
+            $comment->setTea($tea);
+        }
 
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -128,6 +133,10 @@ class CommentController extends AbstractController
                 'success',
                 $this->translator->trans('message.created_successfully')
             );
+
+            if (null === $tea) {
+                return $this->redirectToRoute('comment_index');
+            }
 
             return $this->redirectToRoute('tea_show', ['id' => $tea->getId()]);
         }

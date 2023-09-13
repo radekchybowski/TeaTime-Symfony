@@ -9,7 +9,6 @@ use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class UserVoter.
@@ -79,26 +78,23 @@ class UserVoter extends Voter
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof User) {
             return false;
         }
 
-        switch ($attribute) {
-            case self::EDIT:
-                return $this->canEdit($subject, $user);
-            case self::VIEW:
-                return $this->canView($subject, $user);
-            case self::DELETE:
-                return $this->canDelete($subject, $user);
-        }
-
-        return false;
+        return match ($attribute) {
+            self::EDIT => $this->canEdit($subject, $user),
+            self::VIEW => $this->canView(),
+            self::DELETE => $this->canDelete($subject, $user),
+            default => false,
+        };
     }
 
     /**
-     * Checks if user can edit tea.
+     * Checks if user can edit user.
      *
-     * @param User $user User
+     * @param User $user        User which will be edited
+     * @param User $currentUser Current user
      *
      * @return bool Result
      */
@@ -114,14 +110,11 @@ class UserVoter extends Voter
     /**
      * Checks if user can view tea.
      *
-     * @param Tea  $tea  Tea entity
-     * @param User $user User
-     *
      * @return bool Result
      */
-    private function canView(User $user, User $currentUser): bool
+    private function canView(): bool
     {
-        if ($this->security->isGranted('ROLE_USER')) {
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
 
@@ -129,10 +122,10 @@ class UserVoter extends Voter
     }
 
     /**
-     * Checks if user can delete tea.
+     * Checks if user can edit user.
      *
-     * @param Tea  $tea  Tea entity
-     * @param User $user User
+     * @param User $user        User which will be edited
+     * @param User $currentUser Current user
      *
      * @return bool Result
      */

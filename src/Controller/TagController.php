@@ -91,7 +91,7 @@ class TagController extends AbstractController
         name: 'tag_create',
         methods: 'GET|POST',
     )]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_USER')]
     public function create(Request $request): Response
     {
         // check for admin permissions

@@ -8,6 +8,8 @@ namespace App\Service;
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use App\Repository\TeaRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -34,8 +36,9 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Constructor.
      *
-     * @param CategoryRepository $repository
-     * @param PaginatorInterface $paginator  Paginator
+     * @param CategoryRepository $categoryRepository category entity repository
+     * @param TeaRepository      $teaRepository      tea entity repository
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(CategoryRepository $categoryRepository, TeaRepository $teaRepository, PaginatorInterface $paginator)
     {
@@ -74,8 +77,6 @@ class CategoryService implements CategoryServiceInterface
      * Save entity.
      *
      * @param Category $category
-     *
-     * @return void
      */
     public function delete(Category $category): void
     {

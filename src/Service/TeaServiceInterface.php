@@ -7,6 +7,7 @@ namespace App\Service;
 
 use App\Entity\Tea;
 use App\Entity\User;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -17,9 +18,10 @@ interface TeaServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int  $page   Page number
+     * @param User $author Author
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface Paginated list
      */
     public function getPaginatedList(int $page, User $author): PaginationInterface;
 

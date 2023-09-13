@@ -34,8 +34,9 @@ class UserService implements UserServiceInterface
     /**
      * Constructor.
      *
-     * @param UserRepository     $userRepository User repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param UserRepository              $userRepository User repository
+     * @param PaginatorInterface          $paginator      Paginator
+     * @param UserPasswordHasherInterface $passwordHasher Password hasher
      */
     public function __construct(UserRepository $userRepository, PaginatorInterface $paginator, UserPasswordHasherInterface $passwordHasher)
     {
@@ -47,8 +48,7 @@ class UserService implements UserServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int  $page   Page number
-     * @param User $author Author
+     * @param int $page Page number
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -84,6 +84,6 @@ class UserService implements UserServiceInterface
      */
     public function delete(User $user): void
     {
-        $this->userRepository->remove($user, true);
+        $this->userRepository->remove($user);
     }
 }

@@ -35,6 +35,7 @@ class CommentType extends AbstractType
     {
         $this->security = $security;
     }
+
     /**
      * Builds the form.
      *

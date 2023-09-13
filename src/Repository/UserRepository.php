@@ -1,4 +1,7 @@
 <?php
+/**
+ * User repository.
+ */
 
 namespace App\Repository;
 
@@ -20,9 +23,13 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * Constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
@@ -41,6 +48,44 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
+     * Save user.
+     *
+     * @param User $entity User entity
+     */
+    public function save(User $entity): void
+    {
+        $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Remove user.
+     *
+     * @param User $entity User entity
+     */
+    public function remove(User $entity): void
+    {
+        $this->getEntityManager()->remove($entity);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Used to upgrade (rehash) the user's password automatically over time.
+     * @param PasswordAuthenticatedUserInterface $user
+     * @param string                             $newHashedPassword
+     */
+    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
+    {
+        if (!$user instanceof User) {
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
+        }
+
+        $user->setPassword($newHashedPassword);
+
+        $this->save($user);
+    }
+
+    /**
      * Get or create new query builder.
      *
      * @param QueryBuilder|null $queryBuilder Query builder
@@ -51,55 +96,4 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         return $queryBuilder ?? $this->createQueryBuilder('user');
     }
-
-    public function save(User $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
-        $this->getEntityManager()->flush();
-    }
-
-    public function remove(User $entity): void
-    {
-        $this->getEntityManager()->remove($entity);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * Used to upgrade (rehash) the user's password automatically over time.
-     */
-    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
-    {
-        if (!$user instanceof User) {
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
-        }
-
-        $user->setPassword($newHashedPassword);
-
-        $this->save($user, true);
-    }
-
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?User
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

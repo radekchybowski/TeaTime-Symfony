@@ -2,6 +2,7 @@
 /**
  * Comment entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
@@ -36,8 +37,6 @@ class Comment
 
     /**
      * Content of the comment.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\Type('string')]
@@ -48,7 +47,7 @@ class Comment
      * Created at.
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -93,7 +92,7 @@ class Comment
     /**
      * Setter for title.
      *
-     * @param string|null $title
+     * @param string|null $title Title
      *
      * @return $this
      */
@@ -117,7 +116,7 @@ class Comment
     /**
      * Setter for content.
      *
-     * @param string $content
+     * @param string $content Content
      *
      * @return $this
      */
@@ -131,13 +130,12 @@ class Comment
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null Created at
      */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
-
 
     /**
      * Setter for created at.
@@ -166,7 +164,7 @@ class Comment
     /**
      * Setter for tea.
      *
-     * @param Tea|null $tea
+     * @param Tea|null $tea Tea
      *
      * @return $this
      */
@@ -190,7 +188,7 @@ class Comment
     /**
      * Setter for author.
      *
-     * @param User|null $author
+     * @param User|null $author Author
      *
      * @return $this
      */

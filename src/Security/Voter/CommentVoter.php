@@ -10,7 +10,6 @@ use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class CommentVoter.
@@ -80,20 +79,16 @@ class CommentVoter extends Voter
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof User) {
             return false;
         }
 
-        switch ($attribute) {
-            case self::EDIT:
-                return $this->canEdit($subject, $user);
-            case self::VIEW:
-                return $this->canView($subject, $user);
-            case self::DELETE:
-                return $this->canDelete($subject, $user);
-        }
-
-        return false;
+        return match ($attribute) {
+            self::EDIT => $this->canEdit($subject, $user),
+            self::VIEW => $this->canView($subject, $user),
+            self::DELETE => $this->canDelete($subject, $user),
+            default => false,
+        };
     }
 
     /**

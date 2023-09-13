@@ -3,7 +3,9 @@
 {% block title %}{{ 'site_title.category'|trans }}{% endblock %}
 {% block section_title %}
     <h1 class="text-left">{{ 'site_title.category'|trans }}</h1>
-    <a class="btn btn-success" href="{{ path('category_create') }}">{{ 'button.category.action_create'|trans }}</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-success" href="{{ path('category_create') }}">{{ 'button.category.action_create'|trans }}</a>
+    {% endif %}
 {% endblock %}
 {% block main %}
 

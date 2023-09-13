@@ -24,8 +24,6 @@ abstract class AbstractBaseFixtures extends Fixture
 
     /**
      * Persistence object manager.
-     *
-     * @var ObjectManager|null $manager
      */
     protected ?ObjectManager $manager = null;
 

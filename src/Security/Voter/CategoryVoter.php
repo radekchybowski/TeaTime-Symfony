@@ -10,7 +10,6 @@ use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class CategoryVoter.
@@ -80,55 +79,45 @@ class CategoryVoter extends Voter
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof User) {
             return false;
         }
 
-        switch ($attribute) {
-            case self::EDIT:
-                return $this->canEdit($user);
-            case self::VIEW:
-                return $this->canView($user);
-            case self::DELETE:
-                return $this->canDelete($user);
-        }
-
-        return false;
+        return match ($attribute) {
+            self::EDIT => $this->canEdit(),
+            self::VIEW => $this->canView(),
+            self::DELETE => $this->canDelete(),
+            default => false,
+        };
     }
 
     /**
      * Checks if user can edit category.
      *
-     * @param User $user User
-     *
      * @return bool Result
      */
-    private function canEdit(User $user): bool
+    private function canEdit(): bool
     {
-        return in_array('ROLE_ADMIN', $user->getRoles());
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 
     /**
      * Checks if user can view category.
      *
-     * @param User $user User
-     *
      * @return bool Result
      */
-    private function canView(User $user): bool
+    private function canView(): bool
     {
-        return in_array('ROLE_ADMIN', $user->getRoles());
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 
     /**
      * Checks if user can delete category.
      *
-     * @param User $user User
-     *
      * @return bool Result
      */
-    private function canDelete(User $user): bool
+    private function canDelete(): bool
     {
-        return in_array('ROLE_ADMIN', $user->getRoles());
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 }

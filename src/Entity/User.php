@@ -61,8 +61,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Avatar.
-     *
-     * @var Avatar
      */
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     //    #[ORM\JoinColumn(nullable: true)]
@@ -184,6 +182,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
+     * @return string|null
+     *
      * @see UserInterface
      */
     public function getSalt(): ?string
@@ -202,11 +202,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * Getter for avatar.
+     *
+     * @return Avatar|null
+     */
     public function getAvatar(): ?Avatar
     {
         return $this->avatar;
     }
 
+    /**
+     * Setter for avatar.
+     *
+     * @param Avatar $avatar avatar profile picture
+     *
+     * @return $this
+     */
     public function setAvatar(Avatar $avatar): self
     {
         // set the owning side of the relation if necessary
@@ -219,11 +231,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Getter for name.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Setter for name.
+     *
+     * @param string|null $name
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -231,11 +255,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Getter for surname.
+     *
+     * @return string|null
+     */
     public function getSurname(): ?string
     {
         return $this->surname;
     }
 
+    /**
+     * Setter for surname.
+     *
+     * @param string|null $surname
+     *
+     * @return $this
+     */
     public function setSurname(?string $surname): self
     {
         $this->surname = $surname;
@@ -243,11 +279,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Getter for plain password used in password changing process.
+     *
+     * @return string|null
+     */
     public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
 
+    /**
+     * Setter for plain password.
+     *
+     * @param string|null $plainPassword
+     *
+     * @return $this
+     */
     public function setPlainPassword(?string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;

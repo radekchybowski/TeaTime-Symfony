@@ -11,7 +11,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -19,7 +18,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 #[ORM\Entity(repositoryClass: TeaRepository::class)]
 #[ORM\Table(name: 'teas')]
-#[UniqueEntity(fields: ['title'], message: 'message.tea_entity.not_unique')]
 class Tea
 {
     /**
@@ -57,8 +55,6 @@ class Tea
 
     /**
      * Category.
-     *
-     * @var Category|null
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[Assert\Type(Category::class)]
@@ -79,16 +75,14 @@ class Tea
     /**
      * Author.
      */
-    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
 
     /**
      * Description.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\Type('string')]
@@ -108,8 +102,6 @@ class Tea
 
     /**
      * Steep temperature in Celsius.
-     *
-     * @var int|null
      */
     #[ORM\Column(nullable: true)]
     private ?int $steepTemp = null;

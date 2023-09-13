@@ -6,15 +6,15 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use Form\Type\UserType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\UserServiceInterface;
+use Form\Type\UserType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class UserController.
@@ -142,7 +142,7 @@ class UserController extends AbstractController
                 $this->translator->trans('message.edited_successfully')
             );
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
         }
 
         return $this->render(
@@ -183,8 +183,11 @@ class UserController extends AbstractController
                 'success',
                 $this->translator->trans('message.deleted_successfully')
             );
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->redirectToRoute('user_index');
+            }
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render(

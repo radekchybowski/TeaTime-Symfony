@@ -8,7 +8,9 @@ namespace App\Service;
 use App\Entity\Tea;
 use App\Entity\User;
 use App\Repository\TeaRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\Pagination\SlidingPagination;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
@@ -44,12 +46,8 @@ class TeaService implements TeaServiceInterface
      * @param TagServiceInterface      $tagService      Tag service
      * @param TeaRepository            $teaRepository   Tea repository
      */
-    public function __construct(
-        CategoryServiceInterface $categoryService,
-        PaginatorInterface $paginator,
-        TagServiceInterface $tagService,
-        TeaRepository $teaRepository
-    ) {
+    public function __construct(CategoryServiceInterface $categoryService, PaginatorInterface $paginator, TagServiceInterface $tagService, TeaRepository $teaRepository)
+    {
         $this->categoryService = $categoryService;
         $this->paginator = $paginator;
         $this->tagService = $tagService;
@@ -64,6 +62,8 @@ class TeaService implements TeaServiceInterface
      * @param array<string, int> $filters Filters array
      *
      * @return PaginationInterface<SlidingPagination> Paginated list
+     *
+     * @throws NonUniqueResultException
      */
     public function getPaginatedList(int $page, User $author, array $filters = []): PaginationInterface
     {
@@ -126,6 +126,8 @@ class TeaService implements TeaServiceInterface
      * @param array<string, int> $filters Raw filters from request
      *
      * @return array<string, object> Result array of filters
+     *
+     * @throws NonUniqueResultException
      */
     private function prepareFilters(array $filters): array
     {

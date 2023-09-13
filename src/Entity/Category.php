@@ -6,7 +6,6 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -88,7 +87,7 @@ class Category
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable $createdAt
+     * @param \DateTimeImmutable $createdAt
      *
      * @return $this
      */
@@ -102,18 +101,17 @@ class Category
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable|null
+     * @return \DateTimeImmutable|null
      */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable $updatedAt
+     * @param \DateTimeImmutable $updatedAt
      *
      * @return $this
      */
