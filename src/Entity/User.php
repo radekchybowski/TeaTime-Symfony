@@ -24,8 +24,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,8 +32,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Email.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank]
@@ -52,17 +48,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Password.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string')]
-//    #[Assert\NotBlank]
+    //    #[Assert\NotBlank]
     private ?string $password;
 
     /**
      * Plain password.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $plainPassword = null;
@@ -73,21 +65,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Avatar
      */
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
-//    #[ORM\JoinColumn(nullable: true)]
+    //    #[ORM\JoinColumn(nullable: true)]
     private ?Avatar $avatar = null;
 
     /**
      * First name.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 64, nullable: true)]
     private ?string $name = null;
 
     /**
      * Surname.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 64, nullable: true)]
     private ?string $surname = null;

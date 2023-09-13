@@ -8,7 +8,6 @@ namespace App\DataFixtures;
 use App\Entity\Comment;
 use App\Entity\Tea;
 use App\Entity\User;
-use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -29,11 +28,11 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
             return;
         }
 
-        $this->createMany(300, 'comments', function (int $i) {
+        $this->createMany(300, 'comments', function () {
             $comment = new Comment();
             $comment->setTitle($this->faker->sentence);
             $comment->setCreatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );

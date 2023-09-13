@@ -236,7 +236,7 @@
 
             <trans-unit id="label.user.email">
                 <source>label.user.email</source>
-                <target>Email użytkownika dodającego</target>
+                <target>Email</target>
             </trans-unit>
 
             <trans-unit id="title.tea_delete">
@@ -539,6 +539,11 @@
             <trans-unit id="message.category_contains_teas">
                 <source>message.category_contains_teas</source>
                 <target>Ta kategoria nie może zostać usunięta, ponieważ są do niej przypisane herbaty.</target>
+            </trans-unit>
+
+            <trans-unit id="message.tea_entity.not_unique">
+                <source>message.tea_entity.not_unique</source>
+                <target>Nazwa herbaty nie jest unikalna.</target>
             </trans-unit>
         </body>
     </file>

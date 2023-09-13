@@ -29,7 +29,7 @@ class TeaFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             return;
         }
 
-        $this->createMany(100, 'teas', function (int $i) {
+        $this->createMany(100, 'teas', function () {
             /** @var Tea $tea */
             $tea = new Tea();
 

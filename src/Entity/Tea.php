@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 #[ORM\Entity(repositoryClass: TeaRepository::class)]
 #[ORM\Table(name: 'teas')]
-#[UniqueEntity(fields: ['email'], message: 'message.tea_entity.not_unique')]
+#[UniqueEntity(fields: ['title'], message: 'message.tea_entity.not_unique')]
 class Tea
 {
     /**
@@ -58,7 +58,7 @@ class Tea
     /**
      * Category.
      *
-     * @var Category
+     * @var Category|null
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[Assert\Type(Category::class)]
@@ -69,18 +69,18 @@ class Tea
     /**
      * Tags.
      *
-     * @var ArrayCollection<int, Tag>
+     * @var Collection<int, Tag>|null
      */
     #[Assert\Valid]
     #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     #[ORM\JoinTable(name: 'teas_tags')]
-    private $tags;
+    private ?Collection $tags;
 
     /**
      * Author.
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
@@ -264,11 +264,23 @@ class Tea
         $this->tags->removeElement($tag);
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author
+     *
+     * @return $this
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
@@ -276,11 +288,23 @@ class Tea
         return $this;
     }
 
+    /**
+     * Getter for description.
+     *
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * Setter for description.
+     *
+     * @param string|null $description
+     *
+     * @return $this
+     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -288,11 +312,23 @@ class Tea
         return $this;
     }
 
+    /**
+     * Getter for ingredients.
+     *
+     * @return string|null
+     */
     public function getIngredients(): ?string
     {
         return $this->ingredients;
     }
 
+    /**
+     * Getter for ingredients.
+     *
+     * @param string|null $ingredients
+     *
+     * @return $this
+     */
     public function setIngredients(?string $ingredients): self
     {
         $this->ingredients = $ingredients;
@@ -300,13 +336,18 @@ class Tea
         return $this;
     }
 
+    /**
+     * Getter for steep time.
+     *
+     * @return int|null
+     */
     public function getSteepTime(): ?int
     {
         return $this->steepTime;
     }
 
     /**
-     * Steep time setter.
+     * Setter for steep time.
      *
      * @param int|null $steepTime steep time
      *
@@ -319,11 +360,23 @@ class Tea
         return $this;
     }
 
+    /**
+     * Getter for steep temperature.
+     *
+     * @return int|null
+     */
     public function getSteepTemp(): ?int
     {
         return $this->steepTemp;
     }
 
+    /**
+     * Setter for steep temperature.
+     *
+     * @param int|null $steepTemp
+     *
+     * @return $this
+     */
     public function setSteepTemp(?int $steepTemp): self
     {
         $this->steepTemp = $steepTemp;
@@ -331,11 +384,23 @@ class Tea
         return $this;
     }
 
+    /**
+     * Getter for region.
+     *
+     * @return string|null
+     */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
+    /**
+     * Setter for region.
+     *
+     * @param string|null $region
+     *
+     * @return $this
+     */
     public function setRegion(?string $region): self
     {
         $this->region = $region;
@@ -343,11 +408,23 @@ class Tea
         return $this;
     }
 
+    /**
+     * Getter for vendor.
+     *
+     * @return string|null
+     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
+    /**
+     * Setter for vendor.
+     *
+     * @param string|null $vendor
+     *
+     * @return $this
+     */
     public function setVendor(?string $vendor): self
     {
         $this->vendor = $vendor;
@@ -356,6 +433,8 @@ class Tea
     }
 
     /**
+     * Getter for Comments collection.
+     *
      * @return Collection<int, Comment>
      */
     public function getComments(): Collection
@@ -363,22 +442,36 @@ class Tea
         return $this->comments;
     }
 
+    /**
+     * Adding another comment.
+     *
+     * @param Comment $comment comment
+     *
+     * @return $this
+     */
     public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments->add($comment);
-            $comment->setTea2($this);
+            $comment->setTea($this);
         }
 
         return $this;
     }
 
+    /**
+     * Removing one of the comments.
+     *
+     * @param Comment $comment comment
+     *
+     * @return $this
+     */
     public function removeComment(Comment $comment): self
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
-            if ($comment->getTea2() === $this) {
-                $comment->setTea2(null);
+            if ($comment->getTea() === $this) {
+                $comment->setTea(null);
             }
         }
 

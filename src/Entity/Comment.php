@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Comment entity.
+ */
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
@@ -7,7 +9,6 @@ use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -36,7 +37,7 @@ class Comment
     /**
      * Content of the comment.
      *
-     * @var text|null
+     * @var string|null
      */
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\Type('string')]
@@ -45,8 +46,6 @@ class Comment
 
     /**
      * Created at.
-     *
-     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
@@ -56,7 +55,7 @@ class Comment
     /**
      * Tea.
      */
-    #[ORM\ManyToOne(inversedBy: 'comments', targetEntity: Tea::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Tea::class, fetch: 'EXTRA_LAZY', inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(Tea::class)]
@@ -81,11 +80,23 @@ class Comment
         return $this->id;
     }
 
+    /**
+     * Getter for title.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * Setter for title.
+     *
+     * @param string|null $title
+     *
+     * @return $this
+     */
     public function setTitle(?string $title): self
     {
         $this->title = $title;
@@ -93,11 +104,23 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for content.
+     *
+     * @return string|null
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
+    /**
+     * Setter for content.
+     *
+     * @param string $content
+     *
+     * @return $this
+     */
     public function setContent(string $content): self
     {
         $this->content = $content;
@@ -115,10 +138,13 @@ class Comment
         return $this->createdAt;
     }
 
+
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable $createdAt Created at
+     * @param DateTimeImmutable $createdAt
+     *
+     * @return $this
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
@@ -127,11 +153,23 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for tea.
+     *
+     * @return Tea|null
+     */
     public function getTea(): ?Tea
     {
         return $this->tea;
     }
 
+    /**
+     * Setter for tea.
+     *
+     * @param Tea|null $tea
+     *
+     * @return $this
+     */
     public function setTea(?Tea $tea): self
     {
         $this->tea = $tea;
@@ -139,26 +177,26 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author
+     *
+     * @return $this
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
-
-        return $this;
-    }
-
-    public function getTea2(): ?Tea
-    {
-        return $this->tea2;
-    }
-
-    public function setTea2(?Tea $tea2): self
-    {
-        $this->tea2 = $tea2;
 
         return $this;
     }

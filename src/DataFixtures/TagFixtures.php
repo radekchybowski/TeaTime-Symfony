@@ -1,4 +1,7 @@
 <?php
+/**
+ * Tag Fixtures.
+ */
 
 namespace App\DataFixtures;
 
@@ -22,7 +25,7 @@ class TagFixtures extends AbstractBaseFixtures
             return;
         }
 
-        $this->createMany(100, 'tags', function (int $i) {
+        $this->createMany(100, 'tags', function () {
             $tag = new Tag();
             $tag->setTitle($this->faker->word);
             $tag->setCreatedAt(

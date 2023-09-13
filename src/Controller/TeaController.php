@@ -89,7 +89,6 @@ class TeaController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/create', name: 'tea_create', methods: 'GET|POST')]
-    #[IsGranted('EDIT', subject: 'tea')]
     public function create(Request $request): Response
     {
         /** @var User $user */

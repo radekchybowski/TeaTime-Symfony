@@ -1,4 +1,7 @@
 <?php
+/**
+ * Category entity.
+ */
 
 namespace App\Entity;
 
@@ -82,6 +85,13 @@ class Category
         return $this->createdAt;
     }
 
+    /**
+     * Setter for created at.
+     *
+     * @param DateTimeImmutable $createdAt
+     *
+     * @return $this
+     */
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -89,11 +99,24 @@ class Category
         return $this;
     }
 
+    /**
+     * Getter for updated at.
+     *
+     * @return DateTimeImmutable|null
+     */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
+
+    /**
+     * Setter for updated at.
+     *
+     * @param DateTimeImmutable $updatedAt
+     *
+     * @return $this
+     */
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -101,11 +124,23 @@ class Category
         return $this;
     }
 
+    /**
+     * Getter for category title.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * Setter for category title.
+     *
+     * @param string $title
+     *
+     * @return $this
+     */
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -113,11 +148,23 @@ class Category
         return $this;
     }
 
+    /**
+     * Getter for category slug.
+     *
+     * @return string|null
+     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
+    /**
+     * Setter for category slug.
+     *
+     * @param string $slug
+     *
+     * @return $this
+     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;

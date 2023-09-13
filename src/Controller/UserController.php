@@ -7,9 +7,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Form\Type\UserType;
-use App\Service\UserServiceInterface;
-use Security\Voter\UserVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\UserServiceInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,7 +69,8 @@ class UserController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}', name: 'user_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET', )]
+    #[Route('/{id}', name: 'user_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
+    #[IsGranted('ROLE_ADMIN')]
     public function show(User $user): Response
     {
         return $this->render('user/show.html.twig', ['user' => $user]);
@@ -87,8 +87,6 @@ class UserController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
-        /** @var User $user */
-        $user = $this->getUser();
         $user = new User();
         $form = $this->createForm(
             UserType::class,

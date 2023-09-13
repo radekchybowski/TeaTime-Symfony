@@ -22,15 +22,15 @@ class CategoryFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        $this->createMany(18, 'categories', function (int $i) {
+        $this->createMany(18, 'categories', function () {
             $category = new Category();
-            /**
+            /*
              * Assigning title name of Category.
              */
             $categoryTitleArray = ['klasyczna', 'premium', 'zielona herbata', 'matcha', 'zielona z dodatkami', 'czarna herbata', 'czarna z dodatkami', 'oolong', 'pu-erh i heicha', 'pu-erh z dodatkami', 'biała herbata', 'biała z dodatkami', 'żółta herbata', 'owocowa', 'rooibos', 'yerba mate', 'zestawy herbat', 'zioła'];
             $category->setTitle($this->faker->unique()->randomElement($categoryTitleArray));
 
-            /**
+            /*
              * Assigning creation and last update time.
              */
             $category->setCreatedAt(
