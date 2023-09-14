@@ -601,6 +601,26 @@
                 <target>Dodano przez</target>
             </trans-unit>
 
+            <trans-unit id="message.please_enter_password">
+                <source>message.please_enter_password</source>
+                <target>Wpisz proszę hasło.</target>
+            </trans-unit>
+
+            <trans-unit id="message.password_limit">
+                <source>message.password_limit</source>
+                <target>Hasło musi mieć minimum 6 znaków.</target>
+            </trans-unit>
+
+            <trans-unit id="message.password_match">
+                <source>label.tea.author</source>
+                <target>Hasła nie zgadzają się</target>
+            </trans-unit>
+
+            <trans-unit id="message.invalid_email">
+                <source>message.invalid_email</source>
+                <target>Istnieje konto na tym mailu.</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

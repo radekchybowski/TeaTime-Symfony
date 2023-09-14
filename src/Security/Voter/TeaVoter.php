@@ -85,7 +85,7 @@ class TeaVoter extends Voter
 
         return match ($attribute) {
             self::EDIT => $this->canEdit($subject, $user),
-            self::VIEW => $this->canView($subject, $user),
+            self::VIEW => $this->canView(),
             self::DELETE => $this->canDelete($subject, $user),
             default => false,
         };
@@ -111,18 +111,11 @@ class TeaVoter extends Voter
     /**
      * Checks if user can view tea.
      *
-     * @param Tea  $tea  Tea entity
-     * @param User $user User
-     *
      * @return bool Result
      */
-    private function canView(Tea $tea, User $user): bool
+    private function canView(): bool
     {
-        if ($this->security->isGranted('ROLE_ADMIN')) {
-            return true;
-        }
-
-        return $tea->getAuthor() === $user;
+        return $this->security->isGranted('ROLE_USER');
     }
 
     /**

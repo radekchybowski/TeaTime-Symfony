@@ -94,13 +94,6 @@ class TagController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function create(Request $request): Response
     {
-        // check for admin permissions
-        //        if (!in_array(
-        //            'ROLE_ADMIN',
-        //            $this->getUser()->getRoles()
-        //        ) )
-        //            throw $this->createAccessDeniedException();
-
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
@@ -134,13 +127,6 @@ class TagController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Tag $tag): Response
     {
-        // check for admin permissions
-        //        if (!in_array(
-        //            'ROLE_ADMIN',
-        //            $this->getUser()->getRoles()
-        //        ) )
-        //            throw $this->createAccessDeniedException();
-
         $form = $this->createForm(
             TagType::class,
             $tag,
@@ -183,22 +169,6 @@ class TagController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Tag $tag): Response
     {
-        //        if(!$this->tagService->canBeDeleted($tag)) {
-        //            $this->addFlash(
-        //                'warning',
-        //                $this->translator->trans('message.tag_contains_teas')
-        //            );
-        //
-        //            return $this->redirectToRoute('tag_index');
-        //        }
-
-        // check for admin permissions
-        //        if (!in_array(
-        //            'ROLE_ADMIN',
-        //            $this->getUser()->getRoles()
-        //        ) )
-        //            throw $this->createAccessDeniedException();
-
         $form = $this->createForm(
             FormType::class,
             $tag,

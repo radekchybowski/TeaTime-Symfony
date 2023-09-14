@@ -47,12 +47,13 @@
                     <p class="h2">{{ tea.steepTemp }} ℃</p>
                 </div>
             </div>
-
-            <h3 class="mb-2 mt-4 h5 text-start">{{ 'label.tea.description'|trans }}</h3>
-            <p class="text-start mb-4">
-                {{ tea.description|markdown_to_html }}
-            </p>
         </div>
+        {% if tea.description is not null %}
+        <h3 class="mb-2 mt-4 h5 text-start">{{ 'label.tea.description'|trans }}</h3>
+        <p class="text-start mb-4">
+            {{ tea.description|markdown_to_html }}
+        </p>
+        {% endif %}
         <div class="d-flex justify-content-between">
             <div>
                 <h3 class="mb-2 mt-1 h5">{{ 'label.created_at'|trans }}</h3>

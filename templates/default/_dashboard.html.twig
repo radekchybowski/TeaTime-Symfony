@@ -11,9 +11,9 @@
         <div id="page-content-wrapper" class="mx-auto">
         {#            <i class="bi bi-list float-right" id="sidebarToggle"></i>#}
         {% include 'default/_flash_messages.html.twig' %}
-            <div class="card bg-light m-2 mx-auto my-5" style="max-width: 70rem;">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h1>{% block section_title %}{% endblock %}</h1>
+            <div class="card bg-light m-2 mx-auto my-5 text-left" style="max-width: 70rem;">
+                <div class="text-left card-header d-flex align-items-center justify-content-between">
+                    <h1 class="text-left">{% block section_title %}{% endblock %}</h1>
                 </div>
                 <div class="card-body">
                     {% block main %}{% endblock %}

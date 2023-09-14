@@ -93,13 +93,6 @@ class CategoryController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
-        // check for admin permissions
-        //        if (!in_array(
-        //            'ROLE_ADMIN',
-        //            $this->getUser()->getRoles()
-        //        ) )
-        //            throw $this->createAccessDeniedException();
-
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
