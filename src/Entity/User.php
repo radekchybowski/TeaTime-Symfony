@@ -7,6 +7,7 @@ namespace App\Entity;
 
 use App\Entity\Enum\UserRole;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -77,6 +78,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column(length: 64, nullable: true)]
     private ?string $surname = null;
+
+    /**
+     * Teas.
+     */
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Tea::class, cascade: ['remove'])]
+    private ?Collection $teas;
+
+    /**
+     * Comments.
+     */
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Comment::class, cascade: ['remove'])]
+    private ?Collection $comments;
 
     /**
      * Getter for id.

@@ -112,6 +112,27 @@ class TeaRepository extends ServiceEntityRepository
     }
 
     /**
+     * Count teas by user.
+     *
+     * @param User $user User
+     *
+     * @return int Number of teas user has
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByUser(User $user): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('tea.id'))
+            ->where('tea.author = :author')
+            ->setParameter(':author', $user)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
      * Delete entity.
      *
      * @param Tea $tea Tea entity

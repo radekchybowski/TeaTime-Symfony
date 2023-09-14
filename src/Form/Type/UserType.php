@@ -61,7 +61,7 @@ class UserType extends AbstractType
             TextType::class,
             [
                 'label' => 'label.user.password',
-                'required' => true,
+                'required' => false,
                 'attr' => ['max_length' => 128],
             ]
         );

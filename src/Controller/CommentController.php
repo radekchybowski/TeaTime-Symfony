@@ -88,6 +88,7 @@ class CommentController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function show(Comment $comment): Response
     {
+        var_dump($comment);
         return $this->render('comment/show.html.twig', ['record' => $comment]);
     }
 

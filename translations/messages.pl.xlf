@@ -548,7 +548,7 @@
 
             <trans-unit id="title.avatar_create">
                 <source>title.avatar_create</source>
-                <target>Utwórz nowy tag</target>
+                <target>Dodaj nowe zdjęcie profilowe</target>
             </trans-unit>
 
             <trans-unit id="title.avatar_delete">
@@ -584,6 +584,21 @@
             <trans-unit id="label.user.avatar">
                 <source>label.user.avatar</source>
                 <target>Zdjęcie profilowe</target>
+            </trans-unit>
+
+            <trans-unit id="label.avatar">
+                <source>label.avatar</source>
+                <target>Zdjęcie profilowe</target>
+            </trans-unit>
+
+            <trans-unit id="button.action_delete_user">
+                <source>button.action_delete_user</source>
+                <target>Usuń swoje konto użytkownika</target>
+            </trans-unit>
+
+            <trans-unit id="label.tea.author">
+                <source>label.tea.author</source>
+                <target>Dodano przez</target>
             </trans-unit>
 
         </body>

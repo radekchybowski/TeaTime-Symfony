@@ -54,7 +54,7 @@ class Comment
     /**
      * Tea.
      */
-    #[ORM\ManyToOne(targetEntity: Tea::class, fetch: 'EXTRA_LAZY', inversedBy: 'comments')]
+    #[ORM\ManyToOne(targetEntity: Tea::class, fetch: 'LAZY', inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(Tea::class)]
@@ -63,8 +63,8 @@ class Comment
     /**
      * Author.
      */
-    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'LAZY', inversedBy: 'comments')]
+    #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author = null;
