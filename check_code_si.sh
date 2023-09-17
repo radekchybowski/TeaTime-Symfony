@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/sh
 RESULT_FILE="check_code.result.cache"
 rm -f -- $RESULT_FILE
 touch $RESULT_FILE

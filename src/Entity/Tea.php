@@ -258,6 +258,8 @@ class Tea
 
     /**
      * Getter for author.
+     *
+     * @return User|null
      */
     public function getAuthor(): ?User
     {
@@ -266,6 +268,8 @@ class Tea
 
     /**
      * Setter for author.
+     *
+     * @param User|null $author
      *
      * @return $this
      */
@@ -278,6 +282,8 @@ class Tea
 
     /**
      * Getter for description.
+     *
+     * @return string|null
      */
     public function getDescription(): ?string
     {
@@ -286,6 +292,8 @@ class Tea
 
     /**
      * Setter for description.
+     *
+     * @param string|null $description
      *
      * @return $this
      */
@@ -298,6 +306,8 @@ class Tea
 
     /**
      * Getter for ingredients.
+     *
+     * @return string|null
      */
     public function getIngredients(): ?string
     {
@@ -306,6 +316,8 @@ class Tea
 
     /**
      * Getter for ingredients.
+     *
+     * @param string|null $ingredients
      *
      * @return $this
      */
@@ -318,6 +330,8 @@ class Tea
 
     /**
      * Getter for steep time.
+     *
+     * @return int|null
      */
     public function getSteepTime(): ?int
     {
@@ -340,6 +354,8 @@ class Tea
 
     /**
      * Getter for steep temperature.
+     *
+     * @return int|null
      */
     public function getSteepTemp(): ?int
     {
@@ -348,6 +364,8 @@ class Tea
 
     /**
      * Setter for steep temperature.
+     *
+     * @param int|null $steepTemp
      *
      * @return $this
      */
@@ -360,6 +378,8 @@ class Tea
 
     /**
      * Getter for region.
+     *
+     * @return string|null
      */
     public function getRegion(): ?string
     {
@@ -368,6 +388,8 @@ class Tea
 
     /**
      * Setter for region.
+     *
+     * @param string|null $region
      *
      * @return $this
      */
@@ -380,6 +402,8 @@ class Tea
 
     /**
      * Getter for vendor.
+     *
+     * @return string|null
      */
     public function getVendor(): ?string
     {
@@ -388,6 +412,8 @@ class Tea
 
     /**
      * Setter for vendor.
+     *
+     * @param string|null $vendor
      *
      * @return $this
      */

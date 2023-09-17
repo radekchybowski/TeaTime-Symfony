@@ -195,6 +195,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
+     * @return string|null
+     *
      * @see UserInterface
      */
     public function getSalt(): ?string
@@ -215,6 +217,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for avatar.
+     *
+     * @return Avatar|null
      */
     public function getAvatar(): ?Avatar
     {
@@ -242,6 +246,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for name.
+     *
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -250,6 +256,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Setter for name.
+     *
+     * @param string|null $name
      *
      * @return $this
      */
@@ -262,6 +270,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for surname.
+     *
+     * @return string|null
      */
     public function getSurname(): ?string
     {
@@ -270,6 +280,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Setter for surname.
+     *
+     * @param string|null $surname
      *
      * @return $this
      */
@@ -282,6 +294,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for plain password used in password changing process.
+     *
+     * @return string|null
      */
     public function getPlainPassword(): ?string
     {
@@ -290,6 +304,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Setter for plain password.
+     *
+     * @param string|null $plainPassword
      *
      * @return $this
      */
