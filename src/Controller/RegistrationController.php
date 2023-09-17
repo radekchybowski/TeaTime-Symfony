@@ -27,8 +27,6 @@ class RegistrationController extends AbstractController
      * @param UserAuthenticatorInterface  $userAuthenticator  User authenticator
      * @param LoginFormAuthenticator      $authenticator      Login form authenticator
      * @param EntityManagerInterface      $entityManager      Entity manager
-     *
-     * @return Response
      */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
