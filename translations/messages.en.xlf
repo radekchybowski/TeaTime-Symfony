@@ -602,7 +602,7 @@
             </trans-unit>
 
             <trans-unit id="message.password_match">
-                <source>label.tea.author</source>
+                <source>message.password_match</source>
                 <target>Passwords do not match.</target>
             </trans-unit>
 

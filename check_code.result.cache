@@ -1,0 +1,18 @@
+PHP CS wyniki
+cs fixer wyniki
+   1) src/Controller/CategoryController.php (phpdoc_separation)
+   2) src/Controller/CommentController.php (phpdoc_separation)
+   3) src/Controller/RegistrationController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   4) src/Controller/SecurityController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   5) src/Entity/Category.php (no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
+   6) src/Entity/Comment.php (fully_qualified_strict_types, no_superfluous_phpdoc_tags, global_namespace_import, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
+   7) src/Entity/Tag.php (fully_qualified_strict_types, no_superfluous_phpdoc_tags, global_namespace_import, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
+   8) src/Entity/Tea.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   9) src/Entity/User.php (no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
+  10) src/Form/RegistrationFormType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  11) src/Repository/AvatarRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  12) src/Repository/UserRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  13) src/Service/CategoryService.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  14) src/Service/TagService.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+
+Found 14 of 55 files that can be fixed in 0.611 seconds, 18.000 MB memory used

@@ -612,7 +612,7 @@
             </trans-unit>
 
             <trans-unit id="message.password_match">
-                <source>label.tea.author</source>
+                <source>message.password_match</source>
                 <target>Hasła nie zgadzają się</target>
             </trans-unit>
 

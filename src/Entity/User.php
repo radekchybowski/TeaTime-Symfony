@@ -79,11 +79,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 64, nullable: true)]
     private ?string $surname = null;
 
-    /**
-     * Teas.
-     */
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Tea::class, cascade: ['remove'])]
-    private ?Collection $teas;
+//    /**
+//     * Teas.
+//     */
+//    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Tea::class, cascade: ['remove'])]
+//    private ?Collection $teas;
 
     /**
      * Comments.
@@ -257,7 +257,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for name.
      *
-     * @param string|null $name
+     * @param string|null $name name
      *
      * @return $this
      */
@@ -281,7 +281,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for surname.
      *
-     * @param string|null $surname
+     * @param string|null $surname surname
      *
      * @return $this
      */
@@ -305,7 +305,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for plain password.
      *
-     * @param string|null $plainPassword
+     * @param string|null $plainPassword plain password
      *
      * @return $this
      */

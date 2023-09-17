@@ -269,7 +269,7 @@ class Tea
     /**
      * Setter for author.
      *
-     * @param User|null $author
+     * @param User|null $author author
      *
      * @return $this
      */
@@ -293,7 +293,7 @@ class Tea
     /**
      * Setter for description.
      *
-     * @param string|null $description
+     * @param string|null $description description
      *
      * @return $this
      */
@@ -317,7 +317,7 @@ class Tea
     /**
      * Getter for ingredients.
      *
-     * @param string|null $ingredients
+     * @param string|null $ingredients ingredients
      *
      * @return $this
      */
@@ -365,7 +365,7 @@ class Tea
     /**
      * Setter for steep temperature.
      *
-     * @param int|null $steepTemp
+     * @param int|null $steepTemp steep temp
      *
      * @return $this
      */
@@ -389,7 +389,7 @@ class Tea
     /**
      * Setter for region.
      *
-     * @param string|null $region
+     * @param string|null $region region
      *
      * @return $this
      */
@@ -413,7 +413,7 @@ class Tea
     /**
      * Setter for vendor.
      *
-     * @param string|null $vendor
+     * @param string|null $vendor vendor
      *
      * @return $this
      */
