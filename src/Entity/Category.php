@@ -87,6 +87,8 @@ class Category
     /**
      * Setter for created at.
      *
+     * @param \DateTimeImmutable $createdAt
+     *
      * @return $this
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
@@ -98,6 +100,8 @@ class Category
 
     /**
      * Getter for updated at.
+     *
+     * @return \DateTimeImmutable|null
      */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
@@ -106,6 +110,8 @@ class Category
 
     /**
      * Setter for updated at.
+     *
+     * @param \DateTimeImmutable $updatedAt
      *
      * @return $this
      */
@@ -118,6 +124,8 @@ class Category
 
     /**
      * Getter for category title.
+     *
+     * @return string|null
      */
     public function getTitle(): ?string
     {
@@ -126,6 +134,8 @@ class Category
 
     /**
      * Setter for category title.
+     *
+     * @param string $title
      *
      * @return $this
      */
@@ -138,6 +148,8 @@ class Category
 
     /**
      * Getter for category slug.
+     *
+     * @return string|null
      */
     public function getSlug(): ?string
     {
@@ -146,6 +158,8 @@ class Category
 
     /**
      * Setter for category slug.
+     *
+     * @param string $slug
      *
      * @return $this
      */
