@@ -104,8 +104,10 @@
         "static-analysis": [
             "./vendor/bin/phpcs --config-set installed_paths $(realpath vendor/escapestudios/symfony2-coding-standard)",
             "./vendor/bin/phpcs --config-set default_standard Symfony",
+            "./vendor/bin/php-cs-fixer fix src/ --dry-run -vvv --rules=@Symfony,@PSR1,@PSR2,@PSR12",
+            "rm -f -- .php-cs-fixer.dist.php",
+            "rm -f -- .php-cs-fixer.cache",
             "./vendor/bin/phpcs --standard=Symfony src/ --ignore=Kernel.php",
-            "./vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR1,@PSR2,@PSR12"
         ]
     },
     "conflict": {
