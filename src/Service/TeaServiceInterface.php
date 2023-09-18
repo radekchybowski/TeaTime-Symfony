@@ -54,8 +54,6 @@ interface TeaServiceInterface
      * Delete all teas where User is author.
      *
      * @param User $user User
-     *
-     * @return void
      */
     public function deleteTeaByAuthor(User $user): void;
 }

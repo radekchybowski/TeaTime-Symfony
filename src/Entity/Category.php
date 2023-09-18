@@ -101,7 +101,7 @@ class Category
     /**
      * Getter for updated at.
      *
-     * @return \DateTimeImmutable|null
+     * @return \DateTimeImmutable|null Datetime of last update
      */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
@@ -125,7 +125,7 @@ class Category
     /**
      * Getter for category title.
      *
-     * @return string|null
+     * @return string|null Title
      */
     public function getTitle(): ?string
     {
@@ -149,7 +149,7 @@ class Category
     /**
      * Getter for category slug.
      *
-     * @return string|null
+     * @return string|null Slug
      */
     public function getSlug(): ?string
     {

@@ -1,108 +1,12 @@
 php cs
+php cs fixer
 
-FILE: /home/wwwroot/app/src/Entity/Comment.php
-----------------------------------------------------------------------
-FOUND 5 ERRORS AFFECTING 5 LINES
-----------------------------------------------------------------------
-  84 | ERROR | Missing @return tag in function comment
- 106 | ERROR | Missing @return tag in function comment
- 136 | ERROR | Doc comment for parameter "$createdAt" missing
- 150 | ERROR | Missing @return tag in function comment
- 172 | ERROR | Missing @return tag in function comment
-----------------------------------------------------------------------
+Found 0 of 56 files that can be fixed in 0.358 seconds, 18.000 MB memory used
+ ------- -------- ---- ---------------------- 
+  State   Domain   Id   Message Preview (en)  
+ ------- -------- ---- ---------------------- 
 
-
-FILE: /home/wwwroot/app/src/Entity/Tag.php
-----------------------------------------------------------------------
-FOUND 5 ERRORS AFFECTING 5 LINES
-----------------------------------------------------------------------
-  75 | ERROR | Missing @return tag in function comment
-  81 | ERROR | Doc comment for parameter "$createdAt" missing
-  95 | ERROR | Missing @return tag in function comment
- 101 | ERROR | Doc comment for parameter "$updatedAt" missing
- 147 | ERROR | Doc comment for parameter "$title" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Entity/Tea.php
-----------------------------------------------------------------------
-FOUND 7 ERRORS AFFECTING 7 LINES
-----------------------------------------------------------------------
- 261 | ERROR | Missing @return tag in function comment
- 283 | ERROR | Missing @return tag in function comment
- 305 | ERROR | Missing @return tag in function comment
- 327 | ERROR | Missing @return tag in function comment
- 349 | ERROR | Missing @return tag in function comment
- 371 | ERROR | Missing @return tag in function comment
- 393 | ERROR | Missing @return tag in function comment
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Entity/User.php
-----------------------------------------------------------------------
-FOUND 5 ERRORS AFFECTING 5 LINES
-----------------------------------------------------------------------
- 193 | ERROR | Missing @return tag in function comment
- 212 | ERROR | Missing @return tag in function comment
- 239 | ERROR | Missing @return tag in function comment
- 261 | ERROR | Missing @return tag in function comment
- 283 | ERROR | Missing @return tag in function comment
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Form/RegistrationFormType.php
-----------------------------------------------------------------------
-FOUND 2 ERRORS AFFECTING 1 LINE
-----------------------------------------------------------------------
- 24 | ERROR | Doc comment for parameter "$builder" missing
- 24 | ERROR | Doc comment for parameter "$options" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Repository/AvatarRepository.php
-----------------------------------------------------------------------
-FOUND 3 ERRORS AFFECTING 2 LINES
-----------------------------------------------------------------------
- 32 | ERROR | Doc comment for parameter "$avatar" missing
- 41 | ERROR | Doc comment for parameter "$entity" missing
- 41 | ERROR | Doc comment for parameter "$flush" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Repository/UserRepository.php
-----------------------------------------------------------------------
-FOUND 3 ERRORS AFFECTING 2 LINES
-----------------------------------------------------------------------
- 28 | ERROR | Doc comment for parameter "$registry" missing
- 70 | ERROR | Doc comment for parameter "$user" missing
- 70 | ERROR | Doc comment for parameter "$newHashedPassword" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Service/CategoryService.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 76 | ERROR | Doc comment for parameter "$category" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Service/TagService.php
-----------------------------------------------------------------------
-FOUND 3 ERRORS AFFECTING 3 LINES
-----------------------------------------------------------------------
- 57 | ERROR | Doc comment for parameter "$id" missing
- 59 | ERROR | Missing @return tag in function comment
- 75 | ERROR | Doc comment for parameter "$tag" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Service/TeaService.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 127 | ERROR | Missing @return tag in function comment
-----------------------------------------------------------------------
-
-Time: 1.43 secs; Memory: 12MB
+ ------- -------- ---- ---------------------- ------------------------------- 
+  State   Domain   Id   Message Preview (pl)   Fallback Message Preview (en)  
+ ------- -------- ---- ---------------------- ------------------------------- 
 
