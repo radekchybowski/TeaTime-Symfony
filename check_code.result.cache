@@ -42,11 +42,11 @@ FILE: /home/wwwroot/app/src/Entity/User.php
 ----------------------------------------------------------------------
 FOUND 5 ERRORS AFFECTING 5 LINES
 ----------------------------------------------------------------------
- 199 | ERROR | Missing @return tag in function comment
- 218 | ERROR | Missing @return tag in function comment
- 245 | ERROR | Missing @return tag in function comment
- 267 | ERROR | Missing @return tag in function comment
- 289 | ERROR | Missing @return tag in function comment
+ 193 | ERROR | Missing @return tag in function comment
+ 212 | ERROR | Missing @return tag in function comment
+ 239 | ERROR | Missing @return tag in function comment
+ 261 | ERROR | Missing @return tag in function comment
+ 283 | ERROR | Missing @return tag in function comment
 ----------------------------------------------------------------------
 
 
@@ -97,5 +97,13 @@ FOUND 3 ERRORS AFFECTING 3 LINES
  75 | ERROR | Doc comment for parameter "$tag" missing
 ----------------------------------------------------------------------
 
-Time: 2.43 secs; Memory: 12MB
+
+FILE: /home/wwwroot/app/src/Service/TeaService.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 127 | ERROR | Missing @return tag in function comment
+----------------------------------------------------------------------
+
+Time: 2.38 secs; Memory: 12MB
 

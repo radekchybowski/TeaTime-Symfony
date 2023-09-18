@@ -1,20 +1,22 @@
 <?php
 /**
- * User type.
+ * Password type.
  */
 
 namespace Form\Type;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * Class UserType.
+ * Class PasswordType.
  */
-class UserType extends AbstractType
+class PasswordType extends AbstractType
 {
     /**
      * Builds the form.
@@ -29,33 +31,26 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
-            'name',
-            TextType::class,
-            [
-                'label' => 'label.user.name',
-                'required' => false,
-                'attr' => ['max_length' => 64],
-            ]
-        );
-        $builder->add(
-            'surname',
-            TextType::class,
-            [
-                'label' => 'label.user.surname',
-                'required' => false,
-                'attr' => ['max_length' => 64],
-            ]
-        );
-        $builder->add(
-            'email',
-            TextType::class,
-            [
-                'label' => 'label.user.email',
-                'required' => true,
-                'attr' => ['max_length' => 255],
-            ]
-        );
+        $builder->add('newPassword', RepeatedType::class, [
+            'mapped' => false,
+            'attr' => ['autocomplete' => 'new-password'],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'message.please_enter_password',
+                ]),
+                new Length([
+                    'min' => 6,
+                    'minMessage' => 'message.password_limit',
+                    'max' => 4096,
+                ]),
+            ],
+            'type' => \Form\Type\PasswordType::class,
+            'invalid_message' => 'message.password_match',
+            'options' => ['attr' => ['class' => 'password-field']],
+            'required' => true,
+            'first_options' => ['label' => 'label.register.password_first'],
+            'second_options' => ['label' => 'label.register.password_second'],
+        ]);
     }
 
     /**
@@ -78,6 +73,6 @@ class UserType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'user';
+        return 'password';
     }
 }
