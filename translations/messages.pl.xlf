@@ -621,6 +621,20 @@
                 <target>Istnieje konto na tym mailu.</target>
             </trans-unit>
 
+            <trans-unit id="message.password_successfully">
+                <source>message.password_successfully</source>
+                <target>Hasło zostało zmienione</target>
+            </trans-unit>
+
+            <trans-unit id="button.action_change-password">
+                <source>button.action_change-password</source>
+                <target>zmień hasło</target>
+            </trans-unit>
+
+            <trans-unit id="title.user_change-password">
+                <source>title.user_change-password</source>
+                <target>Zmień swoje hasło</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

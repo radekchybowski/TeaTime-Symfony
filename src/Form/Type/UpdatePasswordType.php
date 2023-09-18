@@ -1,12 +1,13 @@
 <?php
 /**
- * Password type.
+ * Update Password type.
  */
 
 namespace Form\Type;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,9 +15,9 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * Class PasswordType.
+ * Class UpdatePasswordType.
  */
-class PasswordType extends AbstractType
+class UpdatePasswordType extends AbstractType
 {
     /**
      * Builds the form.
@@ -31,7 +32,7 @@ class PasswordType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('newPassword', RepeatedType::class, [
+        $builder->add('plainPassword', RepeatedType::class, [
             'mapped' => false,
             'attr' => ['autocomplete' => 'new-password'],
             'constraints' => [
@@ -44,7 +45,7 @@ class PasswordType extends AbstractType
                     'max' => 4096,
                 ]),
             ],
-            'type' => \Form\Type\PasswordType::class,
+            'type' => PasswordType::class,
             'invalid_message' => 'message.password_match',
             'options' => ['attr' => ['class' => 'password-field']],
             'required' => true,
@@ -73,6 +74,6 @@ class PasswordType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'password';
+        return 'update_password';
     }
 }

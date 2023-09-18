@@ -76,7 +76,7 @@ class Tea
      * Author.
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
@@ -130,7 +130,7 @@ class Tea
     /**
      * Comments.
      */
-    #[ORM\OneToMany(mappedBy: 'tea', targetEntity: Comment::class, fetch: "EXTRA_LAZY", orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'tea', targetEntity: Comment::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
 //    #[ORM\JoinColumn(nullable: true)]
     private ?Collection $comments = null;
 
@@ -258,6 +258,8 @@ class Tea
 
     /**
      * Getter for author.
+     *
+     * @return User|null Author
      */
     public function getAuthor(): ?User
     {
@@ -267,7 +269,7 @@ class Tea
     /**
      * Setter for author.
      *
-     * @param User|null $author author
+     * @param User|null $author Author
      *
      * @return $this
      */
@@ -280,6 +282,8 @@ class Tea
 
     /**
      * Getter for description.
+     *
+     * @return string|null Description
      */
     public function getDescription(): ?string
     {
@@ -289,7 +293,7 @@ class Tea
     /**
      * Setter for description.
      *
-     * @param string|null $description description
+     * @param string|null $description Description
      *
      * @return $this
      */
@@ -302,6 +306,8 @@ class Tea
 
     /**
      * Getter for ingredients.
+     *
+     * @return string|null Ingredients
      */
     public function getIngredients(): ?string
     {
@@ -311,7 +317,7 @@ class Tea
     /**
      * Getter for ingredients.
      *
-     * @param string|null $ingredients ingredients
+     * @param string|null $ingredients Ingredients
      *
      * @return $this
      */
@@ -324,6 +330,8 @@ class Tea
 
     /**
      * Getter for steep time.
+     *
+     * @return int|null Steep time
      */
     public function getSteepTime(): ?int
     {
@@ -333,7 +341,7 @@ class Tea
     /**
      * Setter for steep time.
      *
-     * @param int|null $steepTime steep time
+     * @param int|null $steepTime Steep time
      *
      * @return $this
      */
@@ -346,6 +354,8 @@ class Tea
 
     /**
      * Getter for steep temperature.
+     *
+     * @return int|null Steep temperature
      */
     public function getSteepTemp(): ?int
     {
@@ -355,7 +365,7 @@ class Tea
     /**
      * Setter for steep temperature.
      *
-     * @param int|null $steepTemp steep temp
+     * @param int|null $steepTemp Steep temperature
      *
      * @return $this
      */
@@ -368,6 +378,8 @@ class Tea
 
     /**
      * Getter for region.
+     *
+     * @return string|null Region
      */
     public function getRegion(): ?string
     {
@@ -377,7 +389,7 @@ class Tea
     /**
      * Setter for region.
      *
-     * @param string|null $region region
+     * @param string|null $region Region
      *
      * @return $this
      */
@@ -390,6 +402,8 @@ class Tea
 
     /**
      * Getter for vendor.
+     *
+     * @return string|null Vendor
      */
     public function getVendor(): ?string
     {
@@ -399,7 +413,7 @@ class Tea
     /**
      * Setter for vendor.
      *
-     * @param string|null $vendor vendor
+     * @param string|null $vendor Vendor
      *
      * @return $this
      */
@@ -413,7 +427,7 @@ class Tea
     /**
      * Getter for Comments collection.
      *
-     * @return Collection<int, Comment>
+     * @return Collection<int, Comment> Comments
      */
     public function getComments(): Collection
     {
@@ -423,7 +437,7 @@ class Tea
     /**
      * Adding another comment.
      *
-     * @param Comment $comment comment
+     * @param Comment $comment Comment
      *
      * @return $this
      */
@@ -440,7 +454,7 @@ class Tea
     /**
      * Removing one of the comments.
      *
-     * @param Comment $comment comment
+     * @param Comment $comment Comment
      *
      * @return $this
      */

@@ -52,11 +52,10 @@ FOUND 5 ERRORS AFFECTING 5 LINES
 
 FILE: /home/wwwroot/app/src/Form/RegistrationFormType.php
 ----------------------------------------------------------------------
-FOUND 3 ERRORS AFFECTING 2 LINES
+FOUND 2 ERRORS AFFECTING 1 LINE
 ----------------------------------------------------------------------
  24 | ERROR | Doc comment for parameter "$builder" missing
  24 | ERROR | Doc comment for parameter "$options" missing
- 79 | ERROR | Doc comment for parameter "$resolver" missing
 ----------------------------------------------------------------------
 
 
@@ -105,5 +104,5 @@ FOUND 1 ERROR AFFECTING 1 LINE
  127 | ERROR | Missing @return tag in function comment
 ----------------------------------------------------------------------
 
-Time: 2.38 secs; Memory: 12MB
+Time: 1.43 secs; Memory: 12MB
 

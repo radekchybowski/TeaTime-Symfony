@@ -57,5 +57,5 @@ interface TeaServiceInterface
      *
      * @return void
      */
-    public function deleteTeaByAuthor(User $user): bool;
+    public function deleteTeaByAuthor(User $user): void;
 }

@@ -7,6 +7,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Service\UserServiceInterface;
+use Form\Type\UpdatePasswordType;
 use Form\Type\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -147,6 +148,47 @@ class UserController extends AbstractController
 
         return $this->render(
             'user/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'user' => $user,
+            ]
+        );
+    }
+
+    /**
+     * Change password action.
+     *
+     * @param Request $request HTTP request
+     * @param User    $user    User entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/{id}/change-password', name: 'user_change-password', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'user')]
+    public function changePassword(Request $request, User $user): Response
+    {
+        $form = $this->createForm(
+            UpdatePasswordType::class,
+            $user,
+            [
+                'method' => 'PUT',
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->userService->changePassword($user, $form);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.password_successfully')
+            );
+
+            return $this->redirectToRoute('user_change-password', ['id' => $user->getId()]);
+        }
+
+        return $this->render(
+            'user/change-password.html.twig',
             [
                 'form' => $form->createView(),
                 'user' => $user,

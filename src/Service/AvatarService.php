@@ -102,7 +102,7 @@ class AvatarService implements AvatarServiceInterface
             $this->filesystem->remove(
                 $this->targetDirectory.'/'.$filename
             );
-            $this->avatarRepository->remove($avatar, true);
+            $this->avatarRepository->remove($avatar);
         }
     }
 }

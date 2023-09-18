@@ -72,6 +72,8 @@ class Tag
 
     /**
      * Getter for created at.
+     *
+     * @return \DateTimeImmutable|null Created at
      */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -80,6 +82,8 @@ class Tag
 
     /**
      * Setter for created at.
+     *
+     * @param \DateTimeImmutable $createdAt Created at
      *
      * @return $this
      */
@@ -92,6 +96,8 @@ class Tag
 
     /**
      * Getter for updated at.
+     *
+     * @return \DateTimeImmutable|null Updated at
      */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
@@ -100,6 +106,8 @@ class Tag
 
     /**
      * Setter for updated at.
+     *
+     * @param \DateTimeImmutable $updatedAt Updated at
      *
      * @return $this
      */
@@ -137,7 +145,7 @@ class Tag
     /**
      * Getter for title.
      *
-     * @return string|null title
+     * @return string|null Title
      */
     public function getTitle(): ?string
     {
@@ -146,6 +154,8 @@ class Tag
 
     /**
      * Setter for title.
+     *
+     * @param string $title Title
      *
      * @return $this
      */

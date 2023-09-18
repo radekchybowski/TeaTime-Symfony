@@ -56,6 +56,10 @@ class TagService implements TagServiceInterface
 
     /**
      * Get tag by id.
+     *
+     * @param int $id Id
+     *
+     * @return Tag|null Tag
      */
     public function getOne(int $id): ?Tag
     {
@@ -74,6 +78,8 @@ class TagService implements TagServiceInterface
 
     /**
      * Delete tag instance.
+     *
+     * @param Tag $tag Tag
      */
     public function delete(Tag $tag): void
     {

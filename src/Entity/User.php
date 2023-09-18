@@ -42,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Roles.
      *
-     * @var array<int, string>
+     * @var array<int, string> Roles
      */
     #[ORM\Column(type: 'json')]
     private array $roles = [];
@@ -64,7 +64,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Avatar.
      */
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
-//    #[ORM\JoinColumn(nullable: true)]
     private ?Avatar $avatar = null;
 
     /**
@@ -189,6 +188,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
+     * @return string|null Salt
+     *
      * @see UserInterface
      */
     public function getSalt(): ?string
@@ -209,6 +210,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for avatar.
+     *
+     * @return Avatar|null Avatar profile picture
      */
     public function getAvatar(): ?Avatar
     {
@@ -218,7 +221,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for avatar.
      *
-     * @param Avatar $avatar avatar profile picture
+     * @param Avatar $avatar Avatar profile picture
      *
      * @return $this
      */
@@ -236,6 +239,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for name.
+     *
+     * @return string|null Name
      */
     public function getName(): ?string
     {
@@ -245,7 +250,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for name.
      *
-     * @param string|null $name name
+     * @param string|null $name Name
      *
      * @return $this
      */
@@ -258,6 +263,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for surname.
+     *
+     * @return string|null Surname
      */
     public function getSurname(): ?string
     {
@@ -267,7 +274,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for surname.
      *
-     * @param string|null $surname surname
+     * @param string|null $surname Surname
      *
      * @return $this
      */
@@ -280,6 +287,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for plain password used in password changing process.
+     *
+     * @return string|null Plain password
      */
     public function getPlainPassword(): ?string
     {
@@ -289,7 +298,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for plain password.
      *
-     * @param string|null $plainPassword plain password
+     * @param string|null $plainPassword Plain password
      *
      * @return $this
      */

@@ -81,6 +81,8 @@ class Comment
 
     /**
      * Getter for title.
+     *
+     * @return string|null Title
      */
     public function getTitle(): ?string
     {
@@ -103,6 +105,8 @@ class Comment
 
     /**
      * Getter for content.
+     *
+     * @return string|null Content
      */
     public function getContent(): ?string
     {
@@ -136,6 +140,8 @@ class Comment
     /**
      * Setter for created at.
      *
+     * @param \DateTimeImmutable $createdAt Created at
+     *
      * @return $this
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
@@ -147,6 +153,8 @@ class Comment
 
     /**
      * Getter for tea.
+     *
+     * @return Tea|null Tea
      */
     public function getTea(): ?Tea
     {
@@ -169,6 +177,8 @@ class Comment
 
     /**
      * Getter for author.
+     *
+     * @return User|null Author
      */
     public function getAuthor(): ?User
     {

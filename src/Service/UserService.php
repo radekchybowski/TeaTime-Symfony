@@ -7,11 +7,9 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use App\Repository\TeaRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
@@ -72,18 +70,29 @@ class UserService implements UserServiceInterface
     }
 
     /**
+     * Change password.
+     *
+     * @param User          $user User entity
+     * @param FormInterface $form Form
+     */
+    public function changePassword(User $user, FormInterface $form): void
+    {
+        $user->setPassword(
+            $this->passwordHasher->hashPassword(
+                $user,
+                $form->get('plainPassword')->getData()
+            )
+        );
+        $this->userRepository->save($user);
+    }
+
+    /**
      * Save entity.
      *
      * @param User $user User entity
      */
     public function save(User $user): void
     {
-        $user->setPassword(
-            $this->passwordHasher->hashPassword(
-                $user,
-                $user->getPassword()
-            )
-        );
         $this->userRepository->save($user);
     }
 

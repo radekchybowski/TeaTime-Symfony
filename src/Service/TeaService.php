@@ -125,16 +125,14 @@ class TeaService implements TeaServiceInterface
      *
      * @param User $user User entity
      */
-    public function deleteTeaByAuthor(User $user): bool
+    public function deleteTeaByAuthor(User $user): void
     {
-        /** @var Tea[] $teasArray Array of teas to delete*/
+        /** @var Tea[] $teasArray Array of teas to delete */
         $teasArray = $this->teaRepository->findByAuthor($user);
 
         foreach ($teasArray as $tea) {
             $this->teaRepository->delete($tea);
         }
-
-        return true;
     }
 
     /**

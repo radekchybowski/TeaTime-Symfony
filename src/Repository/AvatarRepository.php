@@ -31,6 +31,8 @@ class AvatarRepository extends ServiceEntityRepository
 
     /**
      * Save avatar.
+     *
+     * @param Avatar $avatar Avatar profile picture
      */
     public function save(Avatar $avatar): void
     {
@@ -40,13 +42,12 @@ class AvatarRepository extends ServiceEntityRepository
 
     /**
      * Remove avatar.
+     *
+     * @param Avatar $entity Avatar profile picture
      */
-    public function remove(Avatar $entity, bool $flush = false): void
+    public function remove(Avatar $entity): void
     {
         $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->getEntityManager()->flush();
     }
 }

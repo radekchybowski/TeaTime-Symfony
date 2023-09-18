@@ -25,6 +25,21 @@ parameters:
         }%}
     {% endif %}
     {{ form_widget(form) }}
+    {% if change_password|default(false) %}
+        <div class="form-group row float-sm-left">
+            <a class="btn btn-secondary my-2" href="{{ url('user_change-password', {id: user.id}) }}" title="{{ 'button.action_delete'|trans }}">
+                {{ 'button.action_change-password'|trans }}
+            </a>
+        </div>
+    {% endif %}
+
+    {% if delete_user|default(false) and not is_granted('ROLE_ADMIN')%}
+        <div class="form-group row float-sm-left">
+            <a class="btn btn-outline-danger" href="{{ url('user_delete', {id: user.id}) }}" title="{{ 'button.action_delete'|trans }}">
+                {{ 'button.action_delete_user'|trans }}
+            </a>
+        </div>
+    {% endif %}
     <div class="form-group row float-sm-right">
         <input type="submit" value="{{ submit_label }}" class="btn btn-primary"/>
     </div>
@@ -35,12 +50,7 @@ parameters:
             </a>
         </div>
     {% endif %}
-    {% if delete_user|default(false) and not is_granted('ROLE_ADMIN')%}
-        <div class="form-group row float-sm-left">
-            <a class="btn btn-outline-danger" href="{{ url('user_delete', {id: user.id}) }}" title="{{ 'button.action_delete'|trans }}">
-                {{ 'button.action_delete_user'|trans }}
-            </a>
-        </div>
-    {% endif %}
+
+
     {{ form_end(form) }}
 {% endblock %}

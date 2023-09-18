@@ -610,6 +610,21 @@
                 <source>message.invalid_email</source>
                 <target>There is already an account on that e-mail.</target>
             </trans-unit>
+
+            <trans-unit id="message.password_successfully">
+                <source>message.password_successfully</source>
+                <target>Password changed</target>
+            </trans-unit>
+
+            <trans-unit id="button.action_change-password">
+                <source>button.action_change-password</source>
+                <target>Change password</target>
+            </trans-unit>
+
+            <trans-unit id="title.user_change-password">
+                <source>title.user_change-password</source>
+                <target>Please type new password</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
