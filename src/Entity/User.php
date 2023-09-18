@@ -63,8 +63,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Avatar.
      */
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
-    //    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
+//    #[ORM\JoinColumn(nullable: true)]
     private ?Avatar $avatar = null;
 
     /**
@@ -78,12 +78,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column(length: 64, nullable: true)]
     private ?string $surname = null;
-
-//    /**
-//     * Teas.
-//     */
-//    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Tea::class, cascade: ['remove'])]
-//    private ?Collection $teas;
 
     /**
      * Comments.
@@ -195,8 +189,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
-     * @return string|null
-     *
      * @see UserInterface
      */
     public function getSalt(): ?string
@@ -217,8 +209,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for avatar.
-     *
-     * @return Avatar|null
      */
     public function getAvatar(): ?Avatar
     {
@@ -246,8 +236,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for name.
-     *
-     * @return string|null
      */
     public function getName(): ?string
     {
@@ -270,8 +258,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for surname.
-     *
-     * @return string|null
      */
     public function getSurname(): ?string
     {
@@ -294,8 +280,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for plain password used in password changing process.
-     *
-     * @return string|null
      */
     public function getPlainPassword(): ?string
     {

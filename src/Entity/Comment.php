@@ -63,7 +63,7 @@ class Comment
     /**
      * Author.
      */
-    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'LAZY', inversedBy: 'comments')]
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY', inversedBy: 'comments')]
     #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
@@ -81,8 +81,6 @@ class Comment
 
     /**
      * Getter for title.
-     *
-     * @return string|null
      */
     public function getTitle(): ?string
     {
@@ -105,8 +103,6 @@ class Comment
 
     /**
      * Getter for content.
-     *
-     * @return string|null
      */
     public function getContent(): ?string
     {
@@ -140,8 +136,6 @@ class Comment
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable $createdAt
-     *
      * @return $this
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
@@ -153,8 +147,6 @@ class Comment
 
     /**
      * Getter for tea.
-     *
-     * @return Tea|null
      */
     public function getTea(): ?Tea
     {
@@ -177,8 +169,6 @@ class Comment
 
     /**
      * Getter for author.
-     *
-     * @return User|null
      */
     public function getAuthor(): ?User
     {

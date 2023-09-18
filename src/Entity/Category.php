@@ -87,7 +87,7 @@ class Category
     /**
      * Setter for created at.
      *
-     * @param \DateTimeImmutable $createdAt
+     * @param \DateTimeImmutable $createdAt Datetime of creation
      *
      * @return $this
      */
@@ -111,7 +111,7 @@ class Category
     /**
      * Setter for updated at.
      *
-     * @param \DateTimeImmutable $updatedAt
+     * @param \DateTimeImmutable $updatedAt Datetime of last update
      *
      * @return $this
      */
@@ -135,7 +135,7 @@ class Category
     /**
      * Setter for category title.
      *
-     * @param string $title
+     * @param string $title Title
      *
      * @return $this
      */
@@ -159,7 +159,7 @@ class Category
     /**
      * Setter for category slug.
      *
-     * @param string $slug
+     * @param string $slug Slug
      *
      * @return $this
      */

@@ -75,8 +75,8 @@ class Tea
     /**
      * Author.
      */
-    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['remove'], fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
@@ -130,7 +130,7 @@ class Tea
     /**
      * Comments.
      */
-    #[ORM\OneToMany(mappedBy: 'tea', targetEntity: Comment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'tea', targetEntity: Comment::class, fetch: "EXTRA_LAZY", orphanRemoval: true)]
 //    #[ORM\JoinColumn(nullable: true)]
     private ?Collection $comments = null;
 
@@ -258,8 +258,6 @@ class Tea
 
     /**
      * Getter for author.
-     *
-     * @return User|null
      */
     public function getAuthor(): ?User
     {
@@ -282,8 +280,6 @@ class Tea
 
     /**
      * Getter for description.
-     *
-     * @return string|null
      */
     public function getDescription(): ?string
     {
@@ -306,8 +302,6 @@ class Tea
 
     /**
      * Getter for ingredients.
-     *
-     * @return string|null
      */
     public function getIngredients(): ?string
     {
@@ -330,8 +324,6 @@ class Tea
 
     /**
      * Getter for steep time.
-     *
-     * @return int|null
      */
     public function getSteepTime(): ?int
     {
@@ -354,8 +346,6 @@ class Tea
 
     /**
      * Getter for steep temperature.
-     *
-     * @return int|null
      */
     public function getSteepTemp(): ?int
     {
@@ -378,8 +368,6 @@ class Tea
 
     /**
      * Getter for region.
-     *
-     * @return string|null
      */
     public function getRegion(): ?string
     {
@@ -402,8 +390,6 @@ class Tea
 
     /**
      * Getter for vendor.
-     *
-     * @return string|null
      */
     public function getVendor(): ?string
     {

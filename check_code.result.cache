@@ -1,18 +1,101 @@
-PHP CS wyniki
-cs fixer wyniki
-   1) src/Controller/CategoryController.php (phpdoc_separation)
-   2) src/Controller/CommentController.php (phpdoc_separation)
-   3) src/Controller/RegistrationController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   4) src/Controller/SecurityController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   5) src/Entity/Category.php (no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
-   6) src/Entity/Comment.php (fully_qualified_strict_types, no_superfluous_phpdoc_tags, global_namespace_import, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
-   7) src/Entity/Tag.php (fully_qualified_strict_types, no_superfluous_phpdoc_tags, global_namespace_import, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
-   8) src/Entity/Tea.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   9) src/Entity/User.php (no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
-  10) src/Form/RegistrationFormType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  11) src/Repository/AvatarRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  12) src/Repository/UserRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  13) src/Service/CategoryService.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  14) src/Service/TagService.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+php cs
 
-Found 14 of 55 files that can be fixed in 0.611 seconds, 18.000 MB memory used
+FILE: /home/wwwroot/app/src/Entity/Comment.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 5 LINES
+----------------------------------------------------------------------
+  84 | ERROR | Missing @return tag in function comment
+ 106 | ERROR | Missing @return tag in function comment
+ 136 | ERROR | Doc comment for parameter "$createdAt" missing
+ 150 | ERROR | Missing @return tag in function comment
+ 172 | ERROR | Missing @return tag in function comment
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/Tag.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 5 LINES
+----------------------------------------------------------------------
+  75 | ERROR | Missing @return tag in function comment
+  81 | ERROR | Doc comment for parameter "$createdAt" missing
+  95 | ERROR | Missing @return tag in function comment
+ 101 | ERROR | Doc comment for parameter "$updatedAt" missing
+ 147 | ERROR | Doc comment for parameter "$title" missing
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/Tea.php
+----------------------------------------------------------------------
+FOUND 7 ERRORS AFFECTING 7 LINES
+----------------------------------------------------------------------
+ 261 | ERROR | Missing @return tag in function comment
+ 283 | ERROR | Missing @return tag in function comment
+ 305 | ERROR | Missing @return tag in function comment
+ 327 | ERROR | Missing @return tag in function comment
+ 349 | ERROR | Missing @return tag in function comment
+ 371 | ERROR | Missing @return tag in function comment
+ 393 | ERROR | Missing @return tag in function comment
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/User.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 5 LINES
+----------------------------------------------------------------------
+ 199 | ERROR | Missing @return tag in function comment
+ 218 | ERROR | Missing @return tag in function comment
+ 245 | ERROR | Missing @return tag in function comment
+ 267 | ERROR | Missing @return tag in function comment
+ 289 | ERROR | Missing @return tag in function comment
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Form/RegistrationFormType.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 24 | ERROR | Doc comment for parameter "$builder" missing
+ 24 | ERROR | Doc comment for parameter "$options" missing
+ 79 | ERROR | Doc comment for parameter "$resolver" missing
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Repository/AvatarRepository.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 32 | ERROR | Doc comment for parameter "$avatar" missing
+ 41 | ERROR | Doc comment for parameter "$entity" missing
+ 41 | ERROR | Doc comment for parameter "$flush" missing
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Repository/UserRepository.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 28 | ERROR | Doc comment for parameter "$registry" missing
+ 70 | ERROR | Doc comment for parameter "$user" missing
+ 70 | ERROR | Doc comment for parameter "$newHashedPassword" missing
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Service/CategoryService.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 76 | ERROR | Doc comment for parameter "$category" missing
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Service/TagService.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 57 | ERROR | Doc comment for parameter "$id" missing
+ 59 | ERROR | Missing @return tag in function comment
+ 75 | ERROR | Doc comment for parameter "$tag" missing
+----------------------------------------------------------------------
+
+Time: 2.43 secs; Memory: 12MB
+

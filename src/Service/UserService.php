@@ -25,9 +25,9 @@ class UserService implements UserServiceInterface
     private UserRepository $userRepository;
 
     /**
-     * Tea repository.
+     * Tea Service.
      */
-    private TeaRepository $teaRepository;
+    private TeaServiceInterface $teaService;
 
     /**
      * Paginator.
@@ -43,14 +43,14 @@ class UserService implements UserServiceInterface
      * Constructor.
      *
      * @param UserRepository              $userRepository User repository
-     * @param TeaRepository               $teaRepository  Tea repository
+     * @param TeaServiceInterface         $teaService     Tea Service
      * @param PaginatorInterface          $paginator      Paginator
      * @param UserPasswordHasherInterface $passwordHasher Password hasher
      */
-    public function __construct(UserRepository $userRepository, TeaRepository $teaRepository, PaginatorInterface $paginator, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(UserRepository $userRepository, TeaServiceInterface $teaService, PaginatorInterface $paginator, UserPasswordHasherInterface $passwordHasher)
     {
         $this->userRepository = $userRepository;
-        $this->teaRepository = $teaRepository;
+        $this->teaService = $teaService;
         $this->paginator = $paginator;
         $this->passwordHasher = $passwordHasher;
     }
@@ -94,24 +94,7 @@ class UserService implements UserServiceInterface
      */
     public function delete(User $user): void
     {
+        $this->teaService->deleteTeaByAuthor($user);
         $this->userRepository->remove($user);
-    }
-
-    /**
-     * Can User be deleted?
-     *
-     * @param User $user User entity
-     *
-     * @return bool Result
-     */
-    public function canBeDeleted(User $user): bool
-    {
-        try {
-            $result = $this->teaRepository->countByUser($user);
-
-            return !($result > 0);
-        } catch (NoResultException|NonUniqueResultException) {
-            return false;
-        }
     }
 }
