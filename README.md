@@ -1,13 +1,13 @@
 # TeaTime-Symfony
 ## Polski
-### Opis projektu
+## Opis projektu
 **Internetowy katalog herbat, pozwalający na ich przeglądanie i komentowanie przez zalogowanych użytkowników. Herbaty są dodawane przez użytkowników i widoczne publicznie, bez moderacji.**
 
 **[Link do projektu](https://wierzba.wzks.uj.edu.pl/~20_chybowski/tea-time/tea)**
 
 **Przygotowane w ramach zajęć z przedmiotu System Interakcyjny na kierunku Elektroniczne Przetwarzanie Informacji prowadzonego na Uniwersytecie Jagiellońskim.**
 
-### Instrukcja instalacji
+## Instrukcja instalacji
 Instrukcja dotycząca instalacji na skonfigurowanym serwerze Apache2.
 1. Przed umieszczeniem katalogu z projektem na serwerze w pliku .env ustawiamy parametry dostępowe do bazy danych:
    1. nazwa_uzytkownika - nazwa uzytkownika mysql np. 20_chybowski
@@ -22,14 +22,20 @@ Instrukcja dotycząca instalacji na skonfigurowanym serwerze Apache2.
 
 **Aplikacja jest gotowa do działania.**
 
-### Wygląd aplikacji
-Strona główna
+## Wygląd aplikacji
+
+### Strona główna
+
 ![Zrzut ekranu 2023-09-19 o 18 49 50](https://github.com/radekchybowski/TeaTime-Symfony/assets/92121154/e07c2cd5-d95b-4c2d-85e4-4347aed30780)
 
-Strona pojedynczej herbaty
+
+### Strona pojedynczej herbaty
+
 ![Zrzut ekranu 2023-09-19 o 18 50 11](https://github.com/radekchybowski/TeaTime-Symfony/assets/92121154/86deb44f-83d4-4ee2-8d29-a0800dce416a)
 
-Formularz logowania
+
+### Formularz logowania
+
 ![Zrzut ekranu 2023-09-19 o 18 50 39](https://github.com/radekchybowski/TeaTime-Symfony/assets/92121154/ac215bb1-e673-485b-b80b-2dc6f104eeae)
 
 **Podziękowania dla Pana Profesora Tomasza Chojny za dokładne tłumaczenie zagadnień i Marcina Chochorowskiego za pomoc z phpStorm.**
