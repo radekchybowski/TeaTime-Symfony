@@ -105,4 +105,15 @@ class AvatarService implements AvatarServiceInterface
             $this->avatarRepository->remove($avatar);
         }
     }
+
+    /**
+     * Delete avatar by User entity.
+     *
+     * @param User $user User entity
+     */
+    public function deleteByUser(User $user): void
+    {
+        $avatar = $this->avatarRepository->findOneByUser($user);
+        $this->delete($avatar);
+    }
 }

@@ -28,6 +28,11 @@ class UserService implements UserServiceInterface
     private TeaServiceInterface $teaService;
 
     /**
+     * Avatar Service.
+     */
+    private AvatarServiceInterface $avatarService;
+
+    /**
      * Paginator.
      */
     private PaginatorInterface $paginator;
@@ -42,13 +47,15 @@ class UserService implements UserServiceInterface
      *
      * @param UserRepository              $userRepository User repository
      * @param TeaServiceInterface         $teaService     Tea Service
+     * @param AvatarServiceInterface      $avatarService  Avatar Service
      * @param PaginatorInterface          $paginator      Paginator
      * @param UserPasswordHasherInterface $passwordHasher Password hasher
      */
-    public function __construct(UserRepository $userRepository, TeaServiceInterface $teaService, PaginatorInterface $paginator, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(UserRepository $userRepository, TeaServiceInterface $teaService, AvatarServiceInterface $avatarService, PaginatorInterface $paginator, UserPasswordHasherInterface $passwordHasher)
     {
         $this->userRepository = $userRepository;
         $this->teaService = $teaService;
+        $this->avatarService = $avatarService;
         $this->paginator = $paginator;
         $this->passwordHasher = $passwordHasher;
     }
@@ -104,6 +111,7 @@ class UserService implements UserServiceInterface
     public function delete(User $user): void
     {
         $this->teaService->deleteTeaByAuthor($user);
+        $this->avatarService->deleteByUser($user);
         $this->userRepository->remove($user);
     }
 }

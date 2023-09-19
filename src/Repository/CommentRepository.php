@@ -54,10 +54,12 @@ class CommentRepository extends ServiceEntityRepository
             ->select(
                 'partial comment.{id, title, content, createdAt}',
                 'partial user.{id, email}',
-                'partial tea.{id, title}'
+                'partial tea.{id, title}',
+                'partial avatar.{id, filename}'
             )
             ->leftJoin('comment.tea', 'tea')
             ->leftJoin('comment.author', 'user')
+            ->leftJoin('user.avatar', 'avatar')
             ->orderBy('comment.id', 'ASC');
     }
 

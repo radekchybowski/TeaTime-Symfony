@@ -1,7 +1,10 @@
 {% extends 'default/_dashboard.html.twig' %}
 
 {% block title %}{{ 'site_title.comment.show'|trans }} {{ record.id }}{% endblock %}
-
+{% block section_title %}
+    <h1 class="text-left">{{ record.title }}</h1>
+    <a class="btn btn-success" href="{{ path('comment_create') }}">{{ 'button.comment.action_create'|trans }}</a>
+{% endblock %}
 {% block main %}
 
     {% if record is defined %}

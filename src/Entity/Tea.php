@@ -131,7 +131,6 @@ class Tea
      * Comments.
      */
     #[ORM\OneToMany(mappedBy: 'tea', targetEntity: Comment::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
-//    #[ORM\JoinColumn(nullable: true)]
     private ?Collection $comments = null;
 
     /**

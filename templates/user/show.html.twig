@@ -1,11 +1,11 @@
 {% extends 'default/_dashboard.html.twig' %}
 
 {% block title %}{{ 'title.record_view'|trans }} {{ user.id }}{% endblock %}
-
+{% block section_title %}
+    <h1 class="text-left">{{ user.email }}</h1>
+    <a class="btn btn-success" href="{{ path('user_create') }}">{{ 'button.user.action_create'|trans }}</a>
+{% endblock %}
 {% block main %}
-
-
-
     {% if user is defined %}
         <h3>{{ 'label.id'|trans }}: {{ user.id }}</h3>
         <h3>{{ 'label.user.email'|trans }}</h3>
@@ -14,11 +14,9 @@
         <p>{{ user.name }}</p>
         <h3>{{ 'label.user.surname'|trans }}</h3>
         <p>{{ user.surname }}</p>
-        <h3>{{ 'label.user.password'|trans }}</h3>
-        <p>{{ user.password }}</p>
         {% if user.avatar.filename is defined and user.avatar.filename|length %}
             <h3>{{ 'label.user.avatar'|trans }}</h3>
-            <img class="nav-profile-img" src="{{ asset(avatars_directory~user.avatar.filename) }}">
+            <img class="nav-profile-img" style="max-width: 300px" src="{{ asset(avatars_directory~user.avatar.filename) }}">
         {% endif %}
 
         <a href="{{ url('user_index') }}" title="{{ 'action.back_to_list'|trans }}">

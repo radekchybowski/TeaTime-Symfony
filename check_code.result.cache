@@ -1,7 +1,7 @@
 php cs
 php cs fixer
 
-Found 0 of 56 files that can be fixed in 0.358 seconds, 18.000 MB memory used
+Found 0 of 56 files that can be fixed in 1.199 seconds, 18.000 MB memory used
  ------- -------- ---- ---------------------- 
   State   Domain   Id   Message Preview (en)  
  ------- -------- ---- ---------------------- 
